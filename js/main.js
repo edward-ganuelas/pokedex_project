@@ -1,6 +1,7 @@
 var pokeAPI = "http://pokeapi.co/api/v2/";
 var pokeAPIPokeDex ="pokedex/";
 var pokeAPIPokemon = 'pokemon/';
+var pokeAPIPokemonSpecies ='pokemon-species/';
 
 
 var pokeDexVue = new Vue({
@@ -51,7 +52,8 @@ var pokeDexVue = new Vue({
         ],
         pokemon_entries: '',
         pokemon_selected: '',
-        pokemon: ""
+        pokemon: "",
+        pokemon_description: ""
     },
     methods: {
         getPokemon: function(){ //This methos is called on #pokedexEntries onChange
@@ -63,9 +65,15 @@ var pokeDexVue = new Vue({
              $('#entry').hide();   
             $.ajax({url: apiCall}).success(function(e){
                     pokemonThis.pokemon = e; 
-                    console.log(e);
-                    $('#entry').show();   
-                    $("#loading-indicator").hide();
+                    var pokemonId = e.id;
+                    $.ajax({url: pokeAPI+pokeAPIPokemonSpecies+pokemonId}).success(function(e){
+                        pokemonThis.pokemon_description = e.flavor_text_entries[1].flavor_text;
+                        $('#entry').show();   
+                        $("#loading-indicator").hide();
+                    }).error(function(e){
+                        console.log(e);  
+                        $("#loading-indicator").hide();  
+                    });
                 }).error(function(e){
                    console.log(e);  
                    $("#loading-indicator").hide();  

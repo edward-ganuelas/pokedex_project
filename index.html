@@ -19,7 +19,7 @@
     <![endif]-->
   </head>
   <body>
-        <div class="container">
+        <div class="container" id="pokedex">
             <div class="row">
                 <div class="col-xs-12">
                     <h1>Pokedex</h1>
@@ -28,21 +28,14 @@
             <div class="row">
                 <div class="col-xs-12">
                     <select name="pokedexSelect" id="pokedexSelect">
-                        <option value="0">Select</option>
-                        <option value="1">National</option>
-                        <option value="2">Kanto</option>
-                        <option value="3">Original Johto</option>
-                        <option value="4">Hoenn</option>
-                        <option value="5">Original Sinnoh</option>
-                        <option value="6">Extended Sinnoh</option>
-                        <option value="7">Updated Johto</option>
-                        <option value="8">Original Unova</option>
-                        <option value="9">Updated Unova</option>
+                        <option v-for="option in pokedexSelect" v-bind:value="option.id">
+                            {{ option.name | capitalize}}
+                        </option>
                     </select>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12" id="pokedex">
+                <div class="col-xs-12">
                     
                         <select name="pokedexEntries" id="pokedexEntries" v-model="pokemon_selected" v-on:change="getPokemon()">
                             <option v-for="option in pokemon_entries" v-bind:value="option.pokemon_species.name">

@@ -6,6 +6,49 @@ var pokeAPIPokemon = 'pokemon/';
 var pokeDexVue = new Vue({
     el: "#pokedex",
     data: {
+        pokedexSelect:[
+            {
+                id: 0,
+                name: "Select"
+            },
+            {
+                id: 1,
+                name: "National"
+            },
+            {
+                id: 2,
+                name: "Kanto"
+            },
+            {
+                id: 3,
+                name: "Original Johto"
+            },
+            {
+                id: 4,
+                name: "Hoenn"
+            },
+            {
+                id: 5,
+                name: "Original Sinnoh"
+            },
+            {
+                id: 6,
+                name: "Extended Sinnoh"
+            },
+            {
+                id: 7,
+                name: "Updates Johto"
+            },
+            {
+                id: 8,
+                name: "Original Unova"
+            },
+            {
+                id: 9,
+                name: "Updated Unova"
+            },
+        
+        ],
         pokemon_entries: '',
         pokemon_selected: '',
         pokemon: ""

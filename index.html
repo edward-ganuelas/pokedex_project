@@ -27,7 +27,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    <select name="pokedexSelect" id="pokedexSelect">
+                    <select name="pokedexSelect" id="pokedexSelect" v-model="region_select" v-on:change="getPokedex()">
                         <option v-for="option in pokedexSelect" v-bind:value="option.id">
                             {{ option.name | capitalize}}
                         </option>

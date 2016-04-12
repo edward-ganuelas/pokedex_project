@@ -46,9 +46,24 @@
                     <div id="entry">
                         <img src="{{pokemon.sprites.front_default}}" />
                         <h1>{{pokemon.name | capitalize}}</h1>
-                        <p>{{pokemon_description}}
+                        <blockquote v-for="option in pokemon_description | filterBy 'en' in 'language.name' | limitBy 3">
+                         <p>{{option.flavor_text}}</p>
+                         <footer>Pokemon {{option.version.name | capitalize}} description.</footer>
+                        </blockquote>
                         <p>Pokedex entry: {{pokemon.id}}</p>
                         <p>Weight: {{pokemon.weight}}</p>
+                        <p>Abilities:</p>
+                        <ul>
+                            <li v-for="option in pokemon.abilities">{{option.ability.name|capitalize}}</li>
+                        </ul>
+                        <p>Type:</p>
+                        <ul>
+                            <li v-for="option in pokemon.types | orderBy 'slot''">{{option.type.name|capitalize}}</li>
+                        </ul>
+                        <p>Stats:</p>
+                        <ul>
+                            <li v-for="option in pokemon.stats | orderBy 'stat.name''">{{option.stat.name|capitalize}} : {{option.base_stat}}</li>
+                        </ul>
                     </div>
                 </div>
           </div>

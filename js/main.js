@@ -68,7 +68,7 @@ var pokeDexVue = new Vue({
                     pokemonThis.pokemon = e; 
                     var pokemonId = e.id;
                     $.ajax({url: pokeAPI+pokeAPIPokemonSpecies+pokemonId}).success(function(e){
-                        pokemonThis.pokemon_description = e.flavor_text_entries[1].flavor_text;
+                        pokemonThis.pokemon_description = e.flavor_text_entries;
                         $('#entry').show();   
                         $("#loading-indicator").hide();
                     }).error(function(e){
@@ -102,7 +102,6 @@ var pokeDexVue = new Vue({
                 pokemonThis.pokemon_entries = JSON.parse(sessionStorage.getItem('pokemon_entries_'+pokedexSelectValue));
                 $('#pokedexEntries').show();
             }
-           
         }
     }
 });

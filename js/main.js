@@ -54,6 +54,7 @@ var pokeDexVue = new Vue({
         pokemon_selected: '',
         pokemon: "",
         pokemon_description: "",
+        pokemon_genus: "",
         region_select: "0"
     },
     methods: {
@@ -67,7 +68,7 @@ var pokeDexVue = new Vue({
              $('#entry').hide();   
             $.ajax({url: apiCall}).success(function(e){
                     pokemonThis.pokemon_description = e.flavor_text_entries;
-                   
+                    pokemonThis.pokemon_genus = e.genera;
                     var pokemonId = e.id;
                     $.ajax({url: pokeAPI+pokeAPIPokemon+pokemonId}).success(function(e){
                         pokemonThis.pokemon = e; 

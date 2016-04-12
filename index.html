@@ -45,8 +45,11 @@
                         </select>
             
                     <div id="entry">
-                        <img src="{{pokemon.sprites.front_default}}" />
-                        <h1>{{pokemon.name | capitalize}}</h1>
+                        <div id="spriteImage" v-for="option in pokemon.sprites">
+                            <img src="{{option}}" />
+                        </div>
+                        <h1>{{pokemon.name | capitalize}} #{{pokemon.id}}</h1>
+                        <p v-for="option in pokemon_genus | filterBy 'en' in 'language.name' | limitBy 1">The {{option.genus | capitalize}} Pokemon</p>
                         <blockquote v-for="option in pokemon_description | filterBy 'en' in 'language.name' | limitBy 3">
                          <p>{{option.flavor_text}}</p>
                          <footer>Pokemon {{option.version.name | capitalize}} description.</footer>

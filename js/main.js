@@ -1,7 +1,7 @@
 var pokeAPI = "http://pokeapi.co/api/v2/";
 var pokeAPIPokeDex ="pokedex/";
 var pokeAPIPokemon = 'pokemon/';
-var pokeAPIPokemonSpecies ='pokemon-species/';
+// var pokeAPIPokemonSpecies ='pokemon-species/';
 
 
 var pokeDexVue = new Vue({
@@ -59,16 +59,18 @@ var pokeDexVue = new Vue({
     methods: {
         getPokemon: function(){ //This methos is called on #pokedexEntries onChange
             
-            var apiCall = pokeAPI+pokeAPIPokemon+this.pokemon_selected;
+            var apiCall = this.pokemon_selected;
             var pokemonThis = this;
+            $('#entry').hide();
  
              $("#loading-indicator").show();
              $('#entry').hide();   
             $.ajax({url: apiCall}).success(function(e){
-                    pokemonThis.pokemon = e; 
+                    pokemonThis.pokemon_description = e.flavor_text_entries;
+                   
                     var pokemonId = e.id;
-                    $.ajax({url: pokeAPI+pokeAPIPokemonSpecies+pokemonId}).success(function(e){
-                        pokemonThis.pokemon_description = e.flavor_text_entries;
+                    $.ajax({url: pokeAPI+pokeAPIPokemon+pokemonId}).success(function(e){
+                        pokemonThis.pokemon = e; 
                         $('#entry').show();   
                         $("#loading-indicator").hide();
                     }).error(function(e){
@@ -84,6 +86,8 @@ var pokeDexVue = new Vue({
         getPokedex: function(){
             var pokemonThis = this;
             var pokedexSelectValue = pokemonThis.region_select;
+            $('#entry').hide();
+ 
             if(pokemonThis.region_select == "0"){return;} //Return if the default is selected
              if(sessionStorage.getItem('pokemon_entries_'+pokedexSelectValue) == null){ //Check if the object is stored on a session storage
                 var apiCall = pokeAPI+pokeAPIPokeDex+pokemonThis.region_select; //Build the URL

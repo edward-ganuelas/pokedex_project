@@ -88,6 +88,7 @@ var pokeDexVue = new Vue({
             var pokedexSelectValue = pokemonThis.region_select;
             pokemonThis.pokemon = '';
             pokemonThis.pokemon_entries = '';
+            pokemonThis.pokemon_selected = '';
 
             if(pokemonThis.region_select == "0"){return;} //Return if the default is selected
              if(sessionStorage.getItem('pokemon_entries_'+pokedexSelectValue) == null){ //Check if the object is stored on a session storage

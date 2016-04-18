@@ -1,6 +1,5 @@
 html,body{height: 100%;}
 select{width: 100%; margin-bottom: 1em;}
-#pokedexEntries, #entry{display: none;}
 #entry{margin-bottom: 5em;}
 #spriteImage {display: inline-block;}
 #loading-indicator {

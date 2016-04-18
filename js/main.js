@@ -88,29 +88,23 @@ var pokeDexVue = new Vue({
             var pokedexSelectValue = pokemonThis.region_select;
             pokemonThis.pokemon = '';
             pokemonThis.pokemon_entries = '';
-            // $('#entry').hide();
- 
+
             if(pokemonThis.region_select == "0"){return;} //Return if the default is selected
              if(sessionStorage.getItem('pokemon_entries_'+pokedexSelectValue) == null){ //Check if the object is stored on a session storage
                 var apiCall = pokeAPI+pokeAPIPokeDex+pokemonThis.region_select; //Build the URL
-                // $("#loading-indicator").show();
                 pokemonThis.ajax_call = true;
-                // $('#pokedexEntries').hide();
+
                 $.ajax({url: apiCall}).success(function(e){ //AJAX call, jQuery 
-                    // $('#pokedexEntries').show();
-                    // $("#loading-indicator").hide();
                     pokemonThis.ajax_call = false;
                     pokemonThis.pokemon_entries = e.pokemon_entries; //I only want the pokemon entries. Set it to the pokemon_entries object of the pokeDexVue object.
                     sessionStorage.setItem('pokemon_entries_'+pokedexSelectValue, JSON.stringify(e.pokemon_entries)); //Save the JSON object to a sessionStorage variable to avoid too much AJAX Calls. 
                 }).error(function(e){
                     console.log(e);  
-                    // $("#loading-indicator").hide();
+
                     pokemonThis.ajax_call = false;
                 });
             }else{ //If the sessionStorage item exist, set it to pokemon_entries
                 pokemonThis.pokemon_entries = JSON.parse(sessionStorage.getItem('pokemon_entries_'+pokedexSelectValue));
-                // $('#pokedexEntries').show();
-                // pokemonThis.ajax_call = true;
             }
         }
     }

@@ -61,8 +61,12 @@
                         </select>
             
                     <div id="entry" v-show="pokemon">
-                        <div id="spriteImage" v-for="option in pokemon.sprites">
-                            <img v-bind:src="option" />
+                        <div id="sprites">
+                            <div class="spritesWrap">
+                                <div id="spriteImage" v-for="option in pokemon.sprites">
+                                    <img v-bind:src="option" />
+                                </div>
+                            </div>
                         </div>
                         <h1>{{pokemon.name | capitalize}} #{{pokemon.id}}</h1>
                         <p v-for="option in pokemon_genus | filterBy 'en' in 'language.name' | limitBy 1">The {{option.genus | capitalize}} Pokemon</p>

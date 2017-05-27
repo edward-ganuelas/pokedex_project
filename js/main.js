@@ -1,4 +1,4 @@
-var pokeAPI = "http://pokeapi.co/api/v2/";
+var pokeAPI = "https://pokeapi.co/api/v2/";
 var pokeAPIPokeDex ="pokedex/";
 var pokeAPIPokemon = 'pokemon/';
 // var pokeAPIPokemonSpecies ='pokemon-species/';

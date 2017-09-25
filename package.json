@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/edward-ganuelas/pokedex_project/issues"
   },
-  "homepage": "https://github.com/edward-ganuelas/pokedex_project#readme"
+  "homepage": "https://github.com/edward-ganuelas/pokedex_project#readme",
+  "dependencies": {
+    "vue": "^2.4.4"
+  }
 }

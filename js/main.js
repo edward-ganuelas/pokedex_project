@@ -5,7 +5,6 @@ import { POKEDEX } from './const/pokeapi.js';
 // var pokeAPIPokemon = 'pokemon/';
 // var pokeAPIPokemonSpecies ='pokemon-species/';
 
-console.log(POKEDEX);
 
 var pokeDexVue = new Vue({
     el: "#pokedex",

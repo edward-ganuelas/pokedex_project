@@ -9069,7 +9069,7 @@ var pokeDexVue = new _vue2.default({
                     sessionStorage.setItem("pokedexRegions", message);
                 });
             } else {
-                this.pokeAPIPokeDex = sessionStorage.getItem("pokedexRegions");
+                this.pokedexRegion = JSON.parse(sessionStorage.getItem("pokedexRegions"));
             }
         },
         getPokemon: function getPokemon() {

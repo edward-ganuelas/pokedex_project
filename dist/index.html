@@ -32,6 +32,11 @@
 
       </script>
         <div class="container" id="pokedex" v-cloak>
+            <select name="" id="">
+                <option value="" v-for="region in pokedexRegion.results">
+                    {{region.name}}
+                </option>
+            </select>
             <!-- <div class="row">
                 <div class="col-xs-12">
                     <h1>Pokedex</h1>

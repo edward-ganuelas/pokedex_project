@@ -35,7 +35,7 @@ var pokeDexVue = new Vue({
                     sessionStorage.setItem("pokedexRegions", message);
                 });
             }else{
-                this.pokeAPIPokeDex = sessionStorage.getItem("pokedexRegions");
+                this.pokedexRegion = JSON.parse(sessionStorage.getItem("pokedexRegions"));
             }
         },
         getPokemon: function () { //This methos is called on #pokedexEntries onChange

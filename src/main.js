@@ -1,17 +1,17 @@
 import Vue from 'vue';
-import { POKEDEX } from './const/pokeapi.js';
-import Test from './components/test.vue'
+import Test from './components/test.vue';
+import RegionSelect from './components/RegionSelect.vue';
 // var pokeAPI = "https://pokeapi.co/api/v2/";
 // var pokeAPIPokeDex ="pokedex/";
 // var pokeAPIPokemon = 'pokemon/';
 // var pokeAPIPokemonSpecies ='pokemon-species/';
 
 Vue.component('test', Test);
+Vue.component('region-select', RegionSelect);
 
 var pokeDexVue = new Vue({
     el: "#pokedex",
     data: {
-        pokedexRegion: '',
         pokemon_entries: '',
         pokemon_selected: '',
         pokemon: "",
@@ -21,24 +21,6 @@ var pokeDexVue = new Vue({
         ajax_call: false //Controls if the ajax gif is shown or not
     },
     methods: {
-        getRegions: function () {
-            if (sessionStorage.getItem("pokedexRegions") === null) {
-                let pokeDexPromise = new Promise((resolve, reject) => {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("GET", POKEDEX);
-                    xhr.onload = () => resolve(xhr.responseText);
-                    xhr.onerror = () => reject(xhr.statusText);
-                    xhr.send();
-                });
-
-                pokeDexPromise.then((message) => {
-                    this.pokedexRegion = message;
-                    sessionStorage.setItem("pokedexRegions", message);
-                });
-            }else{
-                this.pokedexRegion = JSON.parse(sessionStorage.getItem("pokedexRegions"));
-            }
-        },
         getPokemon: function () { //This methos is called on #pokedexEntries onChange
 
             var apiCall = this.pokemon_selected;
@@ -90,4 +72,3 @@ var pokeDexVue = new Vue({
         }
     }
 });
-pokeDexVue.getRegions();

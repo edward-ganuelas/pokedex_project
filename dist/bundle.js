@@ -1,0 +1,184 @@
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+var pokeAPI = "https://pokeapi.co/api/v2/";
+var pokeAPIPokeDex ="pokedex/";
+var pokeAPIPokemon = 'pokemon/';
+// var pokeAPIPokemonSpecies ='pokemon-species/';
+
+
+var pokeDexVue = new Vue({
+    el: "#pokedex",
+    data: {
+        pokedexSelect:[
+            {
+                id: 0,
+                name: "Select"
+            },
+            {
+                id: 1,
+                name: "National"
+            },
+            {
+                id: 2,
+                name: "Kanto"
+            },
+            {
+                id: 3,
+                name: "Original Johto"
+            },
+            {
+                id: 4,
+                name: "Hoenn"
+            },
+            {
+                id: 5,
+                name: "Original Sinnoh"
+            },
+            {
+                id: 6,
+                name: "Extended Sinnoh"
+            },
+            {
+                id: 7,
+                name: "Updates Johto"
+            },
+            {
+                id: 8,
+                name: "Original Unova"
+            },
+            {
+                id: 9,
+                name: "Updated Unova"
+            },
+        
+        ],
+        pokemon_entries: '',
+        pokemon_selected: '',
+        pokemon: "",
+        pokemon_description: "",
+        pokemon_genus: "",
+        region_select: "0",
+        ajax_call: false //Controls if the ajax gif is shown or not
+    },
+    methods: {
+        getPokemon: function(){ //This methos is called on #pokedexEntries onChange
+            
+            var apiCall = this.pokemon_selected;
+            var pokemonThis = this;
+            pokemonThis.pokemon = ''; //Unsets the variable and hides #entry.
+            
+            pokemonThis.ajax_call = true;
+            $.ajax({url: apiCall}).success(function(e){
+                    pokemonThis.pokemon_description = e.flavor_text_entries;
+                    pokemonThis.pokemon_genus = e.genera;
+                    var pokemonId = e.id;
+                    $.ajax({url: pokeAPI+pokeAPIPokemon+pokemonId}).success(function(e){
+                        pokemonThis.pokemon = e; 
+                        pokemonThis.ajax_call = false;
+                    }).error(function(e){
+                        console.log(e);  
+                        pokemonThis.ajax_call = true;
+                    });
+                }).error(function(e){
+                   console.log(e);  
+                     pokemonThis.ajax_call = false;
+                });
+
+        },
+        getPokedex: function(){
+            var pokemonThis = this;
+            var pokedexSelectValue = pokemonThis.region_select;
+            pokemonThis.pokemon = '';
+            pokemonThis.pokemon_entries = '';
+            pokemonThis.pokemon_selected = '';
+
+            if(pokemonThis.region_select == "0"){return;} //Return if the default is selected
+             if(sessionStorage.getItem('pokemon_entries_'+pokedexSelectValue) == null){ //Check if the object is stored on a session storage
+                var apiCall = pokeAPI+pokeAPIPokeDex+pokemonThis.region_select; //Build the URL
+                pokemonThis.ajax_call = true;
+
+                $.ajax({url: apiCall}).success(function(e){ //AJAX call, jQuery 
+                    pokemonThis.ajax_call = false;
+                    pokemonThis.pokemon_entries = e.pokemon_entries; //I only want the pokemon entries. Set it to the pokemon_entries object of the pokeDexVue object.
+                    sessionStorage.setItem('pokemon_entries_'+pokedexSelectValue, JSON.stringify(e.pokemon_entries)); //Save the JSON object to a sessionStorage variable to avoid too much AJAX Calls. 
+                }).error(function(e){
+                    console.log(e);  
+
+                    pokemonThis.ajax_call = false;
+                });
+            }else{ //If the sessionStorage item exist, set it to pokemon_entries
+                pokemonThis.pokemon_entries = JSON.parse(sessionStorage.getItem('pokemon_entries_'+pokedexSelectValue));
+            }
+        }
+    }
+});
+
+/***/ })
+/******/ ]);

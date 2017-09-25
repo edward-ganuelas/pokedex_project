@@ -4,7 +4,8 @@
   "description": "Just another for fun project using the pokeapi.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,10 @@
   },
   "homepage": "https://github.com/edward-ganuelas/pokedex_project#readme",
   "dependencies": {
+    "lodash": "^4.17.4",
     "vue": "^2.4.4"
+  },
+  "devDependencies": {
+    "webpack": "^3.6.0"
   }
 }

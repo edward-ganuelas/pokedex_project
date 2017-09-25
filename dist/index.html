@@ -32,7 +32,7 @@
 
       </script>
         <div class="container" id="pokedex" v-cloak>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xs-12">
                     <h1>Pokedex</h1>
                    <address>
@@ -89,7 +89,7 @@
                             <li v-for="option in pokemon.stats | orderBy 'stat.name''">{{option.stat.name|capitalize}} : {{option.base_stat}}</li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
           </div>
            <img src="images/ajax-loader.gif" id="loading-indicator" v-if="ajax_call == true" />
 

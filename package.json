@@ -19,10 +19,14 @@
   },
   "homepage": "https://github.com/edward-ganuelas/pokedex_project#readme",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.4",
     "vue": "^2.4.4"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
     "webpack": "^3.6.0"
   }
 }

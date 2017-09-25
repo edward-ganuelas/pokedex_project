@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import { POKEDEX } from './const/pokeapi.js';
+import Test from './components/test.vue'
 // var pokeAPI = "https://pokeapi.co/api/v2/";
 // var pokeAPIPokeDex ="pokedex/";
 // var pokeAPIPokemon = 'pokemon/';
 // var pokeAPIPokemonSpecies ='pokemon-species/';
 
+Vue.component('test', Test);
 
 var pokeDexVue = new Vue({
     el: "#pokedex",

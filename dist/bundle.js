@@ -9033,7 +9033,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // var pokeAPIPokemon = 'pokemon/';
 // var pokeAPIPokemonSpecies ='pokemon-species/';
 
-console.log(_pokeapi.POKEDEX);
 
 var pokeDexVue = new _vue2.default({
     el: "#pokedex",

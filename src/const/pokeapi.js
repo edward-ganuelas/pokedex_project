@@ -1,0 +1,1 @@
+export const POKEDEX = "https://pokeapi.co/api/v2/pokedex/";

@@ -1,7 +1,7 @@
 <template>
     <select v-model="url">
         <option v-for="region in regionResult.results" v-bind:value="region.url" v-bind:key="region.name">
-            {{region.name}}
+            {{region.name | capitalize}}
         </option>
     </select>
 </template>

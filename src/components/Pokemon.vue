@@ -1,11 +1,12 @@
 <template>
-    <h2>{{pokemonData.name}}</h2>
+    <h2>
+        {{pokemonData.name | capitalize}}</h2>
 </template>
 
 <script>
-export default{
+export default {
     name: 'pokemon',
-    props: ['pokemonData']
+    props: ['pokemonData'],
 }
 </script>
 

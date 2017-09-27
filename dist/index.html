@@ -31,8 +31,10 @@
         ga('send', 'pageview');
 
       </script>
-        <div class="container" id="pokedex" v-cloak>
-        <region-select v-bind:region-result = "pokedexRegions" v-on:select-region="getPokedex" v-if="pokedexRegions" />
+        <div class="container" id="pokedex">
+        <!-- <region-select v-bind:region-result = "pokedexRegions" v-on:select-region="getPokedex" v-if="pokedexRegions"></region-select>
+        <test />
+        <pokemon-select v-bind:pokedex-result ="pokemon_entries" /> -->
             <!-- <div class="row">
                 <div class="col-xs-12">
                     <h1>Pokedex</h1>
@@ -91,7 +93,7 @@
                         </ul>
                     </div>
                 </div> -->
-          </div>
+          <!-- </div> -->
            <!-- <img src="images/ajax-loader.gif" id="loading-indicator" v-if="ajax_call == true" /> -->
 
         </div>

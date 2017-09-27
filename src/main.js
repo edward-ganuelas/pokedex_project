@@ -1,17 +1,22 @@
 import Vue from 'vue';
 import { POKEDEX } from './const/pokeapi.js';
+import App from './components/App.vue';
 import RegionSelect from './components/RegionSelect.vue';
+import PokemonSelect from './components/PokemonSelect.vue';
+import test from './components/test.vue';
 // var pokeAPI = "https://pokeapi.co/api/v2/";
 // var pokeAPIPokeDex ="pokedex/";
 // var pokeAPIPokemon = 'pokemon/';
 // var pokeAPIPokemonSpecies ='pokemon-species/';
 
 Vue.component('region-select', RegionSelect);
+Vue.component('pokemon-select', PokemonSelect);
+Vue.component('test',test);
 
 var pokeDexVue = new Vue({
     el: "#pokedex",
+    render: h=> h(App),
     data: {
-        pokedexRegions: '',
         pokemon_entries: '',
         pokemon_selected: '',
         pokemon: "",
@@ -21,24 +26,7 @@ var pokeDexVue = new Vue({
         ajax_call: false //Controls if the ajax gif is shown or not
     },
     methods: {
-        getRegions: function () {
-            if (sessionStorage.getItem("pokedexRegions") === null) {
-                let pokeDexPromise = new Promise((resolve, reject) => {
-                    const xhr = new XMLHttpRequest();
-                    xhr.open("GET", POKEDEX);
-                    xhr.onload = () => resolve(xhr.responseText);
-                    xhr.onerror = () => reject(xhr.statusText);
-                    xhr.send();
-                });
-
-                pokeDexPromise.then((message) => {
-                    this.pokedexRegions = JSON.parse(message);
-                    sessionStorage.setItem("pokedexRegions", message);
-                });
-            } else {
-                this.pokedexRegions = JSON.parse(sessionStorage.getItem("pokedexRegions"));
-            }
-        },
+        
         getPokemon: function () { //This methos is called on #pokedexEntries onChange
 
             var apiCall = this.pokemon_selected;
@@ -62,38 +50,7 @@ var pokeDexVue = new Vue({
                 pokemonThis.ajax_call = false;
             });
 
-        },
-        getPokedex: function (url) {
-            this.region_select = url;
-            console.log(url);
-
-            // var pokemonThis = this;
-            // var pokedexSelectValue = url;
-            // console.log("url "+url);
-            // pokemonThis.pokemon = '';
-            // pokemonThis.pokemon_entries = '';
-            // pokemonThis.pokemon_selected = '';
-
-            // if (pokemonThis.region_select == "0") { return; } //Return if the default is selected
-            // if (sessionStorage.getItem('pokemon_entries_' + pokedexSelectValue) == null) { //Check if the object is stored on a session storage
-            //     var apiCall = pokeAPI + pokeAPIPokeDex + pokemonThis.region_select; //Build the URL
-            //     pokemonThis.ajax_call = true;
-
-            //     $.ajax({ url: apiCall }).success(function (e) { //AJAX call, jQuery 
-            //         pokemonThis.ajax_call = false;
-            //         pokemonThis.pokemon_entries = e.pokemon_entries; //I only want the pokemon entries. Set it to the pokemon_entries object of the pokeDexVue object.
-            //         sessionStorage.setItem('pokemon_entries_' + pokedexSelectValue, JSON.stringify(e.pokemon_entries)); //Save the JSON object to a sessionStorage variable to avoid too much AJAX Calls. 
-            //     }).error(function (e) {
-            //         console.log(e);
-
-            //         pokemonThis.ajax_call = false;
-            //     });
-            // } else { //If the sessionStorage item exist, set it to pokemon_entries
-            //     pokemonThis.pokemon_entries = JSON.parse(sessionStorage.getItem('pokemon_entries_' + pokedexSelectValue));
-            // }
         }
-    },
-    beforeMount: function () {
-        this.getRegions();
     }
+    
 });

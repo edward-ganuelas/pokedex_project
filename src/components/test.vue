@@ -1,18 +1,20 @@
 <template>
-    <p>Test</p>
+    <p>
+        Test</p>
 </template>
 
 <script>
 export default {
-  data: function(){
-      return {
+    name: "test",
+    data: function() {
+        return {
 
-      }
-  }
+        }
+    }
 }
 </script>
 <style scoped>
-    p{
-        color: red;
-    }
+p {
+    color: red;
+}
 </style>

@@ -1,6 +1,7 @@
 <template>
   <div class="container" id="pokedex">
     <region-select v-bind:region-result="pokedexRegions" v-on:select-region="getPokedex" v-if="pokedexRegions" />
+    <pokemon-select v-bind:pokedex-result ="pokemon_entries" v-if="pokemon_entries" />
   </div>
 </template>
 
@@ -15,6 +16,7 @@ export default {
   data: function() {
     return {
       pokedexRegions: '',
+      pokemon_entries: '',
     }
   },
   methods: {
@@ -48,6 +50,7 @@ export default {
           sessionStorage.setItem(url, message);
         });
       } else {
+        console.log("test get");
         let json_return = JSON.parse(sessionStorage.getItem(url));
         this.pokemon_entries = json_return.pokemon_entries;
       }

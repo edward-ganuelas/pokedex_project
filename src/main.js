@@ -15,7 +15,6 @@ var pokeDexVue = new Vue({
     el: "#pokedex",
     render: h=> h(App),
     data: {
-        pokemon_entries: '',
         pokemon_selected: '',
         pokemon: "",
         pokemon_description: "",

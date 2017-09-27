@@ -1,6 +1,6 @@
 <template>
     <select>
-        <option v-for="pokemon in selectedPokemon" v-bind:value="pokemon" v-bind:key="pokemon.entry_number">
+        <option v-for="pokemon in pokedexResult" v-bind:value="pokemon" v-bind:key="pokemon.entry_number">
             {{pokemon.pokemon_species.name}}
         </option>
     </select>

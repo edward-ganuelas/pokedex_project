@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-12">
             <h2>{{pokemonData.name | capitalize}}</h2>
-            <p>{{getFlavourText('test')}}</p>
+            <p>{{getFlavourText('yellow')}}</p>
             </div>
         </div>
     </div>
@@ -19,13 +19,13 @@ export default {
         }
     },
     methods: {
-        getFlavourText: function(region) {
+        getFlavourText: function(version) {
 
             let flvText = '';
 
             for (let obj in this.flavorText) {
                 //    console.log(this.flavorText[obj].language.name);
-                if (this.flavorText[obj].language.name === 'en') {
+                if (this.flavorText[obj].language.name === 'en' && this.flavorText[obj].version.name===version) {
                     flvText = this.flavorText[obj].flavor_text;
                     break;
                 }

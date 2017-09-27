@@ -6,7 +6,6 @@ import App from './components/App.vue';
 // var pokeAPIPokemon = 'pokemon/';
 // var pokeAPIPokemonSpecies ='pokemon-species/';
 
-Vue.component('test',test);
 
 var pokeDexVue = new Vue({
     el: "#pokedex",

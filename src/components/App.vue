@@ -5,8 +5,13 @@
 </template>
 
 <script>
+import { POKEDEX } from '../const/pokeapi.js';
+import RegionSelect from './RegionSelect.vue';
 export default {
   name: 'app',
+  components: {
+    'region-select': RegionSelect
+  },
   data: function() {
     return {
       pokedexRegions: '',

@@ -8,10 +8,12 @@
 <script>
 import { POKEDEX } from '../const/pokeapi.js';
 import RegionSelect from './RegionSelect.vue';
+import PokemonSelect from './PokemonSelect.vue';
 export default {
   name: 'app',
   components: {
-    'region-select': RegionSelect
+    'region-select': RegionSelect,
+    'pokemon-select': PokemonSelect
   },
   data: function() {
     return {

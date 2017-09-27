@@ -1,25 +1,20 @@
 import Vue from 'vue';
-import { POKEDEX } from './const/pokeapi.js';
 import App from './components/App.vue';
-import PokemonSelect from './components/PokemonSelect.vue';
-import test from './components/test.vue';
+
 // var pokeAPI = "https://pokeapi.co/api/v2/";
 // var pokeAPIPokeDex ="pokedex/";
 // var pokeAPIPokemon = 'pokemon/';
 // var pokeAPIPokemonSpecies ='pokemon-species/';
 
-Vue.component('pokemon-select', PokemonSelect);
 Vue.component('test',test);
 
 var pokeDexVue = new Vue({
     el: "#pokedex",
     render: h=> h(App),
     data: {
-        pokemon_selected: '',
         pokemon: "",
         pokemon_description: "",
         pokemon_genus: "",
-        url: '',
         ajax_call: false //Controls if the ajax gif is shown or not
     },
     methods: {

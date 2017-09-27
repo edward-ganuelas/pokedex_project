@@ -17,7 +17,6 @@ var pokeDexVue = new Vue({
         pokemon: "",
         pokemon_description: "",
         pokemon_genus: "",
-        region_select: "0",
         url: '',
         ajax_call: false //Controls if the ajax gif is shown or not
     },
@@ -33,7 +32,7 @@ var pokeDexVue = new Vue({
                 });
 
                 pokeDexPromise.then((message) => {
-                    this.pokedexRegions = message;
+                    this.pokedexRegions = JSON.parse(message);
                     sessionStorage.setItem("pokedexRegions", message);
                 });
             } else {

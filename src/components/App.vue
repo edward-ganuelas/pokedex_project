@@ -1,7 +1,8 @@
 <template>
   <div class="container" id="pokedex">
     <region-select v-bind:region-result="pokedexRegions" v-on:select-region="getPokedex" v-if="pokedexRegions" />
-    <pokemon-select v-bind:pokedex-result ="pokemon_entries" v-if="pokemon_entries" />
+    <pokemon-select v-bind:pokedex-result="pokemon_entries" v-if="pokemon_entries" v-on:select-pokemon="getPokemon" />
+    <pokemon v-bind:pokemon-data="pokemon" v-if="pokemon" />
   </div>
 </template>
 
@@ -9,16 +10,19 @@
 import { POKEDEX } from '../const/pokeapi.js';
 import RegionSelect from './RegionSelect.vue';
 import PokemonSelect from './PokemonSelect.vue';
+import Pokemon from './Pokemon.vue';
 export default {
   name: 'app',
   components: {
     'region-select': RegionSelect,
-    'pokemon-select': PokemonSelect
+    'pokemon-select': PokemonSelect,
+    'pokemon': Pokemon
   },
   data: function() {
     return {
       pokedexRegions: '',
       pokemon_entries: '',
+      pokemon: ''
     }
   },
   methods: {
@@ -52,35 +56,24 @@ export default {
           sessionStorage.setItem(url, message);
         });
       } else {
-        console.log("test get");
         let json_return = JSON.parse(sessionStorage.getItem(url));
         this.pokemon_entries = json_return.pokemon_entries;
       }
+    },
+    getPokemon: function(url) { //This method is called on #pokedexEntries onChange
 
-      // var pokemonThis = this;
-      // var pokedexSelectValue = url;
-      // console.log("url "+url);
-      // pokemonThis.pokemon = '';
-      // pokemonThis.pokemon_entries = '';
-      // pokemonThis.pokemon_selected = '';
+      console.log(url);
 
-      // if (pokemonThis.region_select == "0") { return; } //Return if the default is selected
-      // if (sessionStorage.getItem('pokemon_entries_' + pokedexSelectValue) == null) { //Check if the object is stored on a session storage
-      //     var apiCall = pokeAPI + pokeAPIPokeDex + pokemonThis.region_select; //Build the URL
-      //     pokemonThis.ajax_call = true;
+      if (sessionStorage.getItem(url) === null) {
+        let pokeDexPromise = this.getPromises(url);
+        pokeDexPromise.then((message) => {
+          this.pokemon = JSON.parse(message);
+          sessionStorage.setItem(url, message);
 
-      //     $.ajax({ url: apiCall }).success(function (e) { //AJAX call, jQuery 
-      //         pokemonThis.ajax_call = false;
-      //         pokemonThis.pokemon_entries = e.pokemon_entries; //I only want the pokemon entries. Set it to the pokemon_entries object of the pokeDexVue object.
-      //         sessionStorage.setItem('pokemon_entries_' + pokedexSelectValue, JSON.stringify(e.pokemon_entries)); //Save the JSON object to a sessionStorage variable to avoid too much AJAX Calls. 
-      //     }).error(function (e) {
-      //         console.log(e);
-
-      //         pokemonThis.ajax_call = false;
-      //     });
-      // } else { //If the sessionStorage item exist, set it to pokemon_entries
-      //     pokemonThis.pokemon_entries = JSON.parse(sessionStorage.getItem('pokemon_entries_' + pokedexSelectValue));
-      // }
+        });
+      } else {
+        this.pokemon = JSON.parse(sessionStorage.getItem(url));
+      }
     }
   },
   beforeMount: function() {

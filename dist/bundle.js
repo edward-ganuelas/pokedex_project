@@ -4108,6 +4108,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var POKEDEX = exports.POKEDEX = "https://pokeapi.co/api/v2/pokedex/";
 var POKEMONVERSION = exports.POKEMONVERSION = "https://pokeapi.co/api/v2/version/";
+var POKEMON = exports.POKEMON = "https://pokeapi.co/api/v2/pokemon/";
 
 /***/ }),
 /* 128 */
@@ -19744,7 +19745,7 @@ exports = module.exports = __webpack_require__(125)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -19878,8 +19879,6 @@ exports.default = {
       var _this3 = this;
 
       //This method is called on #pokedexEntries onChange
-
-      console.log(url);
 
       if (sessionStorage.getItem(url) === null) {
         var pokeDexPromise = this.getPromises(url);
@@ -20268,7 +20267,7 @@ exports = module.exports = __webpack_require__(125)(undefined);
 
 
 // module
-exports.push([module.i, "\n.version-selectors[data-v-4df1140a] {\r\n    display: flex;\r\n    flex-wrap: wrap;\n}\n.version-selectors button[data-v-4df1140a] {\r\n    margin-right: 5px;\r\n    margin-bottom: 10px;\r\n    color: white;\n}\n.red[data-v-4df1140a] {\r\n    background-color: red;\n}\n.blue[data-v-4df1140a] {\r\n    background-color: blue;\n}\n.yellow[data-v-4df1140a] {\r\n    background-color: yellow;\n}\n.gold[data-v-4df1140a] {\r\n    background-color: #FFD700;\n}\r\n", ""]);
+exports.push([module.i, "\n.version-selectors[data-v-4df1140a] {\r\n    display: flex;\r\n    flex-wrap: wrap;\n}\n.version-selectors button[data-v-4df1140a] {\r\n    margin-right: 5px;\r\n    margin-bottom: 10px;\r\n    color: white;\n}\np.flavorText[data-v-4df1140a]{\r\n    text-align: center;\n}\n.red[data-v-4df1140a] {\r\n    background-color: red;\n}\n.blue[data-v-4df1140a] {\r\n    background-color: blue;\n}\n.yellow[data-v-4df1140a] {\r\n    background-color: yellow;\n}\n.gold[data-v-4df1140a] {\r\n    background-color: #FFD700;\n}\r\n", ""]);
 
 // exports
 
@@ -20294,7 +20293,8 @@ exports.default = {
             "flavorText": this.pokemonData.flavor_text_entries,
             "versions": '',
             "version": 'red',
-            "btnClass": "btn"
+            "btnClass": "btn",
+            "pokemonDetails": ""
         };
     },
     methods: {
@@ -20324,7 +20324,6 @@ exports.default = {
             if (sessionStorage.getItem(_pokeapi.POKEMONVERSION) === null) {
                 var pokemonPromise = this.$parent.$options.methods.getPromises(_pokeapi.POKEMONVERSION);
                 pokemonPromise.then(function (message) {
-
                     _this.versions = JSON.parse(message);
                     sessionStorage.setItem(_pokeapi.POKEMONVERSION, message);
                 });
@@ -20332,20 +20331,43 @@ exports.default = {
                 this.versions = JSON.parse(sessionStorage.getItem(_pokeapi.POKEMONVERSION));
             }
         },
+        getPokemonDetails: function getPokemonDetails() {
+            var _this2 = this;
+
+            var url = _pokeapi.POKEMON + this.pokemonData.id;
+            if (sessionStorage.getItem(url) === null) {
+                var pokemonPromise = this.$parent.$options.methods.getPromises(url);
+                pokemonPromise.then(function (message) {
+                    _this2.pokemonDetails = JSON.parse(message);
+                    sessionStorage.setItem(url, message);
+                });
+            } else {
+                this.pokemonDetails = JSON.parse(sessionStorage.getItem(url));
+            }
+        },
         changeVersion: function changeVersion(text) {
-            console.log(text);
             this.version = text;
         }
     },
     watch: {
         pokemonData: function pokemonData(data) {
+            this.getPokemonDetails();
             this.flavorText = data.flavor_text_entries;
         }
     },
     beforeMount: function beforeMount() {
+        this.getPokemonDetails();
         this.getVersions();
-    }
+    },
+    beforeUpdate: function beforeUpdate() {}
 }; //
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -20375,43 +20397,88 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-12" }, [
-        _c("h2", [
-          _vm._v(
-            _vm._s(_vm.pokemonData.id) +
-              " " +
-              _vm._s(_vm._f("capitalize")(_vm.pokemonData.name))
-          )
-        ]),
-        _vm._v(" "),
-        _c("h3", [_vm._v("The " + _vm._s(_vm.getGenera()) + " Pokemon")]),
-        _vm._v(" "),
-        _c("div", { staticClass: "versions" }, [
-          _c("p", [_vm._v("Flavour Text")]),
+      _c(
+        "div",
+        { staticClass: "col-sm-12" },
+        [
+          _c("h2", [
+            _vm._v(
+              _vm._s(_vm.pokemonData.id) +
+                " " +
+                _vm._s(_vm._f("capitalize")(_vm.pokemonData.name))
+            )
+          ]),
+          _vm._v(" "),
+          _c("img", {
+            attrs: { src: _vm.pokemonDetails.sprites.front_default }
+          }),
+          _vm._v(" "),
+          _c("h3", [_vm._v("The " + _vm._s(_vm.getGenera()) + " Pokemon")]),
+          _vm._v(" "),
+          _vm._l(_vm.pokemonDetails.types, function(pokemonDetail) {
+            return _c("p", { key: pokemonDetail.id }, [
+              _vm._v(
+                _vm._s(_vm._f("capitalize")(pokemonDetail.type.name)) + " Type"
+              )
+            ])
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "versions" }, [
+            _c("h4", [_vm._v("Flavour Text")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "version-selectors" },
+              _vm._l(_vm.versions.results, function(version) {
+                return _c(
+                  "button",
+                  {
+                    key: version.name,
+                    class: [version.name, _vm.btnClass],
+                    on: {
+                      click: function($event) {
+                        _vm.changeVersion(version.name)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm._f("capitalize")(version.name)))]
+                )
+              })
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "flavorText" }, [
+              _vm._v(_vm._s(_vm.getFlavourText(_vm.version)))
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "version-selectors" },
-            _vm._l(_vm.versions.results, function(version) {
-              return _c(
-                "button",
-                {
-                  key: version.name,
-                  class: [version.name, _vm.btnClass],
-                  on: {
-                    click: function($event) {
-                      _vm.changeVersion(version.name)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(_vm._f("capitalize")(version.name)))]
-              )
-            })
-          ),
-          _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.getFlavourText(_vm.version)))])
-        ])
-      ])
+            { staticClass: "stats" },
+            [
+              _c("h4", [_vm._v("Base Stats")]),
+              _vm._v(" "),
+              _vm._l(_vm.pokemonDetails.stats, function(pokemonDetail) {
+                return _c("p", { key: pokemonDetail.id }, [
+                  _vm._v(
+                    _vm._s(_vm._f("capitalize")(pokemonDetail.stat.name)) +
+                      " : " +
+                      _vm._s(pokemonDetail.base_stat)
+                  )
+                ])
+              }),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "Base Experience: " +
+                    _vm._s(_vm.pokemonDetails.base_experience)
+                )
+              ])
+            ],
+            2
+          )
+        ],
+        2
+      )
     ])
   ])
 }

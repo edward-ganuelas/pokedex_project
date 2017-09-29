@@ -20268,7 +20268,7 @@ exports = module.exports = __webpack_require__(125)(undefined);
 
 
 // module
-exports.push([module.i, "\n.version-selectors[data-v-4df1140a] {\r\n    display: flex;\r\n    flex-wrap: wrap;\n}\n.version-selectors button[data-v-4df1140a] {\r\n    margin-right: 5px;\r\n    margin-bottom: 10px;\r\n    color: white;\n}\n.red[data-v-4df1140a]{\r\n    background-color: red;\n}\n.blue[data-v-4df1140a] {\r\n    background-color: blue;\n}\n.yellow[data-v-4df1140a] {\r\n    background-color: yellow;\n}\n.gold[data-v-4df1140a] {\r\n    background-color: #FFD700;\n}\r\n", ""]);
+exports.push([module.i, "\n.version-selectors[data-v-4df1140a] {\r\n    display: flex;\r\n    flex-wrap: wrap;\n}\n.version-selectors button[data-v-4df1140a] {\r\n    margin-right: 5px;\r\n    margin-bottom: 10px;\r\n    color: white;\n}\n.red[data-v-4df1140a] {\r\n    background-color: red;\n}\n.blue[data-v-4df1140a] {\r\n    background-color: blue;\n}\n.yellow[data-v-4df1140a] {\r\n    background-color: yellow;\n}\n.gold[data-v-4df1140a] {\r\n    background-color: #FFD700;\n}\r\n", ""]);
 
 // exports
 
@@ -20335,6 +20335,11 @@ exports.default = {
         changeVersion: function changeVersion(text) {
             console.log(text);
             this.version = text;
+        }
+    },
+    watch: {
+        pokemonData: function pokemonData(data) {
+            this.flavorText = data.flavor_text_entries;
         }
     },
     beforeMount: function beforeMount() {

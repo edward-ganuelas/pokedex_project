@@ -69,6 +69,11 @@ export default {
             this.version = text;
         }
     },
+    watch: {
+        pokemonData: function (data) {
+            this.flavorText = data.flavor_text_entries
+        }
+    },
     beforeMount: function() {
         this.getVersions();
     }
@@ -86,15 +91,19 @@ export default {
     margin-bottom: 10px;
     color: white;
 }
-.red{
+
+.red {
     background-color: red;
 }
+
 .blue {
     background-color: blue;
 }
+
 .yellow {
     background-color: yellow;
 }
+
 .gold {
     background-color: #FFD700;
 }

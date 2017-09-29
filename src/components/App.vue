@@ -62,8 +62,6 @@ export default {
     },
     getPokemon: function(url) { //This method is called on #pokedexEntries onChange
 
-      console.log(url);
-
       if (sessionStorage.getItem(url) === null) {
         let pokeDexPromise = this.getPromises(url);
         pokeDexPromise.then((message) => {

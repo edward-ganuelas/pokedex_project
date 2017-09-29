@@ -3,13 +3,20 @@
         <div class="row">
             <div class="col-sm-12">
                 <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
+                <img v-bind:src="pokemonDetails.sprites.front_default" />
                 <h3>The {{getGenera()}} Pokemon</h3>
+                <p v-for="pokemonDetail in pokemonDetails.types" v-bind:key="pokemonDetail.id">{{pokemonDetail.type.name | capitalize}} Type</p>
                 <div class="versions">
-                    <p>Flavour Text</p>
+                    <h4>Flavour Text</h4>
                     <div class="version-selectors">
                         <button v-for="version in versions.results" v-bind:key="version.name" v-on:click="changeVersion(version.name)" v-bind:class="[version.name, btnClass]">{{version.name | capitalize}}</button>
                     </div>
-                    <p>{{getFlavourText(version)}}</p>
+                    <p class="flavorText">{{getFlavourText(version)}}</p>
+                </div>
+                <div class="stats">
+                    <h4>Base Stats</h4>
+                    <p v-for="pokemonDetail in pokemonDetails.stats" v-bind:key="pokemonDetail.id">{{pokemonDetail.stat.name | capitalize }} : {{pokemonDetail.base_stat}}</p>
+                    <p>Base Experience: {{pokemonDetails.base_experience}}</p>
                 </div>
             </div>
         </div>
@@ -17,7 +24,7 @@
 </template>
 
 <script>
-import { POKEMONVERSION } from '../const/pokeapi.js';
+import { POKEMONVERSION, POKEMON } from '../const/pokeapi.js';
 export default {
     name: 'pokemon',
     props: ['pokemonData'],
@@ -26,7 +33,8 @@ export default {
             "flavorText": this.pokemonData.flavor_text_entries,
             "versions": '',
             "version": 'red',
-            "btnClass": "btn"
+            "btnClass": "btn",
+            "pokemonDetails": "",
         }
     },
     methods: {
@@ -55,7 +63,6 @@ export default {
             if (sessionStorage.getItem(POKEMONVERSION) === null) {
                 let pokemonPromise = this.$parent.$options.methods.getPromises(POKEMONVERSION);
                 pokemonPromise.then((message) => {
-
                     this.versions = JSON.parse(message);
                     sessionStorage.setItem(POKEMONVERSION, message);
 
@@ -64,18 +71,34 @@ export default {
                 this.versions = JSON.parse(sessionStorage.getItem(POKEMONVERSION));
             }
         },
+        getPokemonDetails: function() {
+            let url = POKEMON + this.pokemonData.id;
+            if (sessionStorage.getItem(url) === null) {
+                let pokemonPromise = this.$parent.$options.methods.getPromises(url);
+                pokemonPromise.then((message) =>{
+                    this.pokemonDetails = JSON.parse(message);
+                    sessionStorage.setItem(url, message);
+                });
+            } else {
+                this.pokemonDetails = JSON.parse(sessionStorage.getItem(url));
+            }
+        },
         changeVersion: function(text) {
-            console.log(text);
             this.version = text;
         }
     },
     watch: {
-        pokemonData: function (data) {
+        pokemonData: function(data) {
+            this.getPokemonDetails();
             this.flavorText = data.flavor_text_entries
         }
     },
     beforeMount: function() {
+        this.getPokemonDetails();
         this.getVersions();
+    },
+    beforeUpdate: function () {
+
     }
 }
 </script>
@@ -91,7 +114,9 @@ export default {
     margin-bottom: 10px;
     color: white;
 }
-
+p.flavorText{
+    text-align: center;
+}
 .red {
     background-color: red;
 }

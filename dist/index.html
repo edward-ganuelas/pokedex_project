@@ -49,70 +49,7 @@
         </div>
     </div>
     <div class="container" id="pokedex">
-        <!-- <region-select v-bind:region-result = "pokedexRegions" v-on:select-region="getPokedex" v-if="pokedexRegions"></region-select>
-        <test />
-        <pokemon-select v-bind:pokedex-result ="pokemon_entries" /> -->
-        <!-- <div class="row">
-                <div class="col-xs-12">
-                    <h1>Pokedex</h1>
-                   <address>
-                    <p>
-                    <a href="https://github.com/edward-ganuelas/pokedex_project" target="_blank">https://github.com/edward-ganuelas/pokedex_project</a><br />
-                    <a href="http://eightrayedsun.com" target="_blank">EightRayedSun</a></p>
-                </address>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <select name="pokedexSelect" id="pokedexSelect" v-model="region_select" v-on:change="getPokedex()" >
-                        <option v-for="option in pokedexSelect" v-bind:value="option.id">
-                            {{ option.name | capitalize}}
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    
-                        <select name="pokedexEntries" id="pokedexEntries" v-model="pokemon_selected" v-on:change="getPokemon()" v-show="pokemon_entries">
-                            <option v-for="option in pokemon_entries" v-bind:value="option.pokemon_species.url">
-                                {{ option.pokemon_species.name | capitalize}}
-                            </option>
-                        </select>
-            
-                    <div id="entry" v-show="pokemon">
-                        <div id="sprites">
-                            <div class="spritesWrap">
-                                <div id="spriteImage" v-for="option in pokemon.sprites">
-                                    <img v-bind:src="option" />
-                                </div>
-                            </div>
-                        </div>
-                        <h1>{{pokemon.name | capitalize}} #{{pokemon.id}}</h1>
-                        <p v-for="option in pokemon_genus | filterBy 'en' in 'language.name' | limitBy 1">The {{option.genus | capitalize}} Pokemon</p>
-                        <blockquote v-for="option in pokemon_description | filterBy 'en' in 'language.name' | limitBy 3">
-                         <p>{{option.flavor_text}}</p>
-                         <footer>Pokemon {{option.version.name | capitalize}} description.</footer>
-                        </blockquote>
-                        <p>Pokedex entry: {{pokemon.id}}</p>
-                        <p>Weight: {{pokemon.weight}}</p>
-                        <p>Abilities:</p>
-                        <ul>
-                            <li v-for="option in pokemon.abilities">{{option.ability.name|capitalize}}</li>
-                        </ul>
-                        <p>Type:</p>
-                        <ul>
-                            <li v-for="option in pokemon.types | orderBy 'slot''">{{option.type.name|capitalize}}</li>
-                        </ul>
-                        <p>Stats:</p>
-                        <ul>
-                            <li v-for="option in pokemon.stats | orderBy 'stat.name''">{{option.stat.name|capitalize}} : {{option.base_stat}}</li>
-                        </ul>
-                    </div>
-                </div> -->
-        <!-- </div> -->
         <!-- <img src="images/ajax-loader.gif" id="loading-indicator" v-if="ajax_call == true" /> -->
-
     </div>
 
 

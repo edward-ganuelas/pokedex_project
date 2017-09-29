@@ -9456,9 +9456,6 @@ var pokeDexVue = new _vue2.default({
         return h(_App2.default);
     },
     data: {
-        // pokemon: "",
-        // pokemon_description: "",
-        // pokemon_genus: "",
         ajax_call: false //Controls if the ajax gif is shown or not
     },
     methods: {}

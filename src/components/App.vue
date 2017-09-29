@@ -14,9 +14,9 @@ import Pokemon from './Pokemon.vue';
 export default {
   name: 'app',
   components: {
-    'region-select': RegionSelect,
-    'pokemon-select': PokemonSelect,
-    'pokemon': Pokemon
+     RegionSelect,
+     PokemonSelect,
+     Pokemon
   },
   data: function() {
     return {

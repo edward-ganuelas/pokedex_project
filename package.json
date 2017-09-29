@@ -1,0 +1,38 @@
+{
+  "name": "pokedex_project",
+  "version": "2.0.0",
+  "description": "Just another for fun project using the pokeapi.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/webpack",
+    "watch": "./node_modules/.bin/webpack --progress --watch",
+    "start": "./node_modules/.bin/webpack-dev-server --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edward-ganuelas/pokedex_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edward-ganuelas/pokedex_project/issues"
+  },
+  "homepage": "https://github.com/edward-ganuelas/pokedex_project#readme",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "lodash": "^4.17.4",
+    "vue": "^2.4.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "css-loader": "^0.28.7",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.8.2"
+  }
+}

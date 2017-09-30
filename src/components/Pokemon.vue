@@ -132,4 +132,49 @@ p.flavorText{
 .gold {
     background-color: #FFD700;
 }
+.silver{
+    background-color: #C0C0C0;
+    color: #ebebeb;
+}
+.crystal{
+    background-color: #8f8fc1;
+}
+.ruby{
+    background-color: #b52f23;
+}
+.sapphire{
+    background-color: #40579d;
+}
+.emerald{
+    background-color: #00a64e;
+}
+.firered{
+    background-color: #4e1f0d;
+}
+.leafgreen{
+    background-color: #92ca52;
+}
+.diamond{
+    background-color: #45a2b3;
+}
+.pearl{
+    background-color: #430244;
+}
+.platinum{
+    background-color: #0d0c0d;
+}
+.heartgold{
+    background-color: #e3bb41;
+}
+.soulsilver{
+    background-color: #8b9396;
+}
+.black{
+    background-color: #000;
+}
+.white{
+    background-color: #FFF;
+    color: #000!important;
+    border-color: #000;
+}
 </style>

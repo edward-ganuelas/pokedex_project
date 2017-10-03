@@ -2,27 +2,29 @@
   <div class="container" id="pokedex">
     <region-select v-bind:region-result="pokedexRegions" v-on:select-region="getPokedex" v-if="pokedexRegions" />
     <pokemon-select v-bind:pokedex-result="pokemon_entries" v-if="pokemon_entries" v-on:select-pokemon="getPokemon" />
-    <pokemon v-bind:pokemon-data="pokemon" v-if="pokemon" />
+    <pokemon v-bind:pokemon-data="pokemon" v-bind:pokemon-details="pokemonDetails" v-bind:pokemon-hide="pokemonHide" v-if="pokemon && pokemonDetails" />
   </div>
 </template>
 
 <script>
-import { POKEDEX } from '../const/pokeapi.js';
+import { POKEDEX, POKEMON } from '../const/pokeapi.js';
 import RegionSelect from './RegionSelect.vue';
 import PokemonSelect from './PokemonSelect.vue';
 import Pokemon from './Pokemon.vue';
 export default {
   name: 'app',
   components: {
-     RegionSelect,
-     PokemonSelect,
-     Pokemon
+    RegionSelect,
+    PokemonSelect,
+    Pokemon
   },
   data: function() {
     return {
       pokedexRegions: '',
       pokemon_entries: '',
-      pokemon: ''
+      pokemon: '',
+      pokemonDetails: '',
+      pokemonHide: false
     }
   },
   methods: {
@@ -64,13 +66,29 @@ export default {
 
       if (sessionStorage.getItem(url) === null) {
         let pokeDexPromise = this.getPromises(url);
+        this.pokemonHide = true;
         pokeDexPromise.then((message) => {
           this.pokemon = JSON.parse(message);
           sessionStorage.setItem(url, message);
-
+          this.getPokemonDetail();
         });
       } else {
         this.pokemon = JSON.parse(sessionStorage.getItem(url));
+        this.getPokemonDetail();
+      }
+    },
+    getPokemonDetail: function() {
+      let url = POKEMON + this.pokemon.id;
+      if (sessionStorage.getItem(url) === null) {
+        let pokemonPromise = this.getPromises(url);
+        pokemonPromise.then((message) => {
+          this.pokemonDetails = JSON.parse(message);
+          sessionStorage.setItem(url, message);
+          this.pokemonHide = false;
+        });
+      } else {
+        this.pokemonDetails = JSON.parse(sessionStorage.getItem(url));
+        this.pokemonHide = false;
       }
     }
   },

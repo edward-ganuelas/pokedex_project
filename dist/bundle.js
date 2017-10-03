@@ -19742,7 +19742,7 @@ exports = module.exports = __webpack_require__(125)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -19828,7 +19828,8 @@ exports.default = {
       pokedexRegions: '',
       pokemon_entries: '',
       pokemon: '',
-      pokemonDetails: ''
+      pokemonDetails: '',
+      pokemonHide: false
     };
   },
   methods: {
@@ -19880,6 +19881,7 @@ exports.default = {
 
       if (sessionStorage.getItem(url) === null) {
         var pokeDexPromise = this.getPromises(url);
+        this.pokemonHide = true;
         pokeDexPromise.then(function (message) {
           _this3.pokemon = JSON.parse(message);
           sessionStorage.setItem(url, message);
@@ -19899,9 +19901,11 @@ exports.default = {
         pokemonPromise.then(function (message) {
           _this4.pokemonDetails = JSON.parse(message);
           sessionStorage.setItem(url, message);
+          _this4.pokemonHide = false;
         });
       } else {
         this.pokemonDetails = JSON.parse(sessionStorage.getItem(url));
+        this.pokemonHide = false;
       }
     }
   },
@@ -20281,7 +20285,7 @@ exports = module.exports = __webpack_require__(125)(undefined);
 
 
 // module
-exports.push([module.i, "\n.version-selectors[data-v-4df1140a] {\r\n    display: flex;\r\n    flex-wrap: wrap;\n}\n.version-selectors button[data-v-4df1140a] {\r\n    margin-right: 5px;\r\n    margin-bottom: 10px;\r\n    color: white;\n}\np.flavorText[data-v-4df1140a]{\r\n    text-align: center;\n}\n.red[data-v-4df1140a] {\r\n    background-color: red;\n}\n.blue[data-v-4df1140a] {\r\n    background-color: blue;\n}\n.yellow[data-v-4df1140a] {\r\n    background-color: yellow;\n}\n.gold[data-v-4df1140a] {\r\n    background-color: #FFD700;\n}\n.silver[data-v-4df1140a]{\r\n    background-color: #C0C0C0;\r\n    color: #ebebeb;\n}\n.crystal[data-v-4df1140a]{\r\n    background-color: #8f8fc1;\n}\n.ruby[data-v-4df1140a]{\r\n    background-color: #b52f23;\n}\n.sapphire[data-v-4df1140a]{\r\n    background-color: #40579d;\n}\n.emerald[data-v-4df1140a]{\r\n    background-color: #00a64e;\n}\n.firered[data-v-4df1140a]{\r\n    background-color: #4e1f0d;\n}\n.leafgreen[data-v-4df1140a]{\r\n    background-color: #92ca52;\n}\n.diamond[data-v-4df1140a]{\r\n    background-color: #45a2b3;\n}\n.pearl[data-v-4df1140a]{\r\n    background-color: #430244;\n}\n.platinum[data-v-4df1140a]{\r\n    background-color: #0d0c0d;\n}\n.heartgold[data-v-4df1140a]{\r\n    background-color: #e3bb41;\n}\n.soulsilver[data-v-4df1140a]{\r\n    background-color: #8b9396;\n}\n.black[data-v-4df1140a]{\r\n    background-color: #000;\n}\n.white[data-v-4df1140a]{\r\n    background-color: #FFF;\r\n    color: #000!important;\r\n    border-color: #000;\n}\r\n", ""]);
+exports.push([module.i, "\n.version-selectors[data-v-4df1140a] {\r\n    display: flex;\r\n    flex-wrap: wrap;\n}\n.version-selectors button[data-v-4df1140a] {\r\n    margin-right: 5px;\r\n    margin-bottom: 10px;\r\n    color: white;\n}\np.flavorText[data-v-4df1140a] {\r\n    text-align: center;\n}\n.red[data-v-4df1140a] {\r\n    background-color: red;\n}\n.blue[data-v-4df1140a] {\r\n    background-color: blue;\n}\n.yellow[data-v-4df1140a] {\r\n    background-color: yellow;\n}\n.gold[data-v-4df1140a] {\r\n    background-color: #FFD700;\n}\n.silver[data-v-4df1140a] {\r\n    background-color: #C0C0C0;\r\n    color: #ebebeb;\n}\n.crystal[data-v-4df1140a] {\r\n    background-color: #8f8fc1;\n}\n.ruby[data-v-4df1140a] {\r\n    background-color: #b52f23;\n}\n.sapphire[data-v-4df1140a] {\r\n    background-color: #40579d;\n}\n.emerald[data-v-4df1140a] {\r\n    background-color: #00a64e;\n}\n.firered[data-v-4df1140a] {\r\n    background-color: #4e1f0d;\n}\n.leafgreen[data-v-4df1140a] {\r\n    background-color: #92ca52;\n}\n.diamond[data-v-4df1140a] {\r\n    background-color: #45a2b3;\n}\n.pearl[data-v-4df1140a] {\r\n    background-color: #430244;\n}\n.platinum[data-v-4df1140a] {\r\n    background-color: #0d0c0d;\n}\n.heartgold[data-v-4df1140a] {\r\n    background-color: #e3bb41;\n}\n.soulsilver[data-v-4df1140a] {\r\n    background-color: #8b9396;\n}\n.black[data-v-4df1140a] {\r\n    background-color: #000;\n}\n.white[data-v-4df1140a] {\r\n    background-color: #FFF;\r\n    color: #000!important;\r\n    border-color: #000;\n}\r\n", ""]);
 
 // exports
 
@@ -20301,7 +20305,7 @@ var _pokeapi = __webpack_require__(127);
 
 exports.default = {
     name: 'pokemon',
-    props: ['pokemonData', 'pokemonDetails'],
+    props: ['pokemonData', 'pokemonDetails', 'pokemonHide'],
     data: function data() {
         return {
             "flavorText": this.pokemonData.flavor_text_entries,
@@ -20355,8 +20359,7 @@ exports.default = {
     },
     beforeMount: function beforeMount() {
         this.getVersions();
-    },
-    beforeUpdate: function beforeUpdate() {}
+    }
 }; //
 //
 //
@@ -20392,99 +20395,103 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        { staticClass: "col-sm-12" },
-        [
-          _c("h2", [
-            _vm._v(
-              _vm._s(_vm.pokemonData.id) +
-                " " +
-                _vm._s(_vm._f("capitalize")(_vm.pokemonData.name))
-            )
-          ]),
-          _vm._v(" "),
-          _vm.pokemonDetails
-            ? _c("img", {
-                attrs: { src: _vm.pokemonDetails.sprites.front_default }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _c("h3", [_vm._v("The " + _vm._s(_vm.getGenera()) + " Pokemon")]),
-          _vm._v(" "),
-          _vm._l(_vm.pokemonDetails.types, function(pokemonDetail) {
-            return _vm.pokemonDetails
-              ? _c("p", { key: pokemonDetail.id }, [
-                  _vm._v(
-                    _vm._s(_vm._f("capitalize")(pokemonDetail.type.name)) +
-                      " Type"
-                  )
-                ])
-              : _vm._e()
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "versions" }, [
-            _c("h4", [_vm._v("Flavour Text")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "version-selectors" },
-              _vm._l(_vm.versions.results, function(version) {
-                return _c(
-                  "button",
-                  {
-                    key: version.name,
-                    class: [version.name, _vm.btnClass],
-                    on: {
-                      click: function($event) {
-                        _vm.changeVersion(version.name)
-                      }
-                    }
-                  },
-                  [_vm._v(_vm._s(_vm._f("capitalize")(version.name)))]
+  return _vm.pokemonHide == false
+    ? _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-sm-12" },
+            [
+              _c("h2", [
+                _vm._v(
+                  _vm._s(_vm.pokemonData.id) +
+                    " " +
+                    _vm._s(_vm._f("capitalize")(_vm.pokemonData.name))
                 )
-              })
-            ),
-            _vm._v(" "),
-            _c("p", { staticClass: "flavorText" }, [
-              _vm._v(_vm._s(_vm.getFlavourText(_vm.version)))
-            ])
-          ]),
-          _vm._v(" "),
-          _vm.pokemonDetails
-            ? _c(
-                "div",
-                { staticClass: "stats" },
-                [
-                  _c("h4", [_vm._v("Base Stats")]),
-                  _vm._v(" "),
-                  _vm._l(_vm.pokemonDetails.stats, function(pokemonDetail) {
-                    return _c("p", { key: pokemonDetail.id }, [
+              ]),
+              _vm._v(" "),
+              _vm.pokemonDetails
+                ? _c("img", {
+                    attrs: { src: _vm.pokemonDetails.sprites.front_default }
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _c("h3", [_vm._v("The " + _vm._s(_vm.getGenera()) + " Pokemon")]),
+              _vm._v(" "),
+              _vm._l(_vm.pokemonDetails.types, function(pokemonDetail) {
+                return _vm.pokemonDetails
+                  ? _c("p", { key: pokemonDetail.id }, [
                       _vm._v(
-                        _vm._s(_vm._f("capitalize")(pokemonDetail.stat.name)) +
-                          " : " +
-                          _vm._s(pokemonDetail.base_stat)
+                        _vm._s(_vm._f("capitalize")(pokemonDetail.type.name)) +
+                          " Type"
                       )
                     ])
-                  }),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(
-                      "Base Experience: " +
-                        _vm._s(_vm.pokemonDetails.base_experience)
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "versions" }, [
+                _c("h4", [_vm._v("Flavour Text")]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "version-selectors" },
+                  _vm._l(_vm.versions.results, function(version) {
+                    return _c(
+                      "button",
+                      {
+                        key: version.name,
+                        class: [version.name, _vm.btnClass],
+                        on: {
+                          click: function($event) {
+                            _vm.changeVersion(version.name)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm._f("capitalize")(version.name)))]
                     )
-                  ])
-                ],
-                2
-              )
-            : _vm._e()
-        ],
-        2
-      )
-    ])
-  ])
+                  })
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "flavorText" }, [
+                  _vm._v(_vm._s(_vm.getFlavourText(_vm.version)))
+                ])
+              ]),
+              _vm._v(" "),
+              _vm.pokemonDetails
+                ? _c(
+                    "div",
+                    { staticClass: "stats" },
+                    [
+                      _c("h4", [_vm._v("Base Stats")]),
+                      _vm._v(" "),
+                      _vm._l(_vm.pokemonDetails.stats, function(pokemonDetail) {
+                        return _c("p", { key: pokemonDetail.id }, [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("capitalize")(pokemonDetail.stat.name)
+                            ) +
+                              " : " +
+                              _vm._s(pokemonDetail.base_stat)
+                          )
+                        ])
+                      }),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          "Base Experience: " +
+                            _vm._s(_vm.pokemonDetails.base_experience)
+                        )
+                      ])
+                    ],
+                    2
+                  )
+                : _vm._e()
+            ],
+            2
+          )
+        ])
+      ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -20528,7 +20535,8 @@ var render = function() {
         ? _c("pokemon", {
             attrs: {
               "pokemon-data": _vm.pokemon,
-              "pokemon-details": _vm.pokemonDetails
+              "pokemon-details": _vm.pokemonDetails,
+              "pokemon-hide": _vm.pokemonHide
             }
           })
         : _vm._e()

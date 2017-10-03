@@ -81,9 +81,6 @@ export default {
     },
     beforeMount: function() {
         this.getVersions();
-    },
-    beforeUpdate: function () {
-
     }
 }
 </script>
@@ -99,9 +96,11 @@ export default {
     margin-bottom: 10px;
     color: white;
 }
-p.flavorText{
+
+p.flavorText {
     text-align: center;
 }
+
 .red {
     background-color: red;
 }
@@ -117,47 +116,61 @@ p.flavorText{
 .gold {
     background-color: #FFD700;
 }
-.silver{
+
+.silver {
     background-color: #C0C0C0;
     color: #ebebeb;
 }
-.crystal{
+
+.crystal {
     background-color: #8f8fc1;
 }
-.ruby{
+
+.ruby {
     background-color: #b52f23;
 }
-.sapphire{
+
+.sapphire {
     background-color: #40579d;
 }
-.emerald{
+
+.emerald {
     background-color: #00a64e;
 }
-.firered{
+
+.firered {
     background-color: #4e1f0d;
 }
-.leafgreen{
+
+.leafgreen {
     background-color: #92ca52;
 }
-.diamond{
+
+.diamond {
     background-color: #45a2b3;
 }
-.pearl{
+
+.pearl {
     background-color: #430244;
 }
-.platinum{
+
+.platinum {
     background-color: #0d0c0d;
 }
-.heartgold{
+
+.heartgold {
     background-color: #e3bb41;
 }
-.soulsilver{
+
+.soulsilver {
     background-color: #8b9396;
 }
-.black{
+
+.black {
     background-color: #000;
 }
-.white{
+
+.white {
     background-color: #FFF;
     color: #000!important;
     border-color: #000;

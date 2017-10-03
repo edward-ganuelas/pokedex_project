@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="pokemonHide == false">
         <div class="row">
             <div class="col-sm-12">
                 <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
@@ -27,7 +27,7 @@
 import { POKEMONVERSION, POKEMON } from '../const/pokeapi.js';
 export default {
     name: 'pokemon',
-    props: ['pokemonData', 'pokemonDetails'],
+    props: ['pokemonData', 'pokemonDetails', 'pokemonHide'],
     data: function() {
         return {
             "flavorText": this.pokemonData.flavor_text_entries,

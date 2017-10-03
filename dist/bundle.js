@@ -20410,23 +20410,19 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm.pokemonDetails
-                ? _c("img", {
-                    attrs: { src: _vm.pokemonDetails.sprites.front_default }
-                  })
-                : _vm._e(),
+              _c("img", {
+                attrs: { src: _vm.pokemonDetails.sprites.front_default }
+              }),
               _vm._v(" "),
               _c("h3", [_vm._v("The " + _vm._s(_vm.getGenera()) + " Pokemon")]),
               _vm._v(" "),
               _vm._l(_vm.pokemonDetails.types, function(pokemonDetail) {
-                return _vm.pokemonDetails
-                  ? _c("p", { key: pokemonDetail.id }, [
-                      _vm._v(
-                        _vm._s(_vm._f("capitalize")(pokemonDetail.type.name)) +
-                          " Type"
-                      )
-                    ])
-                  : _vm._e()
+                return _c("p", { key: pokemonDetail.id }, [
+                  _vm._v(
+                    _vm._s(_vm._f("capitalize")(pokemonDetail.type.name)) +
+                      " Type"
+                  )
+                ])
               }),
               _vm._v(" "),
               _c("div", { staticClass: "versions" }, [
@@ -20457,35 +20453,31 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm.pokemonDetails
-                ? _c(
-                    "div",
-                    { staticClass: "stats" },
-                    [
-                      _c("h4", [_vm._v("Base Stats")]),
-                      _vm._v(" "),
-                      _vm._l(_vm.pokemonDetails.stats, function(pokemonDetail) {
-                        return _c("p", { key: pokemonDetail.id }, [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("capitalize")(pokemonDetail.stat.name)
-                            ) +
-                              " : " +
-                              _vm._s(pokemonDetail.base_stat)
-                          )
-                        ])
-                      }),
-                      _vm._v(" "),
-                      _c("p", [
-                        _vm._v(
-                          "Base Experience: " +
-                            _vm._s(_vm.pokemonDetails.base_experience)
-                        )
-                      ])
-                    ],
-                    2
-                  )
-                : _vm._e()
+              _c(
+                "div",
+                { staticClass: "stats" },
+                [
+                  _c("h4", [_vm._v("Base Stats")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.pokemonDetails.stats, function(pokemonDetail) {
+                    return _c("p", { key: pokemonDetail.id }, [
+                      _vm._v(
+                        _vm._s(_vm._f("capitalize")(pokemonDetail.stat.name)) +
+                          " : " +
+                          _vm._s(pokemonDetail.base_stat)
+                      )
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Base Experience: " +
+                        _vm._s(_vm.pokemonDetails.base_experience)
+                    )
+                  ])
+                ],
+                2
+              )
             ],
             2
           )

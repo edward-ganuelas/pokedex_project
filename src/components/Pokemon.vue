@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
-                <img v-bind:src="pokemonDetails.sprites.front_default" v-if="pokemonDetails" />
+                <img v-bind:src="pokemonDetails.sprites.front_default" />
                 <h3>The {{getGenera()}} Pokemon</h3>
-                <p v-for="pokemonDetail in pokemonDetails.types" v-bind:key="pokemonDetail.id" v-if="pokemonDetails">{{pokemonDetail.type.name | capitalize}} Type</p>
+                <p v-for="pokemonDetail in pokemonDetails.types" v-bind:key="pokemonDetail.id">{{pokemonDetail.type.name | capitalize}} Type</p>
                 <div class="versions">
                     <h4>Flavour Text</h4>
                     <div class="version-selectors">
@@ -13,7 +13,7 @@
                     </div>
                     <p class="flavorText">{{getFlavourText(version)}}</p>
                 </div>
-                <div class="stats" v-if="pokemonDetails">
+                <div class="stats">
                     <h4>Base Stats</h4>
                     <p v-for="pokemonDetail in pokemonDetails.stats" v-bind:key="pokemonDetail.id">{{pokemonDetail.stat.name | capitalize }} : {{pokemonDetail.base_stat}}</p>
                     <p>Base Experience: {{pokemonDetails.base_experience}}</p>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { POKEMONVERSION, POKEMON } from '../const/pokeapi.js';
+import { POKEMONVERSION } from '../const/pokeapi.js';
 export default {
     name: 'pokemon',
     props: ['pokemonData', 'pokemonDetails', 'pokemonHide'],

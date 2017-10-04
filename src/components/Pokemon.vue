@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" v-if="pokemonHide == false">
         <div class="row">
             <div class="col-sm-12">
                 <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
@@ -24,17 +24,16 @@
 </template>
 
 <script>
-import { POKEMONVERSION, POKEMON } from '../const/pokeapi.js';
+import { POKEMONVERSION } from '../const/pokeapi.js';
 export default {
     name: 'pokemon',
-    props: ['pokemonData'],
+    props: ['pokemonData', 'pokemonDetails', 'pokemonHide'],
     data: function() {
         return {
             "flavorText": this.pokemonData.flavor_text_entries,
             "versions": '',
             "version": 'red',
             "btnClass": "btn",
-            "pokemonDetails": "",
         }
     },
     methods: {
@@ -63,24 +62,12 @@ export default {
             if (sessionStorage.getItem(POKEMONVERSION) === null) {
                 let pokemonPromise = this.$parent.$options.methods.getPromises(POKEMONVERSION);
                 pokemonPromise.then((message) => {
-                    this.versions = JSON.parse(message);
-                    sessionStorage.setItem(POKEMONVERSION, message);
+                    this.versions = message.data;
+                    sessionStorage.setItem(POKEMONVERSION, JSON.stringify(message));
 
                 });
             } else {
                 this.versions = JSON.parse(sessionStorage.getItem(POKEMONVERSION));
-            }
-        },
-        getPokemonDetails: function() {
-            let url = POKEMON + this.pokemonData.id;
-            if (sessionStorage.getItem(url) === null) {
-                let pokemonPromise = this.$parent.$options.methods.getPromises(url);
-                pokemonPromise.then((message) =>{
-                    this.pokemonDetails = JSON.parse(message);
-                    sessionStorage.setItem(url, message);
-                });
-            } else {
-                this.pokemonDetails = JSON.parse(sessionStorage.getItem(url));
             }
         },
         changeVersion: function(text) {
@@ -89,16 +76,11 @@ export default {
     },
     watch: {
         pokemonData: function(data) {
-            this.getPokemonDetails();
             this.flavorText = data.flavor_text_entries
         }
     },
     beforeMount: function() {
-        this.getPokemonDetails();
         this.getVersions();
-    },
-    beforeUpdate: function () {
-
     }
 }
 </script>
@@ -114,9 +96,11 @@ export default {
     margin-bottom: 10px;
     color: white;
 }
-p.flavorText{
+
+p.flavorText {
     text-align: center;
 }
+
 .red {
     background-color: red;
 }
@@ -131,5 +115,64 @@ p.flavorText{
 
 .gold {
     background-color: #FFD700;
+}
+
+.silver {
+    background-color: #C0C0C0;
+    color: #ebebeb;
+}
+
+.crystal {
+    background-color: #8f8fc1;
+}
+
+.ruby {
+    background-color: #b52f23;
+}
+
+.sapphire {
+    background-color: #40579d;
+}
+
+.emerald {
+    background-color: #00a64e;
+}
+
+.firered {
+    background-color: #4e1f0d;
+}
+
+.leafgreen {
+    background-color: #92ca52;
+}
+
+.diamond {
+    background-color: #45a2b3;
+}
+
+.pearl {
+    background-color: #430244;
+}
+
+.platinum {
+    background-color: #0d0c0d;
+}
+
+.heartgold {
+    background-color: #e3bb41;
+}
+
+.soulsilver {
+    background-color: #8b9396;
+}
+
+.black {
+    background-color: #000;
+}
+
+.white {
+    background-color: #FFF;
+    color: #000!important;
+    border-color: #000;
 }
 </style>

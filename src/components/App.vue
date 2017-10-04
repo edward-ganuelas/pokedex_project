@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 import axios from 'axios';
 import { POKEDEX, POKEMON } from '../const/pokeapi.js';
 import RegionSelect from './RegionSelect.vue';

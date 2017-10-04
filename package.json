@@ -1,6 +1,6 @@
 {
   "name": "pokedex_project",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Just another for fun project using the pokeapi.",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/edward-ganuelas/pokedex_project#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
     "lodash": "^4.17.4",
     "vue": "^2.4.4"

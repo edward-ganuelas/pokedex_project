@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { POKEDEX, POKEMON } from '../const/pokeapi.js';
 import RegionSelect from './RegionSelect.vue';
 import PokemonSelect from './PokemonSelect.vue';
@@ -29,20 +30,14 @@ export default {
   },
   methods: {
     getPromises: function(URI) {
-      return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", URI);
-        xhr.onload = () => resolve(xhr.responseText);
-        xhr.onerror = () => reject(xhr.statusText);
-        xhr.send();
-      });
+      return axios.get(URI);
     },
     getRegions: function() {
       if (sessionStorage.getItem("pokedexRegions") === null) {
         let pokeDexPromise = this.getPromises(POKEDEX);
         pokeDexPromise.then((message) => {
-          this.pokedexRegions = JSON.parse(message);
-          sessionStorage.setItem("pokedexRegions", message);
+          this.pokedexRegions = message.data;
+          sessionStorage.setItem("pokedexRegions", JSON.stringify(message.data));
         });
       } else {
         this.pokedexRegions = JSON.parse(sessionStorage.getItem("pokedexRegions"));
@@ -53,9 +48,9 @@ export default {
       if (sessionStorage.getItem(url) === null) {
         let pokeDexPromise = this.getPromises(url);
         pokeDexPromise.then((message) => {
-          let json_return = JSON.parse(message);
+          let json_return = message.data;
           this.pokemon_entries = json_return.pokemon_entries;
-          sessionStorage.setItem(url, message);
+          sessionStorage.setItem(url, JSON.stringify(message));
         });
       } else {
         let json_return = JSON.parse(sessionStorage.getItem(url));
@@ -68,8 +63,8 @@ export default {
         let pokeDexPromise = this.getPromises(url);
         this.pokemonHide = true;
         pokeDexPromise.then((message) => {
-          this.pokemon = JSON.parse(message);
-          sessionStorage.setItem(url, message);
+          this.pokemon = message.data;
+          sessionStorage.setItem(url, JSON.stringify(message));
           this.getPokemonDetail();
         });
       } else {
@@ -82,8 +77,8 @@ export default {
       if (sessionStorage.getItem(url) === null) {
         let pokemonPromise = this.getPromises(url);
         pokemonPromise.then((message) => {
-          this.pokemonDetails = JSON.parse(message);
-          sessionStorage.setItem(url, message);
+          this.pokemonDetails = message.data;
+          sessionStorage.setItem(url, JSON.stringify(message));
           this.pokemonHide = false;
         });
       } else {

@@ -20737,8 +20737,10 @@ exports.default = {
         var pokeDexPromise = this.getPromises(url);
         this.pokemonHide = true;
         pokeDexPromise.then(function (message) {
+          
           _this3.pokemon = message.data;
           sessionStorage.setItem(url, JSON.stringify(message));
+
           _this3.getPokemonDetail();
         });
       } else {
@@ -20753,8 +20755,10 @@ exports.default = {
       if (sessionStorage.getItem(url) === null) {
         var pokemonPromise = this.getPromises(url);
         pokemonPromise.then(function (message) {
+
           _this4.pokemonDetails = message.data;
           sessionStorage.setItem(url, JSON.stringify(message));
+
           _this4.pokemonHide = false;
         });
       } else {
@@ -22144,6 +22148,7 @@ var render = function() {
                     _vm._s(_vm._f("capitalize")(_vm.pokemonData.name))
                 )
               ]),
+
               _vm._v(" "),
               _c("img", {
                 attrs: { src: _vm.pokemonDetails.sprites.front_default }
@@ -22151,6 +22156,7 @@ var render = function() {
               _vm._v(" "),
               _c("h3", [_vm._v("The " + _vm._s(_vm.getGenera()) + " Pokemon")]),
               _vm._v(" "),
+
               _vm._l(_vm.pokemonDetails.types, function(pokemonDetail) {
                 return _c("p", { key: pokemonDetail.id }, [
                   _vm._v(

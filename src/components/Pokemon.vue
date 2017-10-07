@@ -1,22 +1,32 @@
 <template>
     <div class="container" v-if="pokemonHide == false">
         <div class="row">
-            <div class="col-sm-12">
-                <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
-                <img v-bind:src="pokemonDetails.sprites.front_default" />
-                <h3>The {{getGenera()}} Pokemon</h3>
-                <p v-for="pokemonDetail in pokemonDetails.types" v-bind:key="pokemonDetail.id">{{pokemonDetail.type.name | capitalize}} Type</p>
-                <div class="versions">
-                    <h4>Flavour Text</h4>
-                    <div class="version-selectors">
-                        <button v-for="version in versions.results" v-bind:key="version.name" v-on:click="changeVersion(version.name)" v-bind:class="[version.name, btnClass]">{{version.name | capitalize}}</button>
+            <div class="col-sm-12 details">
+                <div class="col-sm-12 col-md-8">
+                    <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
+                    <h3>The {{getGenera()}} Pokemon</h3>
+                    <div class="types">
+                        <p v-for="pokemonDetail in pokemonDetails.types" v-bind:key="pokemonDetail.id">{{pokemonDetail.type.name | capitalize}} Type</p>
                     </div>
-                    <p class="flavorText">{{getFlavourText(version)}}</p>
                 </div>
-                <div class="stats">
-                    <h4>Base Stats</h4>
-                    <p v-for="pokemonDetail in pokemonDetails.stats" v-bind:key="pokemonDetail.id">{{pokemonDetail.stat.name | capitalize }} : {{pokemonDetail.base_stat}}</p>
-                    <p>Base Experience: {{pokemonDetails.base_experience}}</p>
+                <div class="col-sm-12 col-md-4">
+                    <img v-bind:src="pokemonDetails.sprites.front_default" />
+                </div>
+                <div class="col-sm-12">
+                    <div class="versions">
+                        <h4>Flavour Text</h4>
+                        <div class="version-selectors">
+                            <button v-for="version in versions.results" v-bind:key="version.name" v-on:click="changeVersion(version.name)" v-bind:class="[version.name, btnClass]">{{version.name | capitalize}}</button>
+                        </div>
+                        <blockquote>
+                            <p class="flavorText">{{getFlavourText(version)}}</p>
+                        </blockquote>
+                    </div>
+                    <div class="stats">
+                        <h4>Base Stats</h4>
+                        <p v-for="pokemonDetail in pokemonDetails.stats" v-bind:key="pokemonDetail.id">{{pokemonDetail.stat.name | capitalize }} : {{pokemonDetail.base_stat}}</p>
+                        <p>Base Experience: {{pokemonDetails.base_experience}}</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -86,9 +96,40 @@ export default {
 </script>
 
 <style scoped>
+.details img {
+    margin: 0 auto;
+    display: block;
+}
+h4{
+    margin: 30px auto;
+}
+
+@media (min-width: 768px) {
+    .details img {
+        margin: 0;
+    }
+}
+
 .version-selectors {
     display: flex;
     flex-wrap: wrap;
+    margin: 30px auto;
+}
+
+.types {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .types {
+        flex-direction: row;
+    }
+}
+
+.types p {
+    margin: 0 5px 10px;
 }
 
 .version-selectors button {

@@ -9,12 +9,5 @@ Vue.filter('capitalize', function (value) {
 
 var pokeDexVue = new Vue({
     el: "#pokedex",
-    render: h => h(App),
-    data: {
-        ajax_call: false //Controls if the ajax gif is shown or not
-    },
-    methods: {
-
-    }
-
+    render: h => h(App)
 });

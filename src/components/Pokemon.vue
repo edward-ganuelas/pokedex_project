@@ -63,7 +63,7 @@ export default {
                 let pokemonPromise = this.$parent.$options.methods.getPromises(POKEMONVERSION);
                 pokemonPromise.then((message) => {
                     this.versions = message.data;
-                    sessionStorage.setItem(POKEMONVERSION, JSON.stringify(message));
+                    sessionStorage.setItem(POKEMONVERSION, JSON.stringify(message.data));
 
                 });
             } else {

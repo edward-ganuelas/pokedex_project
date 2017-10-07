@@ -9,9 +9,6 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Pokedex Project</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-        crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.css">
     <link href="images/favicon.ico" rel="icon" type="image/x-icon" />
 
@@ -35,21 +32,30 @@
         ga('create', 'UA-76446103-1', 'auto');
         ga('send', 'pageview');
     </script>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h1>Pokedex</h1>
-                <address>
-                    <p>
-                        <a href="https://github.com/edward-ganuelas/pokedex_project" target="_blank">https://github.com/edward-ganuelas/pokedex_project</a><br
-                        />
-                        <a href="http://eightrayedsun.com" target="_blank">EightRayedSun</a></p>
-                </address>
+    <div class="container-fluid hero-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 hero">
+                    <h1>Pokedex in Vue</h1>
+                </div>
             </div>
         </div>
     </div>
-    <div class="container" id="pokedex">
-        <!-- <img src="images/ajax-loader.gif" id="loading-indicator" v-if="ajax_call == true" /> -->
+    <nav class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                <p>
+                    <a href="https://github.com/edward-ganuelas/pokedex_project" target="_blank">Github</a>
+                </p>
+            </div>
+            <div class="col-xs-6">
+                <p>
+                    <a href="http://eightrayedsun.com" target="_blank">EightRayedSun</a></p>
+                </p>
+            </div>
+        </div>
+    </nav>
+    <div id="pokedex">
     </div>
 
 

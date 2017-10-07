@@ -6,6 +6,25 @@ select{width: 100%; margin-bottom: 1em;}
     display: inline-block; margin: 0 auto;
 }
 }
+.hero-wrapper{
+  background-color: #ee1515;
+  .hero{
+    height: 25vh;
+    display: table;
+    text-align: center;
+    color: #222224;
+    h1{
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}
+nav{
+  margin: 30px 0;
+  p{
+    text-align: center;
+  }
+}
 
 #spriteImage {display: inline-block; text-align: center;}
 #loading-indicator {

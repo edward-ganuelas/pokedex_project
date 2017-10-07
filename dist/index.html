@@ -35,21 +35,30 @@
         ga('create', 'UA-76446103-1', 'auto');
         ga('send', 'pageview');
     </script>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 hero">
-                <h1>Pokedex</h1>
-                <address>
-                    <p>
-                        <a href="https://github.com/edward-ganuelas/pokedex_project" target="_blank">https://github.com/edward-ganuelas/pokedex_project</a><br
-                        />
-                        <a href="http://eightrayedsun.com" target="_blank">EightRayedSun</a></p>
-                </address>
+    <div class="container-fluid hero-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 hero">
+                    <h1>Pokedex in Vue</h1>
+                </div>
             </div>
         </div>
     </div>
+    <nav class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                <p>
+                    <a href="https://github.com/edward-ganuelas/pokedex_project" target="_blank">Github</a>
+                </p>
+            </div>
+            <div class="col-xs-6">
+                <p>
+                    <a href="http://eightrayedsun.com" target="_blank">EightRayedSun</a></p>
+                </p>
+            </div>
+        </div>
+    </nav>
     <div id="pokedex">
-        <!-- <img src="images/ajax-loader.gif" id="loading-indicator" v-if="ajax_call == true" /> -->
     </div>
 
 

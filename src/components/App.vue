@@ -51,7 +51,7 @@ export default {
         pokeDexPromise.then((message) => {
           let json_return = message.data;
           this.pokemon_entries = json_return.pokemon_entries;
-          sessionStorage.setItem(url, JSON.stringify(message));
+          sessionStorage.setItem(url, JSON.stringify(message.data));
         });
       } else {
         let json_return = JSON.parse(sessionStorage.getItem(url));
@@ -65,7 +65,7 @@ export default {
         this.pokemonHide = true;
         pokeDexPromise.then((message) => {
           this.pokemon = message.data;
-          sessionStorage.setItem(url, JSON.stringify(message));
+          sessionStorage.setItem(url, JSON.stringify(message.data));
           this.getPokemonDetail();
         });
       } else {
@@ -79,7 +79,7 @@ export default {
         let pokemonPromise = this.getPromises(url);
         pokemonPromise.then((message) => {
           this.pokemonDetails = message.data;
-          sessionStorage.setItem(url, JSON.stringify(message));
+          sessionStorage.setItem(url, JSON.stringify(message.data));
           this.pokemonHide = false;
         });
       } else {

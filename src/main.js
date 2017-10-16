@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import App from './components/App.vue';
+import 'bootstrap/dist/js/bootstrap';
 
 Vue.filter('capitalize', function (value) {
     if (!value) return ''

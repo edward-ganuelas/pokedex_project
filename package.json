@@ -1,6 +1,6 @@
 {
   "name": "pokedex_project",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Just another for fun project using the pokeapi.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "./node_modules/.bin/webpack",
     "watch": "./node_modules/.bin/webpack --progress --watch",
     "start": "./node_modules/.bin/webpack-dev-server --open",
-    "build-prod": "./node_modules/.bin/webpack -p"
+    "dist": "./node_modules/.bin/webpack -p"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,8 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "vue": "^2.4.4"
   },

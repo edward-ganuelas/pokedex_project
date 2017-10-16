@@ -1,13 +1,11 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: ['babel-polyfill','./src/main.js'],
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
-    },
-    devServer: {
-      contentBase: './dist'  
     },
     module: {
         rules: [
@@ -19,5 +17,11 @@ module.exports = {
         alias:{
             vue: 'vue/dist/vue.js'
         }
-    }
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        })
+    ]
 };

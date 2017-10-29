@@ -2,7 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <select v-model="url">
+                <label for="regionSelect">Select Region</label>
+                <select v-model="url" id="regionSelect">
                     <option v-for="region in regionResult.results" v-bind:value="region.url" v-bind:key="region.name">
                         {{region.name | capitalize}}
                     </option>

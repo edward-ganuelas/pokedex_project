@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <label for="pokemonSelect">Select Pokemon</label>
-                <v-select v-model="url" id="pokemonSelect" :options="pokemon">
+                <v-select v-model="url" id="pokemonSelect" :options="pokemon" v-if="pokemon.length > 0">
                     <!-- <option v-for="pokemon in pokedexResult" v-bind:value="pokemon.pokemon_species.url" v-bind:key="pokemon.entry_number">
                         {{pokemon.pokemon_species.name | capitalize}}
                     </option> -->
@@ -46,6 +46,7 @@ export default {
       this.$emit("select-pokemon", this.url.value);
     },
     pokedexResult: function(val){
+        this.pokemon = [];
         this.getPokemon();
     }
   },

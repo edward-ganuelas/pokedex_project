@@ -40,6 +40,9 @@ export default {
   watch: {
     url: function(val) {
         this.$emit("select-region", this.url.value);
+    },
+    regionResult: function(val){
+        this.getRegions();
     }
   },
   beforeMount: function() {

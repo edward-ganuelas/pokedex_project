@@ -3,29 +3,54 @@
         <div class="row">
             <div class="col-xs-12">
                 <label for="pokemonSelect">Select Pokemon</label>
-                <select v-model="url" id="pokemonSelect">
-                    <option v-for="pokemon in pokedexResult" v-bind:value="pokemon.pokemon_species.url" v-bind:key="pokemon.entry_number">
+                <v-select v-model="url" id="pokemonSelect" :options="pokemon">
+                    <!-- <option v-for="pokemon in pokedexResult" v-bind:value="pokemon.pokemon_species.url" v-bind:key="pokemon.entry_number">
                         {{pokemon.pokemon_species.name | capitalize}}
-                    </option>
-                </select>
+                    </option> -->
+                </v-select>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import vSelect from "vue-select";
 export default {
-    name: 'pokemon-select',
-    props: ['pokedexResult'],
-    data: function() {
-        return {
-            url: ''
-        }
+  name: "pokemon-select",
+  props: ["pokedexResult"],
+  components: {
+    vSelect
+  },
+  data: function() {
+    return {
+      url: "",
+      pokemon: []
+    };
+  },
+  methods: {
+    getPokemon: function() {
+      let results = this.pokedexResult;   
+      results.map(x => {
+        let poke = { value: x.pokemon_species.url, label: this.capitalize(x.pokemon_species.name) };
+        this.pokemon.push(poke);
+      });
     },
-    watch: {
-        url: function(val) {
-            this.$emit("select-pokemon", this.url);
-        }
+    capitalize: function(value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
     }
-}
+  },
+  watch: {
+    url: function(val) {
+      this.$emit("select-pokemon", this.url.value);
+    },
+    pokedexResult: function(val){
+        this.getPokemon();
+    }
+  },
+  beforeMount: function() {
+      this.getPokemon();
+  }
+};
 </script>

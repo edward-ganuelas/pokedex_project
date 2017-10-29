@@ -10,7 +10,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <img v-bind:src="pokemonDetails.sprites.front_default" />
+                    <img v-bind:src="pokemonDetails.sprites.front_default" v-bind:alt="pokemonData.name | capitalize" />
                 </div>
                 <div class="col-sm-12">
                     <div class="versions">

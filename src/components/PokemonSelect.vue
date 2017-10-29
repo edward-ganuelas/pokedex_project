@@ -2,7 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <select v-model="url">
+                <label for="pokemonSelect">Select Pokemon</label>
+                <select v-model="url" id="pokemonSelect">
                     <option v-for="pokemon in pokedexResult" v-bind:value="pokemon.pokemon_species.url" v-bind:key="pokemon.entry_number">
                         {{pokemon.pokemon_species.name | capitalize}}
                     </option>

@@ -95,20 +95,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .details img {
     margin: 0 auto;
     display: block;
+    @media (min-width: 768px){
+        margin: 0;
+    }
 }
 h4{
     margin: 30px auto;
 }
 
-@media (min-width: 768px) {
-    .details img {
-        margin: 0;
-    }
-}
 
 .version-selectors {
     display: flex;

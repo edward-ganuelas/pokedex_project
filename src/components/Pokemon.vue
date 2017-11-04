@@ -6,7 +6,7 @@
                     <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
                     <h3>The {{getGenera()}}</h3>
                     <div class="types">
-                        <p v-for="pokemonDetail in pokemonDetails.types" v-bind:key="pokemonDetail.id">{{pokemonDetail.type.name | capitalize}} Type</p>
+                        <v-chip v-for="pokemonDetail in pokemonDetails.types" v-bind:key="pokemonDetail.id">{{pokemonDetail.type.name | capitalize}} Type</v-chip>
                     </div>
                 </v-flex>
                 <v-flex xs12 md2>
@@ -19,7 +19,7 @@
                     <div class="versions">
                         <h4>Flavour Text</h4>
                         <div class="version-selectors">
-                            <button v-for="version in versions.results" v-bind:key="version.name" v-on:click="changeVersion(version.name)" v-bind:class="[version.name, btnClass]">{{version.name | capitalize}}</button>
+                            <v-btn dark v-for="version in versions.results" v-bind:key="version.name" v-on:click="changeVersion(version.name)" v-bind:class="[version.name, btnClass]">{{version.name | capitalize}}</v-btn>
                         </div>
                         <blockquote>
                             <p class="flavorText">{{getFlavourText(version)}}</p>
@@ -38,6 +38,7 @@
 
 <script>
 import { POKEMONVERSION } from '../const/pokeapi.js';
+import axios from "axios";
 export default {
     name: 'pokemon',
     props: ['pokemonData', 'pokemonDetails', 'pokemonHide'],
@@ -72,8 +73,9 @@ export default {
             }
         },
         getVersions: function() {
+            console.log(POKEMONVERSION);
             if (sessionStorage.getItem(POKEMONVERSION) === null) {
-                let pokemonPromise = this.$parent.$options.methods.getPromises(POKEMONVERSION);
+                let pokemonPromise = axios.get(POKEMONVERSION);
                 pokemonPromise.then((message) => {
                     this.versions = message.data;
                     sessionStorage.setItem(POKEMONVERSION, JSON.stringify(message.data));
@@ -143,76 +145,76 @@ p.flavorText {
     text-align: center;
 }
 
-.red {
+:root:root:root .red {
     background-color: red;
 }
 
-.blue {
+:root:root:root .blue {
     background-color: blue;
 }
 
-.yellow {
+:root:root:root .yellow {
     background-color: yellow;
 }
 
-.gold {
+:root:root:root .gold {
     background-color: #FFD700;
 }
 
-.silver {
+:root:root:root .silver {
     background-color: #C0C0C0;
     color: #ebebeb;
 }
 
-.crystal {
+:root:root:root .crystal {
     background-color: #8f8fc1;
 }
 
-.ruby {
+:root:root:root .ruby {
     background-color: #b52f23;
 }
 
-.sapphire {
+:root:root:root .sapphire {
     background-color: #40579d;
 }
 
-.emerald {
+:root:root:root .emerald {
     background-color: #00a64e;
 }
 
-.firered {
+:root:root:root .firered {
     background-color: #4e1f0d;
 }
 
-.leafgreen {
+:root:root:root .leafgreen {
     background-color: #92ca52;
 }
 
-.diamond {
+:root:root:root .diamond {
     background-color: #45a2b3;
 }
 
-.pearl {
+:root:root:root .pearl {
     background-color: #430244;
 }
 
-.platinum {
+:root:root:root .platinum {
     background-color: #0d0c0d;
 }
 
-.heartgold {
+:root:root:root .heartgold {
     background-color: #e3bb41;
 }
 
-.soulsilver {
+:root:root:root .soulsilver {
     background-color: #8b9396;
 }
 
-.black {
+:root:root:root .black {
     background-color: #000;
 }
 
-.white {
+:root:root:root .white {
     background-color: #FFF;
     color: #000!important;
     border-color: #000;

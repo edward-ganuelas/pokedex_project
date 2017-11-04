@@ -1,12 +1,12 @@
 <template>
   <div id="pokedex">
     <v-app>
-      <v-content>
+      <v-content v-bind:class="{'loading': pokemonHide | ajax_call}">
         <region-select v-bind:region-result="pokedexRegions" v-on:select-region="getPokedex" v-if="pokedexRegions" />
         <pokemon-select v-bind:pokedex-result="pokemon_entries" v-if="pokemon_entries" v-on:select-pokemon="getPokemon" />
         <pokemon v-bind:pokemon-data="pokemon" v-bind:pokemon-details="pokemonDetails" v-bind:pokemon-hide="pokemonHide" v-if="pokemon && pokemonDetails" />
-        <img src="images/ajax-loader.gif" id="loading-indicator" v-if="pokemonHide == true | ajax_call == true" />
       </v-content>
+      <v-progress-circular indeterminate v-bind:size="70" v-bind:width="7" color="red" v-if="pokemonHide == true | ajax_call == true" id="loading-indicator"></v-progress-circular>
     </v-app>
   </div>
 </template>
@@ -112,6 +112,48 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style lang="scss">
+html,body{height: 100%;}
+select{width: 100%; margin-bottom: 1em;}
+#entry{margin-bottom: 5em;}
+#sprites {text-align: center;
+.spritesWrap {
+    display: inline-block; margin: 0 auto;
+}
+}
+.hero-wrapper{
+  background-color: #ee1515;
+  .hero{
+    height: 25vh;
+    display: table;
+    text-align: center;
+    color: #222224;
+    width: 100%;
+    h1{
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}
+nav{
+  margin: 30px 0;
+  p{
+    text-align: center;
+  }
+}
+#pokedex .loading{
+  opacity: 0.3;
+}
+#spriteImage {display: inline-block; text-align: center;}
+#loading-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+[v-cloak] {
+  display: none;
+}
 </style>

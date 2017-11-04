@@ -4,9 +4,6 @@
             <v-flex xs12>
                 <label for="pokemonSelect">Select Pokemon</label>
                 <v-select v-model="url" id="pokemonSelect" :options="pokemon" v-if="pokemon.length > 0">
-                    <!-- <option v-for="pokemon in pokedexResult" v-bind:value="pokemon.pokemon_species.url" v-bind:key="pokemon.entry_number">
-                        {{pokemon.pokemon_species.name | capitalize}}
-                    </option> -->
                 </v-select>
             </v-flex>
         </v-layout>

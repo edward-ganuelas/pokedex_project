@@ -1,12 +1,12 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
+    <v-container>
+        <v-layout row wrap>
+            <v-flex xs12>
                 <label for="regionSelect">Select Region</label>
                 <v-select v-model="url" id="regionSelect" :options="region"></v-select>
-            </div>
-        </div>
-    </div>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 
 <script>

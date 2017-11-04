@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid>
+    <v-container>
         <v-layout row wrap>
             <v-flex xs12>
                 <label for="regionSelect">Select Region</label>

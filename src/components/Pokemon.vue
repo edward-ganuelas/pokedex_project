@@ -1,18 +1,18 @@
 <template>
     <v-container v-if="pokemonHide == false">
-        <v-layout row wrap>
-            <v-flex xs12 class="details">
+        <v-layout row wrap class="details">
+        
                 <v-flex xs12 md8>
                     <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
-                    <h3>The {{getGenera()}} Pokemon</h3>
+                    <h3>The {{getGenera()}}</h3>
                     <div class="types">
                         <p v-for="pokemonDetail in pokemonDetails.types" v-bind:key="pokemonDetail.id">{{pokemonDetail.type.name | capitalize}} Type</p>
                     </div>
                 </v-flex>
-                <v-flex xs12 md4>
+                <v-flex xs12 md2>
                     <img v-bind:src="pokemonDetails.sprites.front_default" v-bind:alt="pokemonData.name | capitalize" />
                 </v-flex>
-            </v-flex>
+ 
         </v-layout>
         <v-layout row wrap>
                 <v-flex xs12>

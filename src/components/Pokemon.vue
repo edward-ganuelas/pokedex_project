@@ -1,18 +1,21 @@
 <template>
-    <div class="container" v-if="pokemonHide == false">
-        <div class="row">
-            <div class="col-sm-12 details">
-                <div class="col-sm-12 col-md-8">
+    <v-container v-if="pokemonHide == false">
+        <v-layout row wrap class="details">
+        
+                <v-flex xs12 md8>
                     <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
-                    <h3>The {{getGenera()}} Pokemon</h3>
+                    <h3>The {{getGenera()}}</h3>
                     <div class="types">
                         <p v-for="pokemonDetail in pokemonDetails.types" v-bind:key="pokemonDetail.id">{{pokemonDetail.type.name | capitalize}} Type</p>
                     </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
+                </v-flex>
+                <v-flex xs12 md2>
                     <img v-bind:src="pokemonDetails.sprites.front_default" v-bind:alt="pokemonData.name | capitalize" />
-                </div>
-                <div class="col-sm-12">
+                </v-flex>
+ 
+        </v-layout>
+        <v-layout row wrap>
+                <v-flex xs12>
                     <div class="versions">
                         <h4>Flavour Text</h4>
                         <div class="version-selectors">
@@ -27,10 +30,10 @@
                         <p v-for="pokemonDetail in pokemonDetails.stats" v-bind:key="pokemonDetail.id">{{pokemonDetail.stat.name | capitalize }} : {{pokemonDetail.base_stat}}</p>
                         <p>Base Experience: {{pokemonDetails.base_experience}}</p>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </v-flex>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 
 <script>
@@ -95,20 +98,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .details img {
     margin: 0 auto;
     display: block;
+    @media (min-width: 768px){
+        margin: 0;
+    }
 }
 h4{
     margin: 30px auto;
 }
 
-@media (min-width: 768px) {
-    .details img {
-        margin: 0;
-    }
-}
 
 .version-selectors {
     display: flex;

@@ -1,9 +1,9 @@
 <template>
-  <div class="container pokemonGridItem" v-if="pokemon" :style="{'background-color': pokemonSpecies.color.name}">
+  <div class="container-fluid pokemonGridItem" v-if="pokemon && pokemonSpecies" :class="[pokemonSpecies.color.name]" :style="{'background-color': pokemonSpecies.color.name}">
     <div class="row">
-      <div class="col-12 col-md-6 col-lg-4">
+      <div class="col">
         <img :src="pokemon.sprites.front_default" :alt="pokeData.pokemon_species.name">
-        <p>{{pokeData.pokemon_species.name}}</p>
+        <p class="name">{{pokeData.pokemon_species.name}}</p>
       </div>
     </div>
   </div>
@@ -65,5 +65,15 @@ export default {
 .pokemonGridItem{
     border: solid 1px gray;
     border-radius: 15px;
+    margin-bottom: 8px;
+    .name{
+        color: #fff;
+        text-transform: uppercase;
+    }
+    &.white{
+        .name{
+            color: #000;
+        }
+    }
 }
 </style>

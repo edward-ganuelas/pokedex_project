@@ -1,13 +1,13 @@
 <template>
 <div class="container">
     <div class="row">
-        <div class="col" v-for="pokemon in slicedPokemonEntries" :key="pokemon.entry_number">
+        <div class="col-12 col-md-6 col-lg-4" v-for="pokemon in slicedPokemonEntries" :key="pokemon.entry_number">
             <poke-grid-item :pokeData="pokemon" />
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <button @click="loadMore" class="btn">Load More</button>
+            <button @click="loadMore" class="btn" v-if="pokemonEntries.length > 0">Load More</button>
         </div>
     </div>
 </div>

@@ -1,28 +1,21 @@
+# pokedex_project
 
-# Pokedex
+## Project setup
+```
+yarn install
+```
 
-Just another for fun project using the pokeapi.
+### Compiles and hot-reloads for development
+```
+yarn run serve
+```
 
-http://pokeapi.co/
+### Compiles and minifies for production
+```
+yarn run build
+```
 
-Technologies:
-
-HTML
-
-CSS
-
-Bootstrap
-
-Vue.js
-
-sessionStorage
-
-### Build: 
-npm install
-
-npm run build
-
-### Dev:
-npm start
-
-
+### Lints and fixes files
+```
+yarn run lint
+```

@@ -31,7 +31,6 @@
                         <p>Base Experience: {{pokemonDetails.base_experience}}</p>
                     </div>
                 </v-flex>
-            </v-flex>
         </v-layout>
     </v-container>
 </template>

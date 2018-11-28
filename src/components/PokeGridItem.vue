@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid pokemonGridItem" v-if="pokemon && pokemonSpecies" :class="[pokemonSpecies.color.name]" :style="{'background-color': pokemonSpecies.color.name}">
+  <div class="container-fluid pokemonGridItem" v-if="pokemon && pokemonSpecies" :class="[pokemonSpecies.color.name]" :style="{'background-color': pokemonSpecies.color.name}" @click="pokemonDetails">
     <div class="row">
       <div class="col">
         <img :src="pokemon.sprites.front_default" :alt="pokeData.pokemon_species.name">
@@ -49,6 +49,11 @@ export default {
             }else{
                 this.pokemon = JSON.parse(localStorage.getItem(`${POKEMON}${this.pokeData.entry_number}`))
             }
+        },
+        pokemonDetails(){
+            this.$store.commit('setPokemonSpecies', JSON.stringify(this.pokemonSpecies));
+            this.$store.commit('setPokemonDetails', JSON.stringify(this.pokemon));
+            this.$router.push({name: 'pokemon', query: {id: this.pokeData.entry_number}});
         }
     },
 
@@ -66,6 +71,7 @@ export default {
     border: solid 1px gray;
     border-radius: 15px;
     margin-bottom: 8px;
+    cursor: pointer;
     .name{
         color: #fff;
         text-transform: uppercase;

@@ -1,12 +1,12 @@
 <template>
-<div class="container">
+  <div class="container" v-if="pokemon">
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-4">
-            <img :src="pokemon.sprites.front_default" :alt="pokeData.pokemon_species.name"/>
-            <p>{{pokeData.pokemon_species.name}}</p>
-        </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <img :src="pokemon.sprites.front_default" :alt="pokeData.pokemon_species.name">
+        <p>{{pokeData.pokemon_species.name}}</p>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
@@ -25,14 +25,30 @@ export default {
     },
     methods:{
         async getPokemonSpecies(){
-            let data = await axios.get(`${this.pokeData.pokemon_species.url}`);
-            this.pokemonSpecies = data.data;
-            // console.log(this.pokeData.entry_number)
-            // console.log(data);
+            if(localStorage.getItem(`${this.pokeData.pokemon_species.url}`) === null){
+                try{
+                    let data = await axios.get(`${this.pokeData.pokemon_species.url}`);
+                    this.pokemonSpecies = data.data;
+                    localStorage.setItem(`${this.pokeData.pokemon_species.url}`, JSON.stringify(data.data));
+                }catch(e){
+                    console.log(e)
+                }
+            }else{
+                this.pokemonSpecies = JSON.parse(localStorage.getItem(`${this.pokeData.pokemon_species.url}`))
+            }
         },
         async getPokemon(){
-            let data = await axios.get(`${POKEMON}${this.pokeData.entry_number}`);
-            this.pokemon = data.data;
+            if(localStorage.getItem(`${POKEMON}${this.pokeData.entry_number}`) === null){
+                try{
+                let data = await axios.get(`${POKEMON}${this.pokeData.entry_number}`);
+                this.pokemon = data.data;
+                localStorage.setItem(`${POKEMON}${this.pokeData.entry_number}`, JSON.stringify(data.data));
+                }catch(e){
+                    console.log(e)
+                }
+            }else{
+                this.pokemon = JSON.parse(localStorage.getItem(`${POKEMON}${this.pokeData.entry_number}`))
+            }
         }
     },
 
@@ -43,5 +59,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container" v-if="pokemon">
+  <div class="container pokemonGridItem" v-if="pokemon" :style="{'background-color': pokemonSpecies.color.name}">
     <div class="row">
       <div class="col-12 col-md-6 col-lg-4">
         <img :src="pokemon.sprites.front_default" :alt="pokeData.pokemon_species.name">
@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios';
-import { POKEDEX, POKEMON } from "../const/pokeapi.js";
+import { POKEMON } from "../const/pokeapi.js";
 export default {
     name: 'PokeItem',
     props: {
@@ -53,10 +53,17 @@ export default {
     },
 
     mounted(){
-        this.getPokemon();
+        this.getPokemon().then(()=>{
+            this.getPokemonSpecies();
+        });
+
     }
 };
 </script>
 
 <style lang="scss" scoped>
+.pokemonGridItem{
+    border: solid 1px gray;
+    border-radius: 15px;
+}
 </style>

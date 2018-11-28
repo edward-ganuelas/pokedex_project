@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <button @click="loadMore">Load More</button>
+            <button @click="loadMore" class="btn">Load More</button>
         </div>
     </div>
 </div>
@@ -26,7 +26,7 @@ export default {
         return{
             url : NATIONALDEX,
             pokemonEntries: [],
-            entries: 10
+            entries: 9
         }
     },
     methods:{
@@ -44,7 +44,7 @@ export default {
             }
         },
         loadMore(){
-            this.entries += 10;
+            this.entries += 9;
         }
     },
     computed:{

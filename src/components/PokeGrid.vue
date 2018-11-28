@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <button @click="loadMore" class="btn" v-if="pokemonEntries.length > 0">Load More</button>
+            <button @click="loadMore" class="btn btn-primary" v-if="pokemonEntries.length > 0">Load More ({{this.pokemonEntries.length - this.entries}})</button>
         </div>
     </div>
 </div>

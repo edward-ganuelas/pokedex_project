@@ -85,7 +85,7 @@ export default{
 #pokemon{
     color: #FFF;
     text-align: left;
-    .white{
+    &.white{
         color: #000;
     }
     table{

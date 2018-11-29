@@ -1,13 +1,19 @@
 <template>
 <div class="container">
     <div class="row">
+        <div class="col-12 search">
+            <label for="search">Search</label>
+            <input id="search" name="search" type="search" v-model="search"/>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-12 col-md-6 col-lg-4" v-for="pokemon in slicedPokemonEntries" :key="pokemon.entry_number">
             <poke-grid-item :pokeData="pokemon" />
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <button @click="loadMore" class="btn btn-primary" v-if="pokemonEntries.length > 0">Load More ({{this.pokemonEntries.length - this.entries}})</button>
+            <button @click="loadMore" class="btn btn-primary" v-if="pokemonEntries.length > 0 && search === ''" >Load More ({{this.filteredPokemonEntry.length - this.entries}})</button>
         </div>
     </div>
 </div>
@@ -29,7 +35,8 @@ export default {
         return{
             url : NATIONALDEX,
             pokemonEntries: [],
-            entries: 9
+            entries: 9,
+            search: ''
         }
     },
     methods:{
@@ -53,8 +60,23 @@ export default {
         }
     },
     computed:{
+        filteredPokemonEntry(){
+            if(this.search === ''){
+                return this.pokemonEntries;
+            }
+            const pokemonEntries = this.pokemonEntries.slice();
+            return pokemonEntries.filter(x=>{
+
+                if(x.pokemon_species.name.toUpperCase().indexOf(this.search.toUpperCase()) !== -1){
+                    return x;
+                }
+            })
+        },
         slicedPokemonEntries(){
-            return this.pokemonEntries.slice(0, this.entries);
+            if(this.search !== ''){
+                return this.filteredPokemonEntry
+            }
+            return this.filteredPokemonEntry.slice(0, this.entries);
         }
     },
     mounted(){
@@ -64,5 +86,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+label{
+    margin-right: 18px;
+    display: inline-block
+}
+input[type="search"]{
+    width: 90%;
+}
+.search{
+    margin: 18px auto 18px auto;
+}
 
 </style>

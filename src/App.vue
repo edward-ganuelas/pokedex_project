@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <transition name="fadeLeft" leave-active-class="dissapear">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -21,5 +23,8 @@
       color: #42b983;
     }
   }
+}
+.dissapear{
+  display: none;
 }
 </style>

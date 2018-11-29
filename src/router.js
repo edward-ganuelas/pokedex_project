@@ -19,5 +19,8 @@ export default new Router({
         id: route.query.id
       })
     }
-  ]
+  ],
+  scrollBehavior(){
+    return{x:0, y:0}
+  }
 })

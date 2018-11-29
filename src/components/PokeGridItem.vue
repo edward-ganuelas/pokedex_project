@@ -12,6 +12,7 @@
 <script>
 import axios from 'axios';
 import { POKEMON } from "../const/pokeapi.js";
+import db from '../database.js';
 export default {
     name: 'PokeItem',
     props: {
@@ -24,31 +25,23 @@ export default {
         }
     },
     methods:{
-        async getPokemonSpecies(){
-            if(localStorage.getItem(`${this.pokeData.pokemon_species.url}`) === null){
+        async getPokemonSpecies(){           
                 try{
                     let data = await axios.get(`${this.pokeData.pokemon_species.url}`);
                     this.pokemonSpecies = data.data;
-                    localStorage.setItem(`${this.pokeData.pokemon_species.url}`, JSON.stringify(data.data));
+                    
                 }catch(e){
                     console.log(e)
-                }
-            }else{
-                this.pokemonSpecies = JSON.parse(localStorage.getItem(`${this.pokeData.pokemon_species.url}`))
-            }
+                }         
         },
         async getPokemon(){
-            if(localStorage.getItem(`${POKEMON}${this.pokeData.entry_number}`) === null){
                 try{
                 let data = await axios.get(`${POKEMON}${this.pokeData.entry_number}`);
                 this.pokemon = data.data;
-                localStorage.setItem(`${POKEMON}${this.pokeData.entry_number}`, JSON.stringify(data.data));
+             
                 }catch(e){
                     console.log(e)
                 }
-            }else{
-                this.pokemon = JSON.parse(localStorage.getItem(`${POKEMON}${this.pokeData.entry_number}`))
-            }
         },
         pokemonDetails(){
             this.$store.commit('setPokemonSpecies', JSON.stringify(this.pokemonSpecies));
@@ -58,9 +51,24 @@ export default {
     },
 
     mounted(){
-        this.getPokemon().then(()=>{
-            this.getPokemonSpecies();
-        });
+        (async()=>{
+            const savedData = await db.pokemon.get({id: `${this.pokeData.entry_number}`});
+            if(savedData === undefined){
+                await this.getPokemon()
+                await this.getPokemonSpecies()
+                const pokemonSavedData = {
+                    pokemonDetails: this.pokemon,
+                    pokemonSpecies: this.pokemonSpecies
+                };
+                db.pokemon.put({id: `${this.pokeData.entry_number}`, data: pokemonSavedData})
+            }else{
+                const pokemonSavedData = savedData.data;
+                this.pokemon = pokemonSavedData.pokemonDetails;
+                this.pokemonSpecies = pokemonSavedData.pokemonSpecies;
+            }
+        })();
+        
+       
 
     }
 };

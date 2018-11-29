@@ -14,9 +14,12 @@
 </template>
 
 <script>
+import Dexie from 'dexie';
 import { NATIONALDEX } from "../const/pokeapi.js";
 import PokeGridItem from './PokeGridItem';
 import axios from 'axios';
+import db from '../database.js';
+
 export default {
     name: 'PokeGrid',
     components:{
@@ -31,16 +34,18 @@ export default {
     },
     methods:{
         async getPokemon(){
-            if(localStorage.getItem(`${this.url}`) === null){
+            const storedData = await db.pokedex.get({url: `${this.url}`})
+            if(storedData === undefined){
                 try{
                     const data = await axios.get(this.url);
                     this.pokemonEntries = data.data.pokemon_entries;
-                    localStorage.setItem(`${this.url}`, JSON.stringify(this.pokemonEntries));
+                    // localStorage.setItem(`${this.url}`, JSON.stringify(this.pokemonEntries));
+                    db.pokedex.put({url: `${this.url}`, data: this.pokemonEntries})
                 }catch(e){
                     console.log(e);
                 }
             }else{
-                this.pokemonEntries = JSON.parse(localStorage.getItem(`${this.url}`));
+                this.pokemonEntries = storedData.data;
             }
         },
         loadMore(){

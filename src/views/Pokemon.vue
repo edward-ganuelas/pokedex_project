@@ -20,6 +20,11 @@
                 
             </div>
         </div>
+        <div class="row">
+            <div class="col-6">
+                <router-link to="/">Back</router-link>
+            </div>
+        </div>
     </div>
 </template>
 

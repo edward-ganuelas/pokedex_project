@@ -91,7 +91,7 @@ export default {
     }
     &.yellow{
         .name{
-            color: green;
+            color: #000;
         }
     }
 }

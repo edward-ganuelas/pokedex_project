@@ -120,6 +120,7 @@ export default {
 @import "./node_modules/bootstrap/scss/bootstrap-reboot.scss";
 @import "./node_modules/bootstrap/scss/bootstrap-grid.scss";
 @import "./node_modules/bootstrap/scss/_buttons.scss";
+@import "./node_modules/bootstrap/scss/_utilities.scss";
 html,body{height: 100%;}
 select{width: 100%; margin-bottom: 1em;}
 #entry{margin-bottom: 5em;}

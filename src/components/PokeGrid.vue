@@ -2,8 +2,8 @@
 <div class="container">
     <div class="row">
         <div class="col-12 search">
-            <label for="search">Search</label>
-            <input id="search" name="search" type="search" v-model="search"/>
+            <label for="search" class="sr-only">Search</label>
+            <input id="search" name="search" type="search" v-model="search" placeholder="Search"/>
         </div>
     </div>
     <div class="row">
@@ -13,14 +13,13 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <button @click="loadMore" class="btn btn-primary" v-if="pokemonEntries.length > 0 && search === ''" >Load More ({{this.filteredPokemonEntry.length - this.entries}})</button>
+            <button @click="loadMore" class="btn btn-primary loadMore" v-if="pokemonEntries.length > 0 && search === ''" >Load More ({{this.filteredPokemonEntry.length - this.entries}})</button>
         </div>
     </div>
 </div>
 </template>
 
 <script>
-import Dexie from 'dexie';
 import { NATIONALDEX } from "../const/pokeapi.js";
 import PokeGridItem from './PokeGridItem';
 import axios from 'axios';
@@ -91,10 +90,15 @@ label{
     display: inline-block
 }
 input[type="search"]{
-    width: 90%;
+    width: 100%;
+    border-radius: 15px;
+    padding-left: 10px;
 }
 .search{
     margin: 18px auto 18px auto;
+}
+.loadMore{
+    margin-top: 18px;
 }
 
 </style>

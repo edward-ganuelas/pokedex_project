@@ -7,8 +7,9 @@
                         <div class="col col-lg-6 offset-lg-2">
                             <img :alt="pokemonDetails.name" :src="pokemonDetails.sprites.front_default" />
                             <h2 class="name">{{pokemonDetails.id}}. {{pokemonDetails.name}}</h2>
-                            <h3>{{genera.genus}}</h3>
-                            <p>{{type}}</p>
+                            <h3>The {{genera.genus}}</h3>
+                            <!-- <p>{{type}}</p> -->
+                            <type-badge v-for="type in pokemonDetails.types" :key="type.type.name" :type="type.type.name" />
                             <p>{{flavourText.flavor_text}}</p>
                             <p>Abilities: {{abilities}}</p>
                             <p>Height: {{pokemonDetails.height}}</p>
@@ -30,11 +31,13 @@
 
 <script>
 import Chart from '../components/Chart';
+import TypeBadge from '../components/TypeBadge';
 export default{
     name: 'Pokemon',
     props: ['id'],
     components:{
-        Chart
+        Chart,
+        TypeBadge
     },
     computed: {
         pokemonDetails(){
@@ -70,16 +73,16 @@ export default{
             });
             return filteredAbilities.join(', ');
         },
-        type(){
-            const type = this.pokemonDetails.types;
-            if(type.length > 1){
+        // type(){
+        //     const type = this.pokemonDetails.types;
+        //     if(type.length > 1){
 
-                return type.map(x=>x.type.name.toUpperCase()).join(', ');
+        //         return type.map(x=>x.type.name.toUpperCase()).join(', ');
 
-            }else{
-                return type[0].type.name.toUpperCase();
-            }
-        },
+        //     }else{
+        //         return type[0].type.name.toUpperCase();
+        //     }
+        // },
         pokemonStats(){
             const stats = this.pokemonDetails.stats.slice();
             return stats.map(x=>{
@@ -110,7 +113,7 @@ export default{
         color: #000;
     }
     &.yellow{
-        color: green;
+        color: #000;
     }
     table{
         width: 100%;

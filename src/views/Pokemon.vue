@@ -9,7 +9,10 @@
                             <h2 class="name">{{pokemonDetails.id}}. {{pokemonDetails.name}}</h2>
                             <h3>The {{genera.genus}}</h3>
                             <!-- <p>{{type}}</p> -->
-                            <type-badge v-for="type in pokemonDetails.types" :key="type.type.name" :type="type.type.name" />
+                            <type-badge v-for="type in pokemonDetails.types" :key="type.type.name" :type="type.type.name" @click="getType(type.type.url)" />
+                            <transition name="slideDown" leave-active-class="dissapear">
+                            <p class="typeText" v-if="type">{{type}}</p>
+                            </transition>
                             <p>{{flavourText.flavor_text}}</p>
                             <p>Abilities: {{abilities}}</p>
                             <p>Height: {{pokemonDetails.height}}</p>
@@ -36,12 +39,19 @@
 <script>
 import Chart from '../components/Chart';
 import TypeBadge from '../components/TypeBadge';
+import axios from 'axios';
 export default{
     name: 'Pokemon',
     props: ['id'],
     components:{
         Chart,
         TypeBadge
+    },
+    data(){
+        return{
+            type: '',
+            activeTypeUrl: ''
+        }
     },
     computed: {
         pokemonDetails(){
@@ -77,16 +87,6 @@ export default{
             });
             return filteredAbilities.join(', ');
         },
-        // type(){
-        //     const type = this.pokemonDetails.types;
-        //     if(type.length > 1){
-
-        //         return type.map(x=>x.type.name.toUpperCase()).join(', ');
-
-        //     }else{
-        //         return type[0].type.name.toUpperCase();
-        //     }
-        // },
         pokemonStats(){
             const stats = this.pokemonDetails.stats.slice();
             return stats.map(x=>{
@@ -99,6 +99,51 @@ export default{
             return stats.map(x=>{
                 return x.stat.name;
             }).reverse();
+        }
+    },
+    methods:{
+        getType(url){
+            if(url !== this.activeTypeUrl){
+                this.activeTypeUrl = url;
+                (async()=>{
+                    const data = await axios.get(url);
+                    const name = data.data.name;
+                    const damageRelations = data.data.damage_relations;
+                    const doubleDamageFrom = damageRelations.double_damage_from.map(x=>x.name);
+                    const doubleDamageTo = damageRelations.double_damage_to.map(x=>x.name);
+                    const halfDamageFrom = damageRelations.half_damage_from.map(x=>x.name);
+                    const halfDamageTo = damageRelations.half_damage_to.map(x=>x.name);
+                    const imuneTo = damageRelations.no_damage_from.map(x=>x.name);
+                    let text = `${name.toUpperCase()}. `;
+                    // this.type= `
+                    // Weak against ${doubleDamageFrom}. 
+                    // Strong against ${doubleDamageTo}.
+                    // Takes half damage from ${halfDamageFrom}.
+                    // Does half damage to ${halfDamageTo}.
+                    // Immune to ${imuneTo}.
+                    // `
+                    if(doubleDamageFrom.length > 0){
+                        text += `Weak against ${doubleDamageFrom.join(', ')}. `
+                    }
+                    if(doubleDamageTo.length > 0){
+                        text += `Strong against ${doubleDamageTo.join(', ')}. `
+                    }
+                    if(halfDamageFrom.length > 0){
+                        text += `Takes half damage from ${halfDamageFrom.join(', ')}. `
+                    }
+                    if(halfDamageTo.length > 0){
+                        text += `Does half damage to ${halfDamageTo.join(', ')}. `
+                    }
+                    if(imuneTo.length > 0){
+                        text += `Is immune to ${imuneTo.join(', ')}. `
+                    }
+                    
+                    this.type = text;
+                })();
+            }else{
+                this.activeTypeUrl = '';
+                this.type = '';
+            }
         }
     },
     mounted(){
@@ -132,5 +177,11 @@ export default{
     margin: 18px auto;
     display: block;
     text-align: center;
+}
+.typeText{
+    background-color: #FFF;
+    color: #000;
+    padding: 1rem;
+    border-radius: 15px;
 }
 </style>

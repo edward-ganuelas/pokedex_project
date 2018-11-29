@@ -1,5 +1,5 @@
 <template functional>
-    <span :class="[props.type]">{{props.type}}</span>
+    <button class="btn" :class="[props.type]" @click="listeners['click']">{{props.type}}</button>
 </template>
 
 <script>
@@ -12,7 +12,7 @@
 </script>
 
 <style lang="scss" scoped>
-span{
+.btn{
     display: inline-block;
     margin-right: 10px;
     margin-bottom: 18px;

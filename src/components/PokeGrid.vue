@@ -34,7 +34,7 @@ export default {
         return{
             url : NATIONALDEX,
             pokemonEntries: [],
-            entries: 9,
+            entries: 6,
             search: ''
         }
     },
@@ -55,7 +55,7 @@ export default {
             }
         },
         loadMore(){
-            this.entries += 9;
+            this.entries += 12;
         }
     },
     computed:{

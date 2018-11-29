@@ -13,20 +13,7 @@
                             <p>Abilities: {{abilities}}</p>
                             <p>Height: {{pokemonDetails.height}}</p>
                             <p>Weight: {{pokemonDetails.weight}}</p>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Base Stat</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="stat in pokemonDetails.stats" :key="stat.stat.name">
-                                        <td>{{stat.stat.name}}</td>
-                                        <td>{{stat.base_stat}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <chart :stats="pokemonStats" :labels="pokemonStatsLabel" />
                         </div>
                     </div>
                 </div>
@@ -37,9 +24,13 @@
 </template>
 
 <script>
+import Chart from '../components/Chart';
 export default{
     name: 'Pokemon',
     props: ['id'],
+    components:{
+        Chart
+    },
     computed: {
         pokemonDetails(){
             return JSON.parse(this.$store.getters.getPokemonDetails);
@@ -83,6 +74,19 @@ export default{
             }else{
                 return type[0].type.name.toUpperCase();
             }
+        },
+        pokemonStats(){
+            const stats = this.pokemonDetails.stats.slice();
+            return stats.map(x=>{
+                return x.base_stat;
+            }).reverse();
+
+        },
+        pokemonStatsLabel(){
+            const stats = this.pokemonDetails.stats.slice();
+            return stats.map(x=>{
+                return x.stat.name;
+            }).reverse();
         }
     },
     mounted(){

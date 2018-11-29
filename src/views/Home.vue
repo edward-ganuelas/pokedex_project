@@ -111,6 +111,7 @@ export default {
   },
   beforeMount: function() {
     this.getRegions();
+    document.body.style = null;
   }
 };
 </script>

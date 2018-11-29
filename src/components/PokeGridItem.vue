@@ -89,5 +89,10 @@ export default {
             color: #000;
         }
     }
+    &.yellow{
+        .name{
+            color: green;
+        }
+    }
 }
 </style>

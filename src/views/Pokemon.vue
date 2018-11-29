@@ -1,29 +1,36 @@
 <template>
-    <div class="container" id="pokemon" :style="{'background-color': pokemonSpecies.color.name}" :class="[pokemonSpecies.color.name]">
+    <div class="container" id="pokemon" :class="[pokemonSpecies.color.name]">
         <div class="row">
             <div class="col">
-                <img :alt="pokemonDetails.name" :src="pokemonDetails.sprites.front_default" />
-                <p class="name">{{pokemonDetails.id}}. {{pokemonDetails.name}}</p>
-                <p>{{genera.genus}}</p>
-                <p>{{type}}</p>
-                <p>{{flavourText.flavor_text}}</p>
-                <p>Abilities: {{abilities}}</p>
-                <p>Height: {{pokemonDetails.height}}</p>
-                <p>Weight: {{pokemonDetails.weight}}</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Base Stat</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="stat in pokemonDetails.stats" :key="stat.stat.name">
-                            <td>{{stat.stat.name}}</td>
-                            <td>{{stat.base_stat}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="container" >
+                    <div class="row">
+                        <div class="col col-lg-6 offset-lg-2">
+                            <img :alt="pokemonDetails.name" :src="pokemonDetails.sprites.front_default" />
+                            <h2 class="name">{{pokemonDetails.id}}. {{pokemonDetails.name}}</h2>
+                            <h3>{{genera.genus}}</h3>
+                            <p>{{type}}</p>
+                            <p>{{flavourText.flavor_text}}</p>
+                            <p>Abilities: {{abilities}}</p>
+                            <p>Height: {{pokemonDetails.height}}</p>
+                            <p>Weight: {{pokemonDetails.weight}}</p>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Base Stat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="stat in pokemonDetails.stats" :key="stat.stat.name">
+                                        <td>{{stat.stat.name}}</td>
+                                        <td>{{stat.base_stat}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -77,6 +84,9 @@ export default{
                 return type[0].type.name.toUpperCase();
             }
         }
+    },
+    mounted(){
+        document.body.style.backgroundColor = this.pokemonSpecies.color.name;
     }
 }
 </script>
@@ -85,8 +95,13 @@ export default{
 #pokemon{
     color: #FFF;
     text-align: left;
+    padding-top: 18px;
+    padding-bottom: 18px;
     &.white{
         color: #000;
+    }
+    &.yellow{
+        color: green;
     }
     table{
         width: 100%;

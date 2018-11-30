@@ -1,9 +1,10 @@
 import Dexie from 'dexie';
 
 const db = new Dexie('pokemonDB');
-db.version(1).stores({
+db.version(2).stores({
     pokedex: `url, data`,
-    pokemon: `id, data`
+    pokemon: `id, data`,
+    type: `url, data`
 });
 
 export default db;

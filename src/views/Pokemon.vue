@@ -40,6 +40,7 @@
 import Chart from '../components/Chart';
 import TypeBadge from '../components/TypeBadge';
 import axios from 'axios';
+import db from '../database';
 export default{
     name: 'Pokemon',
     props: ['id'],
@@ -106,7 +107,12 @@ export default{
             if(url !== this.activeTypeUrl){
                 this.activeTypeUrl = url;
                 (async()=>{
-                    const data = await axios.get(url);
+                    const savedData = await db.type.get({url: `${url}`});
+                    let data = savedData;
+                    if(savedData === undefined){
+                        data = await axios.get(url);
+                        db.type.put({url: `${url}`, data: data.data})
+                    }
                     const name = data.data.name;
                     const damageRelations = data.data.damage_relations;
                     const doubleDamageFrom = damageRelations.double_damage_from.map(x=>x.name);
@@ -115,13 +121,7 @@ export default{
                     const halfDamageTo = damageRelations.half_damage_to.map(x=>x.name);
                     const imuneTo = damageRelations.no_damage_from.map(x=>x.name);
                     let text = `${name.toUpperCase()}. `;
-                    // this.type= `
-                    // Weak against ${doubleDamageFrom}. 
-                    // Strong against ${doubleDamageTo}.
-                    // Takes half damage from ${halfDamageFrom}.
-                    // Does half damage to ${halfDamageTo}.
-                    // Immune to ${imuneTo}.
-                    // `
+          
                     if(doubleDamageFrom.length > 0){
                         text += `Weak against ${doubleDamageFrom.join(', ')}. `
                     }

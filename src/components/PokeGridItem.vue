@@ -1,27 +1,33 @@
 <template>
   <div class="container-fluid pokemonGridItem" v-if="pokemon && pokemonSpecies" :class="[pokemonSpecies.color.name]" :style="{'background-color': pokemonSpecies.color.name}" @click="pokemonDetails">
-    <div class="row">
+    <div class="row" v-if="!showSpinner">
       <div class="col">
         <img :src="pokemon.sprites.front_default" :alt="pokeData.pokemon_species.name">
         <p class="name">{{pokeData.pokemon_species.name}}</p>
       </div>
     </div>
+    <circle8 v-if="showSpinner" />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { POKEMON } from "../const/pokeapi.js";
+import {Circle8} from 'vue-loading-spinner'
 import db from '../database.js';
 export default {
     name: 'PokeItem',
     props: {
         pokeData: Object
     },
+    components:{
+        Circle8
+    },
     data(){
         return{
             pokemon: '',
-            pokemonSpecies: ''
+            pokemonSpecies: '',
+            showSpinner: false
         }
     },
     methods:{
@@ -52,10 +58,12 @@ export default {
 
     mounted(){
         (async()=>{
+            this.showSpinner = true;
             const savedData = await db.pokemon.get({id: `${this.pokeData.entry_number}`});
             if(savedData === undefined){
                 await this.getPokemon()
                 await this.getPokemonSpecies()
+                this.showSpinner = false
                 const pokemonSavedData = {
                     pokemonDetails: this.pokemon,
                     pokemonSpecies: this.pokemonSpecies
@@ -66,6 +74,7 @@ export default {
                 this.pokemon = pokemonSavedData.pokemonDetails;
                 this.pokemonSpecies = pokemonSavedData.pokemonSpecies;
             }
+            this.showSpinner = false
         })();
         
        
@@ -76,6 +85,7 @@ export default {
 
 <style lang="scss" scoped>
 .pokemonGridItem{
+    position: relative;
     border: solid 1px gray;
     border-radius: 15px;
     margin-bottom: 8px;
@@ -94,5 +104,10 @@ export default {
             color: #000;
         }
     }
+}
+.spinner{
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto;
 }
 </style>

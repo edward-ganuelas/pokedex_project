@@ -10,21 +10,20 @@
                             <h3>The {{genera.genus}}</h3>
                             <type-badge v-for="type in pokemonDetails.types" :key="type.type.name" :type="type.type.name" @click="getType(type.type.url)" />
                             <transition name="slideDown" leave-active-class="dissapear">
-                                <p class="typeText" v-if="type">{{type}}</p>
+                                <div class="typeText" v-if="type" v-html="type"></div>
                             </transition>
                             <h4>Abilities</h4>
                             <abilities-badge v-for="ability in pokemonDetails.abilities" :key="ability.ability.name" :ability="ability.ability.name" @click="getAbility(ability.ability.url)" />
                             <transition name="slideDown" leave-active-class="dissapear">
                                 <p class="typeText" v-if="ability">{{ability}}</p>
                             </transition>
-                            <p>{{flavourText.flavor_text}}</p>  
-                            <p>Height: {{pokemonDetails.height}}</p>
-                            <p>Weight: {{pokemonDetails.weight}}</p>
+                            <h4>Flavour Text</h4>
+                            <p class="flavourText">{{flavourText.flavor_text}}</p>  
+                            <p class="typeText">Height: {{pokemonDetails.height}}. Weight: {{pokemonDetails.weight}}</p>
                             <chart :stats="pokemonStats" :labels="pokemonStatsLabel" />
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
         <div class="row">
@@ -120,22 +119,22 @@ export default{
                     const halfDamageFrom = damageRelations.half_damage_from.map(x=>x.name);
                     const halfDamageTo = damageRelations.half_damage_to.map(x=>x.name);
                     const imuneTo = damageRelations.no_damage_from.map(x=>x.name);
-                    let text = `${name.toUpperCase()}. `;
+                    let text = `<p>${name.toUpperCase()}.</p>`;
           
                     if(doubleDamageFrom.length > 0){
-                        text += `Weak against ${doubleDamageFrom.join(', ')}. `
+                        text += `<p>Weak against ${doubleDamageFrom.join(', ')}.</p>`;
                     }
                     if(doubleDamageTo.length > 0){
-                        text += `Strong against ${doubleDamageTo.join(', ')}. `
+                        text += `<p>Strong against ${doubleDamageTo.join(', ')}.</p>`;
                     }
                     if(halfDamageFrom.length > 0){
-                        text += `Takes half damage from ${halfDamageFrom.join(', ')}. `
+                        text += `<p>Takes half damage from ${halfDamageFrom.join(', ')}.</p>`;
                     }
                     if(halfDamageTo.length > 0){
-                        text += `Does half damage to ${halfDamageTo.join(', ')}. `
+                        text += `<p>Does half damage to ${halfDamageTo.join(', ')}.</p>`;
                     }
                     if(imuneTo.length > 0){
-                        text += `Is immune to ${imuneTo.join(', ')}. `
+                        text += `<p>Is immune to ${imuneTo.join(', ')}.</p>`;
                     }
                     
                     this.type = text;
@@ -198,10 +197,11 @@ export default{
     display: block;
     text-align: center;
 }
-.typeText{
+.typeText, .flavourText{
     background-color: #FFF;
     color: #000;
     padding: 1rem;
     border-radius: 15px;
+    margin-bottom: 18px;
 }
 </style>

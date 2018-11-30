@@ -8,13 +8,17 @@
                             <img :alt="pokemonDetails.name" :src="pokemonDetails.sprites.front_default" />
                             <h2 class="name">{{pokemonDetails.id}}. {{pokemonDetails.name}}</h2>
                             <h3>The {{genera.genus}}</h3>
-                            <!-- <p>{{type}}</p> -->
                             <type-badge v-for="type in pokemonDetails.types" :key="type.type.name" :type="type.type.name" @click="getType(type.type.url)" />
                             <transition name="slideDown" leave-active-class="dissapear">
-                            <p class="typeText" v-if="type">{{type}}</p>
+                                <p class="typeText" v-if="type">{{type}}</p>
                             </transition>
-                            <p>{{flavourText.flavor_text}}</p>
-                            <p>Abilities: {{abilities}}</p>
+                            <!-- <p>Abilities: {{abilities}}</p> -->
+                            <h4>Abilities</h4>
+                            <abilities-badge v-for="ability in pokemonDetails.abilities" :key="ability.ability.name" :ability="ability.ability.name" @click="getAbility(ability.ability.url)" />
+                            <transition name="slideDown" leave-active-class="dissapear">
+                                <p class="typeText" v-if="ability">{{ability}}</p>
+                            </transition>
+                            <p>{{flavourText.flavor_text}}</p>  
                             <p>Height: {{pokemonDetails.height}}</p>
                             <p>Weight: {{pokemonDetails.weight}}</p>
                             <chart :stats="pokemonStats" :labels="pokemonStatsLabel" />
@@ -39,6 +43,7 @@
 <script>
 import Chart from '../components/Chart';
 import TypeBadge from '../components/TypeBadge';
+import AbilitiesBadge from '../components/AbilitiesBadge';
 import axios from 'axios';
 import db from '../database';
 export default{
@@ -46,12 +51,15 @@ export default{
     props: ['id'],
     components:{
         Chart,
-        TypeBadge
+        TypeBadge,
+        AbilitiesBadge
     },
     data(){
         return{
             type: '',
-            activeTypeUrl: ''
+            activeTypeUrl: '',
+            activeAbilityUrl: '',
+            ability: ''
         }
     },
     computed: {
@@ -81,13 +89,13 @@ export default{
             return englishFlavorText[rand];
 
         },
-        abilities(){
-            const abilities = this.pokemonDetails.abilities;
-            const filteredAbilities = abilities.map(x=>{
-                return x.ability.name.toUpperCase();
-            });
-            return filteredAbilities.join(', ');
-        },
+        // abilities(){
+        //     const abilities = this.pokemonDetails.abilities;
+        //     const filteredAbilities = abilities.map(x=>{
+        //         return x.ability.name.toUpperCase();
+        //     });
+        //     return filteredAbilities.join(', ');
+        // },
         pokemonStats(){
             const stats = this.pokemonDetails.stats.slice();
             return stats.map(x=>{
@@ -143,6 +151,30 @@ export default{
             }else{
                 this.activeTypeUrl = '';
                 this.type = '';
+            }
+        },
+        getAbility(url){
+            if(url !== this.activeAbilityUrl){
+                this.activeAbilityUrl = url;
+                (async()=>{
+                    const savedData = await db.ability.get({url: `${url}`});
+                    let data = savedData;
+                    if(savedData === undefined){
+                        data = await axios.get(url);
+                        db.ability.put({url: `${url}`, data: data.data})
+                    }
+                    const name = data.data.name;
+                    const effect = data.data.effect_entries[0].effect
+                   
+                    let text = `${name.toUpperCase()}. ${effect}`;
+          
+                   
+                    
+                    this.ability = text;
+                })();
+            }else{
+                this.activeAbilityUrl = '';
+                this.ability = '';
             }
         }
     },

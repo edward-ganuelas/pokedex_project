@@ -6,5 +6,11 @@ db.version(2).stores({
     pokemon: `id, data`,
     type: `url, data`
 });
+db.version(3).stores({
+    pokedex: `url, data`,
+    pokemon: `id, data`,
+    type: `url, data`,
+    ability: `url, data`
+});
 
 export default db;

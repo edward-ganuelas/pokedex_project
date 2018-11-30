@@ -12,7 +12,6 @@
                             <transition name="slideDown" leave-active-class="dissapear">
                                 <p class="typeText" v-if="type">{{type}}</p>
                             </transition>
-                            <!-- <p>Abilities: {{abilities}}</p> -->
                             <h4>Abilities</h4>
                             <abilities-badge v-for="ability in pokemonDetails.abilities" :key="ability.ability.name" :ability="ability.ability.name" @click="getAbility(ability.ability.url)" />
                             <transition name="slideDown" leave-active-class="dissapear">
@@ -89,13 +88,6 @@ export default{
             return englishFlavorText[rand];
 
         },
-        // abilities(){
-        //     const abilities = this.pokemonDetails.abilities;
-        //     const filteredAbilities = abilities.map(x=>{
-        //         return x.ability.name.toUpperCase();
-        //     });
-        //     return filteredAbilities.join(', ');
-        // },
         pokemonStats(){
             const stats = this.pokemonDetails.stats.slice();
             return stats.map(x=>{
@@ -165,11 +157,7 @@ export default{
                     }
                     const name = data.data.name;
                     const effect = data.data.effect_entries[0].effect
-                   
                     let text = `${name.toUpperCase()}. ${effect}`;
-          
-                   
-                    
                     this.ability = text;
                 })();
             }else{

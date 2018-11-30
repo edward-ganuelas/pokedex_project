@@ -1,30 +1,16 @@
 <template>
   <div id="pokedex">
     <pokemon-grid />
-    <!-- <v-app>
-      <v-content v-bind:class="{'loading': pokemonHide | ajax_call}">
-        <region-select v-bind:region-result="pokedexRegions" v-on:select-region="getPokedex" v-if="pokedexRegions" />
-        <pokemon-select v-bind:pokedex-result="pokemon_entries" v-if="pokemon_entries" v-on:select-pokemon="getPokemon" />
-        <pokemon v-bind:pokemon-data="pokemon" v-bind:pokemon-details="pokemonDetails" v-bind:pokemon-hide="pokemonHide" v-if="pokemon && pokemonDetails" />
-      </v-content>
-      <v-progress-circular indeterminate v-bind:size="70" v-bind:width="7" color="red" v-if="pokemonHide == true | ajax_call == true" id="loading-indicator"></v-progress-circular>
-    </v-app> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import { POKEDEX, POKEMON } from "../const/pokeapi.js";
-import RegionSelect from "../components/RegionSelect.vue";
-import PokemonSelect from "../components/PokemonSelect.vue";
-import Pokemon from "../components/Pokemon.vue";
 import PokemonGrid from '../components/PokeGrid';
 export default {
   name: "app",
   components: {
-    RegionSelect,
-    PokemonSelect,
-    Pokemon,
     PokemonGrid
   },
   data: function() {

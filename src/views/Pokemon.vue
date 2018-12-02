@@ -1,5 +1,5 @@
 <template>
-    <div class="container" id="pokemon" :class="[pokemonSpecies.color.name]">
+    <div class="container" id="pokemon" :class="[pokemonSpecies.color.name]" :style="{'background-color': pokemonSpecies.color.name}">
         <div class="row">
             <div class="col">
                 <div class="container" >
@@ -166,7 +166,7 @@ export default{
         }
     },
     mounted(){
-        document.body.style.backgroundColor = this.pokemonSpecies.color.name;
+        // document.body.style.backgroundColor = this.pokemonSpecies.color.name;
     }
 }
 </script>
@@ -177,6 +177,13 @@ export default{
     text-align: left;
     padding-top: 18px;
     padding-bottom: 18px;
+    border-radius: 15px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    -webkit-box-shadow: 8px 10px 2px -6px rgba(0,0,0,0.5);
+    -moz-box-shadow: 8px 10px 2px -6px rgba(0,0,0,0.5);
+    box-shadow: 8px 10px 2px -6px rgba(0,0,0,0.5);
+
     &.white{
         color: #000;
     }
@@ -196,6 +203,7 @@ export default{
     margin: 18px auto;
     display: block;
     text-align: center;
+    z-index: 9;
 }
 .typeText, .flavourText{
     background-color: #FFF;

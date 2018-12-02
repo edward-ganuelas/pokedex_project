@@ -1,17 +1,28 @@
 <template>
   <div id="app">
     <div class="container">
+      <div class="row header">
+        <div class="col">
+          <h1>PokeDex in Vue</h1>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
       <div class="row">
         <transition name="fadeLeft" leave-active-class="dissapear">
           <router-view/>
         </transition>
       </div>
+    </div>
+      <div class="container">
       <div class="row footer">
         <div class="col">
           <p><a href="http://eightrayedsun.com">eightrayedsun</a></p>
           <p><a href="https://github.com/edward-ganuelas/pokedex_project">Github Repo</a></p>
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -27,6 +38,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  position: relative;
 }
 #nav {
   padding: 30px;
@@ -41,9 +53,21 @@
 .dissapear{
   display: none;
 }
+.header{
+  padding: 15px;
+  border-radius: 0 0 15px 15px;
+  background-color: white;
+  border: solid thin #000;
+  border-top-color: transparent;
+  -webkit-box-shadow: 5px 10px 2px -6px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 10px 2px -6px rgba(0,0,0,0.5);
+    box-shadow: 5px 10px 2px -6px rgba(0,0,0,0.5);
+}
 .footer{
-  background-color: grey;
-  margin-top: 18px;
+  background-color: white;
+  border: solid thin #000;
+  border-bottom-color: transparent;
+  border-radius: 15px 15px 0 0;
   p{
     margin-top: 18px;
   }

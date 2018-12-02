@@ -89,9 +89,11 @@ export default {
     border: solid 1px gray;
     border-radius: 15px;
     margin-bottom: 8px;
-    -webkit-box-shadow: 8px 10px 2px -6px rgba(0,0,0,0.5);
-    -moz-box-shadow: 8px 10px 2px -6px rgba(0,0,0,0.5);
-    box-shadow: 8px 10px 2px -6px rgba(0,0,0,0.5);
+    &:hover{
+    -webkit-box-shadow: 5px 10px 2px -6px rgba(0,0,0,0.5);
+    -moz-box-shadow: 5px 10px 2px -6px rgba(0,0,0,0.5);
+    box-shadow: 5px 10px 2px -6px rgba(0,0,0,0.5);
+    }
     cursor: pointer;
     .name{
         color: #fff;

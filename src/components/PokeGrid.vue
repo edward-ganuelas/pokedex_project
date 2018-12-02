@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<div class="container pokemonGrid">
     <div class="row">
         <div class="col-12 search">
             <label for="search" class="sr-only">Search</label>
@@ -34,7 +34,7 @@ export default {
         return{
             url : NATIONALDEX,
             pokemonEntries: [],
-            entries: 6,
+            entries: 12,
             search: ''
         }
     },
@@ -85,6 +85,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.pokemonGrid{
+    margin-top: 26px;
+    margin-bottom: 26px;
+}
 label{
     margin-right: 18px;
     display: inline-block
@@ -95,10 +99,16 @@ input[type="search"]{
     padding-left: 10px;
 }
 .search{
-    margin: 18px auto 18px auto;
+    margin: 18px auto 32px auto;
 }
 .loadMore{
     margin-top: 18px;
+    margin-bottom: 18px;
+    &:hover{
+        -webkit-box-shadow: 8px 10px 2px -6px rgba(0,0,0,0.5);
+    -moz-box-shadow: 8px 10px 2px -6px rgba(0,0,0,0.5);
+    box-shadow: 8px 10px 2px -6px rgba(0,0,0,0.5);
+    }
 }
 
 </style>

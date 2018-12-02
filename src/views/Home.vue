@@ -97,7 +97,7 @@ export default {
   },
   beforeMount: function() {
     // this.getRegions();
-    document.body.style = null;
+    // document.body.style = null;
   }
 };
 </script>
@@ -130,6 +130,9 @@ nav{
   p{
     text-align: center;
   }
+}
+#pokedex{
+  width: 100%;
 }
 #pokedex .loading{
   opacity: 0.3;

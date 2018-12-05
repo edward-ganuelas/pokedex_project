@@ -5,7 +5,18 @@
         <div class="col">
           <h1>PokeDex in Vue</h1>
         </div>
+        <div class="col-12">
+          <nav class="container">
+          <ul class="row">
+            <li><router-link to="/">Home</router-link></li>
+            <li>About</li>
+            <li><a href="https://github.com/edward-ganuelas/pokedex_project" target="_blank" rel="noopener noreferrer">Github Repository</a></li>
+            <li><a href="http://eightrayedsun.com">eightrayedsun</a></li>
+          </ul>
+        </nav>
+        </div>
       </div>
+    
     </div>
     <div class="container">
       
@@ -15,16 +26,7 @@
         </transition>
       </div>
     </div>
-      <div class="container">
-      <div class="row footer">
-        <div class="col">
-          <p><a href="http://eightrayedsun.com">eightrayedsun</a></p>
-          <p><a href="https://github.com/edward-ganuelas/pokedex_project">Github Repo</a></p>
-        </div>
-      </div>
     </div>
-    </div>
-  </div>
 </template>
 
 <style lang="scss">
@@ -63,17 +65,14 @@
     -moz-box-shadow: 5px 10px 2px -6px rgba(0,0,0,0.5);
     box-shadow: 5px 10px 2px -6px rgba(0,0,0,0.5);
 }
-.footer{
-  background-color: white;
-  border: solid thin #000;
-  border-bottom-color: transparent;
-  border-radius: 15px 15px 0 0;
-  p{
-    margin-top: 18px;
-  }
-  a{
-    color: #000;
-    text-decoration: underline;
+nav{
+  ul{
+    list-style-type: none;
+    display: flex;
+    li{
+      flex: 0 1 auto;
+      margin-right: 1rem;
+    }
   }
 }
 </style>

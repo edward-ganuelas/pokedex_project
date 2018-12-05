@@ -186,6 +186,7 @@ export default{
 
     &.white{
         color: #000;
+        border: 1px solid #000;
     }
     &.yellow{
         color: #000;

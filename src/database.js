@@ -12,5 +12,10 @@ db.version(3).stores({
     type: `url, data`,
     ability: `url, data`
 });
-
+db.version(3).stores({
+    pokedex: `url, data`,
+    pokemon: `id, data`,
+    type: `url, data`,
+    ability: `url, data`
+}).upgrade(x=>x);
 export default db;

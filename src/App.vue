@@ -9,7 +9,6 @@
           <nav class="container">
           <ul class="row">
             <li><router-link to="/">Home</router-link></li>
-            <li>About</li>
             <li><a href="https://github.com/edward-ganuelas/pokedex_project" target="_blank" rel="noopener noreferrer">Github Repository</a></li>
             <li><a href="http://eightrayedsun.com">eightrayedsun</a></li>
           </ul>

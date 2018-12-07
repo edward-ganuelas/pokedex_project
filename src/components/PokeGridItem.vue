@@ -33,7 +33,7 @@ export default {
     methods:{
         async getPokemonSpecies(){           
                 try{
-                    let data = await axios.get(`${this.pokeData.pokemon_species.url}`);
+                    let data = await axios.get(`${this.convertToHttps(this.pokeData.pokemon_species.url)}`);
                     this.pokemonSpecies = data.data;
                     
                 }catch(e){
@@ -42,7 +42,10 @@ export default {
         },
         async getPokemon(){
                 try{
-                let data = await axios.get(`${POKEMON}${this.pokeData.entry_number}`);
+                let url = `${POKEMON}${this.pokeData.entry_number}`;
+                url = `${this.convertToHttps(url)}/`;
+                console.log(url);
+                let data = await axios.get(url);
                 this.pokemon = data.data;
              
                 }catch(e){
@@ -53,6 +56,12 @@ export default {
             this.$store.commit('setPokemonSpecies', JSON.stringify(this.pokemonSpecies));
             this.$store.commit('setPokemonDetails', JSON.stringify(this.pokemon));
             this.$router.push({name: 'pokemon', query: {id: this.pokeData.entry_number}});
+        },
+        convertToHttps(url){
+            if(url.indexOf('https://') === -1){
+                return url.replace('http://','https://');
+            }
+            return url;
         }
     },
 

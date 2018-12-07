@@ -103,7 +103,6 @@ export default{
     },
     methods:{
         getType(url){
-            console.log(url)
             if(url !== this.activeTypeUrl){
                 this.activeTypeUrl = url;
                 (async()=>{

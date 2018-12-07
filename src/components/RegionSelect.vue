@@ -38,7 +38,7 @@ export default {
     }
   },
   watch: {
-    url: function(val) {
+    url: function() {
         this.$emit("select-region", this.url.value);
     }
   },

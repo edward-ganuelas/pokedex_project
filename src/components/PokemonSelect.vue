@@ -39,10 +39,10 @@ export default {
     }
   },
   watch: {
-    url: function(val) {
+    url: function() {
       this.$emit("select-pokemon", this.url.value);
     },
-    pokedexResult: function(val){
+    pokedexResult: function(){
         this.pokemon = [];
         this.getPokemon();
     }

@@ -44,7 +44,7 @@ export default {
                 try{
                 let url = `${POKEMON}${this.pokeData.entry_number}`;
                 url = `${this.convertToHttps(url)}/`;
-                console.log(url);
+                // console.log(url);
                 let data = await axios.get(url);
                 this.pokemon = data.data;
              

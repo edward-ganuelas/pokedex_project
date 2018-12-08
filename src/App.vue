@@ -91,7 +91,7 @@ body {
   -moz-box-shadow: 5px 10px 2px -6px rgba(0, 0, 0, 0.5);
   box-shadow: 5px 10px 2px -6px rgba(0, 0, 0, 0.5);
   h1 {
-    color: #fff;
+    color: #000;
   }
 }
 nav {

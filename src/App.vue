@@ -41,7 +41,7 @@
     </div>
     <div class="container">
       <div class="row">
-        <transition name="fadeLeft" leave-active-class="dissapear">
+        <transition name="fadeDown" leave-active-class="dissapear">
           <router-view/>
         </transition>
       </div>
@@ -81,8 +81,9 @@ body {
   display: none;
 }
 .header {
+  margin-top: 18px;
   padding: 15px;
-  border-radius: 0 0 15px 15px;
+  border-radius: 15px;
   background-color: red;
   border: solid thin #000;
   border-top-color: transparent;

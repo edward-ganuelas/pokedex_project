@@ -3,12 +3,14 @@
     <div class="row">
         <div class="col-12 search">
             <label for="search" class="sr-only">Search</label>
-            <input id="search" name="search" type="search" v-model="search" placeholder="Search"/>
+            <input id="search" name="search" type="text" v-model="search" placeholder="Search"/>
         </div>
     </div>
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4" v-for="pokemon in slicedPokemonEntries" :key="pokemon.entry_number">
+            <transition name="fadeLeftBig">
             <poke-grid-item :pokeData="pokemon" />
+            </transition>
         </div>
     </div>
     <div class="row">
@@ -93,7 +95,7 @@ label{
     margin-right: 18px;
     display: inline-block
 }
-input[type="search"]{
+input[type="text"]{
     width: 100%;
     border-radius: 15px;
     padding-left: 10px;

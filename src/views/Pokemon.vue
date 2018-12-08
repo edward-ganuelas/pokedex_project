@@ -15,7 +15,7 @@
                             <h4>Abilities</h4>
                             <abilities-badge v-for="ability in pokemonDetails.abilities" :key="ability.ability.name" :ability="ability.ability.name" @click="getAbility(ability.ability.url)" />
                             <transition name="slideDown" leave-active-class="dissapear">
-                                <p class="typeText" v-if="ability">{{ability}}</p>
+                                <div class="typeText" v-if="ability" v-html="ability"></div>
                             </transition>
                             <h4>Flavour Text</h4>
                             <p class="flavourText">{{flavourText.flavor_text}}</p>  
@@ -156,7 +156,7 @@ export default{
                     }
                     const name = data.data.name;
                     const effect = data.data.effect_entries[0].effect
-                    let text = `${name.toUpperCase()}. ${effect}`;
+                    let text = `<p>${name.toUpperCase()}.</p> <p>${effect}</p>`;
                     this.ability = text;
                 })();
             }else{
@@ -187,6 +187,9 @@ export default{
     &.white{
         color: #000;
         border: 1px solid #000;
+        .typeText, .flavourText{
+            border: 1px solid black;
+        }
     }
     &.yellow{
         color: #000;

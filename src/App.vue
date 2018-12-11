@@ -81,9 +81,8 @@ body {
   display: none;
 }
 .header {
-  margin-top: 18px;
   padding: 15px;
-  border-radius: 15px;
+  border-radius: 0 0 15px 15px;
   background-color: red;
   border: solid thin #000;
   border-top-color: transparent;
@@ -92,6 +91,11 @@ body {
   box-shadow: 5px 10px 2px -6px rgba(0, 0, 0, 0.5);
   h1 {
     color: #000;
+  }
+
+  @media (min-width: 768px){
+    margin-top: 18px;
+    border-radius: 15px;
   }
 }
 nav {

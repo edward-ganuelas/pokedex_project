@@ -18,37 +18,37 @@ export default {
   components: {
     vSelect
   },
-  data: function() {
+  data() {
     return {
       url: '',
       pokemon: []
     };
   },
   methods: {
-    getPokemon: function() {
+    getPokemon() {
       let results = this.pokedexResult;   
       results.map(x => {
         let poke = { value: x.pokemon_species.url, label: this.capitalize(x.pokemon_species.name) };
         this.pokemon.push(poke);
       });
     },
-    capitalize: function(value) {
+    capitalize(value) {
       if (!value) return '';
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
     }
   },
   watch: {
-    url: function() {
+    url() {
       this.$emit('select-pokemon', this.url.value);
     },
-    pokedexResult: function(){
+    pokedexResult(){
         this.pokemon = [];
         this.getPokemon();
     }
   },
-  beforeMount: function() {
+  beforeMount() {
       this.getPokemon();
-  }
+}
 };
 </script>

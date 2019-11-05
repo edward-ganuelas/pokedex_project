@@ -164,9 +164,6 @@ export default{
                 this.ability = '';
             }
         }
-    },
-    mounted(){
-        // document.body.style.backgroundColor = this.pokemonSpecies.color.name;
     }
 }
 </script>

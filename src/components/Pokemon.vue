@@ -50,50 +50,44 @@ export default {
         }
     },
     methods: {
-        getFlavourText: function(version) {
-
+        getFlavourText(version) {
             let flvText = '';
-
             for (let obj in this.flavorText) {
-                //    console.log(this.flavorText[obj].language.name);
                 if (this.flavorText[obj].language.name === 'en' && this.flavorText[obj].version.name === version) {
                     flvText = this.flavorText[obj].flavor_text;
                     break;
                 }
             }
             return flvText;
-
         },
-        getGenera: function() {
+        getGenera() {
             for (let obj in this.pokemonData.genera) {
                 if (this.pokemonData.genera[obj].language.name == 'en') {
                     return this.pokemonData.genera[obj].genus;
                 }
             }
         },
-        getVersions: function() {
-            console.log(POKEMONVERSION);
+        getVersions() {
             if (sessionStorage.getItem(POKEMONVERSION) === null) {
                 let pokemonPromise = axios.get(POKEMONVERSION);
                 pokemonPromise.then((message) => {
                     this.versions = message.data;
                     sessionStorage.setItem(POKEMONVERSION, JSON.stringify(message.data));
-
                 });
             } else {
                 this.versions = JSON.parse(sessionStorage.getItem(POKEMONVERSION));
             }
         },
-        changeVersion: function(text) {
+        changeVersion(text) {
             this.version = text;
         }
     },
     watch: {
-        pokemonData: function(data) {
+        pokemonData(data) {
             this.flavorText = data.flavor_text_entries
         }
     },
-    beforeMount: function() {
+    beforeMount() {
         this.getVersions();
     }
 }

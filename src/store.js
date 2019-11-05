@@ -10,8 +10,8 @@ export default new Vuex.Store({
     PokemonDetails: '',
   },
   getters:{
-    getPokemonSpecies: state=>state.PokemonSpecies,
-    getPokemonDetails: state=>state.PokemonDetails
+    getPokemonSpecies: state => state.PokemonSpecies,
+    getPokemonDetails: state => state.PokemonDetails
   },
   mutations: {
     setPokemonSpecies(state, data){

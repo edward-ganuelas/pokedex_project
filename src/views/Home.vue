@@ -13,7 +13,7 @@ export default {
   components: {
     PokemonGrid
   },
-  data: function() {
+  data() {
     return {
       pokedexRegions: '',
       pokemon_entries: '',
@@ -24,10 +24,10 @@ export default {
     };
   },
   methods: {
-    getPromises: function(URI) {
+    getPromises(URI) {
       return axios.get(URI);
     },
-    getRegions: function() {
+    getRegions() {
       this.ajax_call = true;
       if (sessionStorage.getItem('pokedexRegions') === null) {
         let pokeDexPromise = this.getPromises(POKEDEX);
@@ -46,7 +46,7 @@ export default {
         this.ajax_call = false;
       }
     },
-    getPokedex: function(url) {
+    getPokedex(url) {
       this.ajax_call = true;
       if (sessionStorage.getItem(url) === null) {
         let pokeDexPromise = this.getPromises(url);
@@ -62,7 +62,7 @@ export default {
         this.ajax_call = false;
       }
     },
-    getPokemon: function(url) {
+    getPokemon(url) {
       //This method is called on #pokedexEntries onChange
       this.ajax_call = true;
       if (sessionStorage.getItem(url) === null) {
@@ -80,7 +80,7 @@ export default {
         this.ajax_call = false;
       }
     },
-    getPokemonDetail: function() {
+    getPokemonDetail() {
       let url = POKEMON + this.pokemon.id;
       if (sessionStorage.getItem(url) === null) {
         let pokemonPromise = this.getPromises(url);
@@ -94,10 +94,6 @@ export default {
         this.pokemonHide = false;
       }
     }
-  },
-  beforeMount: function() {
-    // this.getRegions();
-    // document.body.style = null;
   }
 };
 </script>

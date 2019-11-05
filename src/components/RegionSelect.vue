@@ -17,32 +17,32 @@ export default {
     vSelect
   },
   props: ['regionResult'],
-  data: function() {
+  data() {
     return {
       url: '',
       region: []
     };
   },
   methods: {
-    getRegions: function() {
+    getRegions() {
       let results = this.regionResult.results;
       results.map(x => {
         let region = {value : x.url, label: this.capitalize(x.name)}
         this.region.push(region);
       });
     },
-    capitalize: function(value) {
+    capitalize(value) {
       if (!value) return '';
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
     }
   },
   watch: {
-    url: function() {
+    url() {
         this.$emit('select-region', this.url.value);
     }
   },
-  beforeMount: function() {
+  beforeMount() {
     this.getRegions();
   }
 };

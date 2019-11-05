@@ -5,20 +5,20 @@
 </template>
 
 <script>
-import axios from "axios";
-import { POKEDEX, POKEMON } from "../const/pokeapi.js";
-import PokemonGrid from '../components/PokeGrid';
+import axios from 'axios';
+import { POKEDEX, POKEMON } from '@/const/pokeapi.js';
+import PokemonGrid from '@/components/PokeGrid';
 export default {
-  name: "app",
+  name: 'app',
   components: {
     PokemonGrid
   },
   data: function() {
     return {
-      pokedexRegions: "",
-      pokemon_entries: "",
-      pokemon: "",
-      pokemonDetails: "",
+      pokedexRegions: '',
+      pokemon_entries: '',
+      pokemon: '',
+      pokemonDetails: '',
       pokemonHide: false,
       ajax_call: false
     };
@@ -29,19 +29,19 @@ export default {
     },
     getRegions: function() {
       this.ajax_call = true;
-      if (sessionStorage.getItem("pokedexRegions") === null) {
+      if (sessionStorage.getItem('pokedexRegions') === null) {
         let pokeDexPromise = this.getPromises(POKEDEX);
         pokeDexPromise.then(message => {
           this.pokedexRegions = message.data;
           sessionStorage.setItem(
-            "pokedexRegions",
+            'pokedexRegions',
             JSON.stringify(message.data)
           );
           this.ajax_call = false;
         });
       } else {
         this.pokedexRegions = JSON.parse(
-          sessionStorage.getItem("pokedexRegions")
+          sessionStorage.getItem('pokedexRegions')
         );
         this.ajax_call = false;
       }

@@ -12,9 +12,9 @@
 
 <script>
 import axios from 'axios';
-import { POKEMON } from "../const/pokeapi.js";
-import {Circle8} from 'vue-loading-spinner'
-import db from '../database.js';
+import { POKEMON } from '@/const/pokeapi.js';
+import {Circle8} from 'vue-loading-spinner';
+import db from '@/database.js';
 export default {
     name: 'PokeItem',
     props: {

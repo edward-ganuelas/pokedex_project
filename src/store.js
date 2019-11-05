@@ -21,8 +21,5 @@ export default new Vuex.Store({
       state.PokemonDetails = data;
     }
   },
-  actions: {
-
-  },
   plugins: [createPersistedState()]
 })

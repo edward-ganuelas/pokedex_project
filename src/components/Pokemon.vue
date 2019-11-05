@@ -36,17 +36,17 @@
 </template>
 
 <script>
-import { POKEMONVERSION } from '../const/pokeapi.js';
-import axios from "axios";
+import { POKEMONVERSION } from '@/const/pokeapi.js';
+import axios from 'axios';
 export default {
     name: 'pokemon',
     props: ['pokemonData', 'pokemonDetails', 'pokemonHide'],
     data: function() {
         return {
-            "flavorText": this.pokemonData.flavor_text_entries,
-            "versions": '',
-            "version": 'red',
-            "btnClass": "btn",
+            'flavorText': this.pokemonData.flavor_text_entries,
+            'versions': '',
+            'version': 'red',
+            'btnClass': 'btn',
         }
     },
     methods: {

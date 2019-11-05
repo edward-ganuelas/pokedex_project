@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import { NATIONALDEX } from "../const/pokeapi.js";
+import { NATIONALDEX } from '@/const/pokeapi.js';
 import PokeGridItem from './PokeGridItem';
 import axios from 'axios';
-import db from '../database.js';
+import db from '@/database.js';
 
 export default {
     name: 'PokeGrid',

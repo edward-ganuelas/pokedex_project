@@ -11,16 +11,16 @@
 </template>
 
 <script>
-import vSelect from "vue-select";
+import vSelect from 'vue-select';
 export default {
-  name: "pokemon-select",
-  props: ["pokedexResult"],
+  name: 'pokemon-select',
+  props: ['pokedexResult'],
   components: {
     vSelect
   },
   data: function() {
     return {
-      url: "",
+      url: '',
       pokemon: []
     };
   },
@@ -33,14 +33,14 @@ export default {
       });
     },
     capitalize: function(value) {
-      if (!value) return "";
+      if (!value) return '';
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
     }
   },
   watch: {
     url: function() {
-      this.$emit("select-pokemon", this.url.value);
+      this.$emit('select-pokemon', this.url.value);
     },
     pokedexResult: function(){
         this.pokemon = [];

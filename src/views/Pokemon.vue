@@ -39,11 +39,11 @@
 </template>
 
 <script>
-import Chart from '../components/Chart';
-import TypeBadge from '../components/TypeBadge';
-import AbilitiesBadge from '../components/AbilitiesBadge';
+import Chart from '@/components/Chart';
+import TypeBadge from '@/components/TypeBadge';
+import AbilitiesBadge from '@/components/AbilitiesBadge';
 import axios from 'axios';
-import db from '../database';
+import db from '@/database';
 export default{
     name: 'Pokemon',
     props: ['id'],

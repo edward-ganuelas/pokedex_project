@@ -11,7 +11,9 @@
 </template>
 
 <script>
+@deprecate
 import vSelect from 'vue-select';
+import { deprecate } from 'util';
 export default {
     name: 'pokemon-select',
     props: ['pokedexResult'],

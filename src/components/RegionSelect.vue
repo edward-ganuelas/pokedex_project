@@ -11,6 +11,7 @@
 
 <script>
 import vSelect from 'vue-select';
+import { deprecate } from 'util';
 export default {
     name: 'region-select',
     components: {

@@ -34,7 +34,6 @@
 </template>
 
 <script>
-@deprecate
 import { POKEMONVERSION } from '@/const/pokeapi.js';
 import axios from 'axios';
 import { deprecate } from 'util';

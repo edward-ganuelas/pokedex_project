@@ -1,7 +1,6 @@
 <template>
     <v-container v-if="pokemonHide == false">
         <v-layout row wrap class="details">
-        
                 <v-flex xs12 md8>
                     <h2>{{pokemonData.id}} {{pokemonData.name | capitalize}}</h2>
                     <h3>The {{getGenera()}}</h3>
@@ -12,7 +11,6 @@
                 <v-flex xs12 md2>
                     <img v-bind:src="pokemonDetails.sprites.front_default" v-bind:alt="pokemonData.name | capitalize" />
                 </v-flex>
- 
         </v-layout>
         <v-layout row wrap>
                 <v-flex xs12>
@@ -36,12 +34,14 @@
 </template>
 
 <script>
+@deprecate
 import { POKEMONVERSION } from '@/const/pokeapi.js';
 import axios from 'axios';
+import { deprecate } from 'util';
 export default {
     name: 'pokemon',
     props: ['pokemonData', 'pokemonDetails', 'pokemonHide'],
-    data: function() {
+    data() {
         return {
             'flavorText': this.pokemonData.flavor_text_entries,
             'versions': '',
@@ -67,13 +67,11 @@ export default {
                 }
             }
         },
-        getVersions() {
+        async getVersions() {
             if (sessionStorage.getItem(POKEMONVERSION) === null) {
-                let pokemonPromise = axios.get(POKEMONVERSION);
-                pokemonPromise.then((message) => {
-                    this.versions = message.data;
-                    sessionStorage.setItem(POKEMONVERSION, JSON.stringify(message.data));
-                });
+                const message = await axios.get(POKEMONVERSION);
+                this.versions = message.data;
+                sessionStorage.setItem(POKEMONVERSION, JSON.stringify(message.data));
             } else {
                 this.versions = JSON.parse(sessionStorage.getItem(POKEMONVERSION));
             }
@@ -87,8 +85,8 @@ export default {
             this.flavorText = data.flavor_text_entries
         }
     },
-    beforeMount() {
-        this.getVersions();
+    async beforeMount() {
+        await this.getVersions();
     }
 }
 </script>

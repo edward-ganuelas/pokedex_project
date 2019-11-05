@@ -13,7 +13,7 @@
 <script>
 import axios from 'axios';
 import { POKEMON } from '@/const/pokeapi.js';
-import {Circle8} from 'vue-loading-spinner';
+import { Circle8 } from 'vue-loading-spinner';
 import db from '@/database.js';
 export default {
     name: 'PokeItem',
@@ -32,11 +32,10 @@ export default {
     },
     methods:{
         async getPokemonSpecies(){           
-            try{
+            try {
                 let data = await axios.get(`${this.convertToHttps(this.pokeData.pokemon_species.url)}`);
                 this.pokemonSpecies = data.data;
-                    
-            }catch(e){
+            } catch(e) {
                 console.log(e)
             }         
         },
@@ -44,15 +43,13 @@ export default {
             try{
                 let url = `${POKEMON}${this.pokeData.entry_number}`;
                 url = `${this.convertToHttps(url)}/`;
-                // console.log(url);
-                let data = await axios.get(url);
+                const data = await axios.get(url);
                 this.pokemon = data.data;
-             
-            }catch(e){
+            } catch(e) {
                 console.log(e)
             }
         },
-        pokemonDetails(){
+        pokemonDetails() {
             this.$store.commit('setPokemonSpecies', JSON.stringify(this.pokemonSpecies));
             this.$store.commit('setPokemonDetails', JSON.stringify(this.pokemon));
             this.$router.push({name: 'pokemon', query: {id: this.pokeData.entry_number}});

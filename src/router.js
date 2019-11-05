@@ -7,30 +7,30 @@ import store from '@/store.js'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },{
-      path: '/pokemon',
-      name: 'pokemon',
-      component: Pokemon,
-      props: (route) => ({
-        id: route.query.id
-      }),
-      beforeEnter(to, from, next){
-        const species = store.getters.getPokemonSpecies;
-        const details = store.getters.getPokemonDetails;
-        if(species !== '' || details !== ''){
-          next();
-        }else{
-          next('/')
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home
+        },{
+            path: '/pokemon',
+            name: 'pokemon',
+            component: Pokemon,
+            props: (route) => ({
+                id: route.query.id
+            }),
+            beforeEnter(to, from, next){
+                const species = store.getters.getPokemonSpecies;
+                const details = store.getters.getPokemonDetails;
+                if(species !== '' || details !== ''){
+                    next();
+                }else{
+                    next('/')
+                }
+            }
         }
-      }
+    ],
+    scrollBehavior(){
+        return{x:0, y:0}
     }
-  ],
-  scrollBehavior(){
-    return{x:0, y:0}
-  }
 })

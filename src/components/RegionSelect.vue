@@ -12,38 +12,38 @@
 <script>
 import vSelect from 'vue-select';
 export default {
-  name: 'region-select',
-  components: {
-    vSelect
-  },
-  props: ['regionResult'],
-  data() {
-    return {
-      url: '',
-      region: []
-    };
-  },
-  methods: {
-    getRegions() {
-      let results = this.regionResult.results;
-      results.map(x => {
-        let region = {value : x.url, label: this.capitalize(x.name)}
-        this.region.push(region);
-      });
+    name: 'region-select',
+    components: {
+        vSelect
     },
-    capitalize(value) {
-      if (!value) return '';
-      value = value.toString();
-      return value.charAt(0).toUpperCase() + value.slice(1);
+    props: ['regionResult'],
+    data() {
+        return {
+            url: '',
+            region: []
+        };
+    },
+    methods: {
+        getRegions() {
+            let results = this.regionResult.results;
+            results.map(x => {
+                let region = {value : x.url, label: this.capitalize(x.name)}
+                this.region.push(region);
+            });
+        },
+        capitalize(value) {
+            if (!value) return '';
+            value = value.toString();
+            return value.charAt(0).toUpperCase() + value.slice(1);
+        }
+    },
+    watch: {
+        url() {
+            this.$emit('select-region', this.url.value);
+        }
+    },
+    beforeMount() {
+        this.getRegions();
     }
-  },
-  watch: {
-    url() {
-        this.$emit('select-region', this.url.value);
-    }
-  },
-  beforeMount() {
-    this.getRegions();
-  }
 };
 </script>

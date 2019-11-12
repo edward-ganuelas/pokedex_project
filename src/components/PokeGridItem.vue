@@ -36,7 +36,7 @@ export default {
                 let data = await axios.get(`${this.convertToHttps(this.pokeData.pokemon_species.url)}`);
                 this.pokemonSpecies = data.data;
             } catch(e) {
-                console.log(e)
+                throw new Error(e.message);
             }         
         },
         async getPokemon(){

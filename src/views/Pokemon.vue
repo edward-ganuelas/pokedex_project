@@ -4,24 +4,17 @@
             <div class="col">
                 <div class="container" >
                     <div class="row">
-                        <div class="col col-lg-6 offset-lg-2">
-                            <img :alt="pokemonDetails.name" :src="pokemonDetails.sprites.front_default" />
-                            <h2 class="name">{{pokemonDetails.id}}. {{pokemonDetails.name}}</h2>
-                            <h3>The {{genera.genus}}</h3>
-                            <type-badge v-for="type in pokemonDetails.types" :key="type.type.name" :type="type.type.name" @click="getType(type.type.url)" />
-                            <transition name="slideDown" leave-active-class="dissapear">
-                                <div class="typeText" v-if="type" v-html="type"></div>
-                            </transition>
-                            <h4>Abilities</h4>
-                            <abilities-badge v-for="ability in pokemonDetails.abilities" :key="ability.ability.name" :ability="ability.ability.name" @click="getAbility(ability.ability.url)" />
-                            <transition name="slideDown" leave-active-class="dissapear">
-                                <div class="typeText" v-if="ability" v-html="ability"></div>
-                            </transition>
-                            <h4>Flavour Text</h4>
-                            <p class="flavourText">{{flavourText.flavor_text}}</p>  
-                            <p class="typeText">Height: {{pokemonDetails.height}}. Weight: {{pokemonDetails.weight}}</p>
-                            <chart :stats="pokemonStats" :labels="pokemonStatsLabel" />
-                        </div>
+                        <pokemon-details 
+                            :ability=ability
+                            :pokemonDetails=pokemonDetails
+                            :genera=genera
+                            :type=type
+                            :flavourText=flavourText
+                            :pokemonStats=pokemonStats
+                            :pokemonStatsLabel=pokemonStatsLabel
+                            v-on:get-type=getType
+                            v-on:get-ability=getAbility
+                        />
                     </div>
                 </div>
             </div>
@@ -39,18 +32,14 @@
 </template>
 
 <script>
-import Chart from '@/components/Chart';
-import TypeBadge from '@/components/TypeBadge';
-import AbilitiesBadge from '@/components/AbilitiesBadge';
+import PokemonDetails from '@/components/PokemonDetails';
 import axios from 'axios';
 import db from '@/database';
 export default{
     name: 'Pokemon',
     props: ['id'],
     components:{
-        Chart,
-        TypeBadge,
-        AbilitiesBadge
+        PokemonDetails
     },
     data(){
         return{

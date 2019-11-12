@@ -52,7 +52,7 @@ export default {
                 this.pokemonEntries = data.data.pokemon_entries;
                 db.pokedex.put({url: `${this.url}`, data: this.pokemonEntries})
             } catch(e) {
-                console.log(e);
+                throw new Error(e.message);
             }
         },
         loadMore(){

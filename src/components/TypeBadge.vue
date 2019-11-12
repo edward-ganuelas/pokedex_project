@@ -3,12 +3,12 @@
 </template>
 
 <script>
-    export default{
-        name: 'TypeBadge',
-        props: {
-            type: String
-        }
+export default{
+    name: 'TypeBadge',
+    props: {
+        type: String
     }
+}
 </script>
 
 <style lang="scss" scoped>

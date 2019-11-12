@@ -11,44 +11,46 @@
 </template>
 
 <script>
-import vSelect from "vue-select";
+@deprecate
+import vSelect from 'vue-select';
+import { deprecate } from 'util';
 export default {
-  name: "pokemon-select",
-  props: ["pokedexResult"],
-  components: {
-    vSelect
-  },
-  data: function() {
-    return {
-      url: "",
-      pokemon: []
-    };
-  },
-  methods: {
-    getPokemon: function() {
-      let results = this.pokedexResult;   
-      results.map(x => {
-        let poke = { value: x.pokemon_species.url, label: this.capitalize(x.pokemon_species.name) };
-        this.pokemon.push(poke);
-      });
+    name: 'pokemon-select',
+    props: ['pokedexResult'],
+    components: {
+        vSelect
     },
-    capitalize: function(value) {
-      if (!value) return "";
-      value = value.toString();
-      return value.charAt(0).toUpperCase() + value.slice(1);
-    }
-  },
-  watch: {
-    url: function() {
-      this.$emit("select-pokemon", this.url.value);
+    data() {
+        return {
+            url: '',
+            pokemon: []
+        };
     },
-    pokedexResult: function(){
-        this.pokemon = [];
+    methods: {
+        getPokemon() {
+            let results = this.pokedexResult;   
+            results.map(x => {
+                let poke = { value: x.pokemon_species.url, label: this.capitalize(x.pokemon_species.name) };
+                this.pokemon.push(poke);
+            });
+        },
+        capitalize(value) {
+            if (!value) return '';
+            value = value.toString();
+            return value.charAt(0).toUpperCase() + value.slice(1);
+        }
+    },
+    watch: {
+        url() {
+            this.$emit('select-pokemon', this.url.value);
+        },
+        pokedexResult(){
+            this.pokemon = [];
+            this.getPokemon();
+        }
+    },
+    beforeMount() {
         this.getPokemon();
     }
-  },
-  beforeMount: function() {
-      this.getPokemon();
-  }
 };
 </script>

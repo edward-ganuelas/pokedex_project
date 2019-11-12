@@ -10,40 +10,42 @@
 </template>
 
 <script>
-import vSelect from "vue-select";
+@deprecate
+import vSelect from 'vue-select';
+import { deprecate } from 'util';
 export default {
-  name: "region-select",
-  components: {
-    vSelect
-  },
-  props: ["regionResult"],
-  data: function() {
-    return {
-      url: "",
-      region: []
-    };
-  },
-  methods: {
-    getRegions: function() {
-      let results = this.regionResult.results;
-      results.map(x => {
-        let region = {value : x.url, label: this.capitalize(x.name)}
-        this.region.push(region);
-      });
+    name: 'region-select',
+    components: {
+        vSelect
     },
-    capitalize: function(value) {
-      if (!value) return "";
-      value = value.toString();
-      return value.charAt(0).toUpperCase() + value.slice(1);
+    props: ['regionResult'],
+    data() {
+        return {
+            url: '',
+            region: []
+        };
+    },
+    methods: {
+        getRegions() {
+            let results = this.regionResult.results;
+            results.map(x => {
+                let region = {value : x.url, label: this.capitalize(x.name)}
+                this.region.push(region);
+            });
+        },
+        capitalize(value) {
+            if (!value) return '';
+            value = value.toString();
+            return value.charAt(0).toUpperCase() + value.slice(1);
+        }
+    },
+    watch: {
+        url() {
+            this.$emit('select-region', this.url.value);
+        }
+    },
+    beforeMount() {
+        this.getRegions();
     }
-  },
-  watch: {
-    url: function() {
-        this.$emit("select-region", this.url.value);
-    }
-  },
-  beforeMount: function() {
-    this.getRegions();
-  }
 };
 </script>

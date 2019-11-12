@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4" v-for="pokemon in slicedPokemonEntries" :key="pokemon.entry_number">
             <transition name="fadeLeftBig">
-            <poke-grid-item :pokeData="pokemon" />
+                <poke-grid-item :pokeData="pokemon" />
             </transition>
         </div>
     </div>
@@ -22,10 +22,11 @@
 </template>
 
 <script>
-import { NATIONALDEX } from "../const/pokeapi.js";
+import { NATIONALDEX } from '@/const/pokeapi.js';
 import PokeGridItem from './PokeGridItem';
 import axios from 'axios';
-import db from '../database.js';
+import db from '@/database.js';
+import _ from 'lodash';
 
 export default {
     name: 'PokeGrid',
@@ -43,17 +44,15 @@ export default {
     methods:{
         async getPokemon(){
             const storedData = await db.pokedex.get({url: `${this.url}`})
-            if(storedData === undefined){
-                try{
-                    const data = await axios.get(this.url);
-                    this.pokemonEntries = data.data.pokemon_entries;
-                    // localStorage.setItem(`${this.url}`, JSON.stringify(this.pokemonEntries));
-                    db.pokedex.put({url: `${this.url}`, data: this.pokemonEntries})
-                }catch(e){
-                    console.log(e);
-                }
-            }else{
-                this.pokemonEntries = storedData.data;
+            if(storedData !== undefined){
+                return Promise.resolve(this.pokemonEntries = storedData.data);
+            }
+            try{
+                const data = await axios.get(this.url);
+                this.pokemonEntries = data.data.pokemon_entries;
+                db.pokedex.put({url: `${this.url}`, data: this.pokemonEntries})
+            } catch(e) {
+                console.log(e);
             }
         },
         loadMore(){
@@ -61,27 +60,21 @@ export default {
         }
     },
     computed:{
-        filteredPokemonEntry(){
+        filteredPokemonEntry() {
             if(this.search === ''){
                 return this.pokemonEntries;
             }
-            const pokemonEntries = this.pokemonEntries.slice();
-            return pokemonEntries.filter(x=>{
-
-                if(x.pokemon_species.name.toUpperCase().indexOf(this.search.toUpperCase()) !== -1){
-                    return x;
-                }
+            const pokemonEntries = _.cloneDeep(this.pokemonEntries);
+            return pokemonEntries.filter((entry) => {
+                return entry.pokemon_species.name.toUpperCase().indexOf(this.search.toUpperCase()) !== -1;
             })
         },
         slicedPokemonEntries(){
-            if(this.search !== ''){
-                return this.filteredPokemonEntry
-            }
-            return this.filteredPokemonEntry.slice(0, this.entries);
+            return this.search !== '' ? this.filteredPokemonEntry : this.filteredPokemonEntry.slice(0, this.entries);
         }
     },
-    mounted(){
-        this.getPokemon();
+    async beforeMount(){
+        await this.getPokemon();
     }
 };
 </script>

@@ -1,7 +1,7 @@
 <script>
 import { Bar } from 'vue-chartjs';
 export default{
-    name: "Chart",
+    name: 'Chart',
     extends: Bar,
     props: ['stats', 'labels'],
     data(){

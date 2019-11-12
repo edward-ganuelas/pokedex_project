@@ -12,9 +12,9 @@
 
 <script>
 import axios from 'axios';
-import { POKEMON } from "../const/pokeapi.js";
-import {Circle8} from 'vue-loading-spinner'
-import db from '../database.js';
+import { POKEMON } from '@/const/pokeapi.js';
+import { Circle8 } from 'vue-loading-spinner';
+import db from '@/database.js';
 export default {
     name: 'PokeItem',
     props: {
@@ -32,62 +32,53 @@ export default {
     },
     methods:{
         async getPokemonSpecies(){           
-                try{
-                    let data = await axios.get(`${this.convertToHttps(this.pokeData.pokemon_species.url)}`);
-                    this.pokemonSpecies = data.data;
-                    
-                }catch(e){
-                    console.log(e)
-                }         
+            try {
+                let data = await axios.get(`${this.convertToHttps(this.pokeData.pokemon_species.url)}`);
+                this.pokemonSpecies = data.data;
+            } catch(e) {
+                console.log(e)
+            }         
         },
         async getPokemon(){
-                try{
+            try{
                 let url = `${POKEMON}${this.pokeData.entry_number}`;
                 url = `${this.convertToHttps(url)}/`;
-                // console.log(url);
-                let data = await axios.get(url);
+                const data = await axios.get(url);
                 this.pokemon = data.data;
-             
-                }catch(e){
-                    console.log(e)
-                }
+            } catch(e) {
+                console.log(e)
+            }
         },
-        pokemonDetails(){
+        pokemonDetails() {
             this.$store.commit('setPokemonSpecies', JSON.stringify(this.pokemonSpecies));
             this.$store.commit('setPokemonDetails', JSON.stringify(this.pokemon));
             this.$router.push({name: 'pokemon', query: {id: this.pokeData.entry_number}});
         },
-        convertToHttps(url){
+        convertToHttps(url) {
             if(url.indexOf('https://') === -1){
                 return url.replace('http://','https://');
             }
             return url;
         }
     },
-
-    mounted(){
-        (async()=>{
-            this.showSpinner = true;
-            const savedData = await db.pokemon.get({id: `${this.pokeData.entry_number}`});
-            if(savedData === undefined){
-                await this.getPokemon()
-                await this.getPokemonSpecies()
-                this.showSpinner = false
-                const pokemonSavedData = {
-                    pokemonDetails: this.pokemon,
-                    pokemonSpecies: this.pokemonSpecies
-                };
-                db.pokemon.put({id: `${this.pokeData.entry_number}`, data: pokemonSavedData})
-            }else{
-                const pokemonSavedData = savedData.data;
-                this.pokemon = pokemonSavedData.pokemonDetails;
-                this.pokemonSpecies = pokemonSavedData.pokemonSpecies;
-            }
+    async beforeMount(){
+        this.showSpinner = true;
+        const savedData = await db.pokemon.get({id: `${this.pokeData.entry_number}`});
+        if (savedData === undefined) {
+            await this.getPokemon()
+            await this.getPokemonSpecies()
             this.showSpinner = false
-        })();
-        
-       
-
+            const pokemonSavedData = {
+                pokemonDetails: this.pokemon,
+                pokemonSpecies: this.pokemonSpecies
+            };
+            db.pokemon.put({id: `${this.pokeData.entry_number}`, data: pokemonSavedData})
+        } else {
+            const pokemonSavedData = savedData.data;
+            this.pokemon = pokemonSavedData.pokemonDetails;
+            this.pokemonSpecies = pokemonSavedData.pokemonSpecies;
+        }
+        this.showSpinner = false
     }
 };
 </script>

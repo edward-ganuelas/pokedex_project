@@ -3,12 +3,12 @@
 </template>
 
 <script>
-    export default{
-        name: 'AbilitiesBadge',
-        props: {
-            ability: String
-        }
+export default{
+    name: 'AbilitiesBadge',
+    props: {
+        ability: String
     }
+}
 </script>
 
 <style lang="scss" scoped>

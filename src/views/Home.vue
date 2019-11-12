@@ -121,12 +121,6 @@ select{width: 100%; margin-bottom: 1em;}
     }
   }
 }
-// nav{
-//   margin: 30px 0;
-//   p{
-//     text-align: center;
-//   }
-// }
 #pokedex{
   width: 100%;
 }

@@ -58,36 +58,23 @@ export default{
         },
         genera(){
             const genera = this.pokemonSpecies.genera;
-            const filteredGenera = genera.filter(x=>{
-                if(x.language.name=== 'en'){
-                    return x;
-                }
-            })
+            const filteredGenera = genera.filter(text => text.language.name === 'en')
             return filteredGenera[0];
         },
         flavourText(){
             const flavourText = this.pokemonSpecies.flavor_text_entries;
-            const englishFlavorText = flavourText.filter(x=>{
-                if(x.language.name==='en'){
-                    return x;
-                }
-            })
+            const englishFlavorText = flavourText.filter(text=> text.language.name === 'en')
             const rand = Math.floor(Math.random() * Math.floor(englishFlavorText.length));
             return englishFlavorText[rand];
 
         },
         pokemonStats(){
             const stats = this.pokemonDetails.stats.slice();
-            return stats.map(x=>{
-                return x.base_stat;
-            }).reverse();
-
+            return stats.map(stat => stat.base_stat).reverse();
         },
         pokemonStatsLabel(){
             const stats = this.pokemonDetails.stats.slice();
-            return stats.map(x=>{
-                return x.stat.name;
-            }).reverse();
+            return stats.map(label => label.stat.name).reverse();
         }
     },
     methods:{

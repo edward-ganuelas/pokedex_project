@@ -15,7 +15,7 @@
     "dexie": "^2.0.4",
     "dot-prop": "5.1.1",
     "lodash": "4.17.19",
-    "vue": "2.6.10",
+    "vue": "^2.6.10",
     "vue-chartjs": "^3.4.0",
     "vue-loading-spinner": "^1.0.11",
     "vue-router": "^3.0.1",
@@ -25,9 +25,9 @@
     "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.9",
-    "@vue/cli-plugin-eslint": "~4.5.9",
-    "@vue/cli-service": "~4.5.9",
+    "@vue/cli-plugin-babel": "~4.5.11",
+    "@vue/cli-plugin-eslint": "~4.5.11",
+    "@vue/cli-service": "~4.5.11",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",

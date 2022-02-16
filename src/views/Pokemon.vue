@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import PokemonDetails from '@/components/PokemonDetails';
+import PokemonDetails from '@/components/PokemonDetails.vue';
 import axios from 'axios';
 import db from '@/database';
 export default{

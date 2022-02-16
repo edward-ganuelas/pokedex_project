@@ -6,22 +6,20 @@
         <p class="name">{{pokeData.pokemon_species.name}}</p>
       </div>
     </div>
-    <circle8 v-if="showSpinner" />
+    <div class="spinner-border" role="status" v-if="showSpinner">
+        <span class="visually-hidden">Loading...</span>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 import { POKEMON } from '@/const/pokeapi.js';
-import { Circle8 } from 'vue-loading-spinner';
 import db from '@/database.js';
 export default {
     name: 'PokeItem',
     props: {
         pokeData: Object
-    },
-    components:{
-        Circle8
     },
     data(){
         return{

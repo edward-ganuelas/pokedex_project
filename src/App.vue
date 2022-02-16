@@ -52,8 +52,10 @@
 <style lang="scss">
 @import "./node_modules/bootstrap/scss/bootstrap-reboot.scss";
 @import "./node_modules/bootstrap/scss/bootstrap-grid.scss";
+@import "./node_modules/bootstrap/scss/bootstrap-utilities.scss";
 @import "./node_modules/bootstrap/scss/_buttons.scss";
 @import "./node_modules/bootstrap/scss/_utilities.scss";
+@import "./node_modules/bootstrap/scss/_spinners.scss";
 @import "/node_modules/vue2-animate/dist/vue2-animate.min.css";
 
 #app {

@@ -23,7 +23,7 @@
 
 <script>
 import { NATIONALDEX } from '@/const/pokeapi.js';
-import PokeGridItem from './PokeGridItem';
+import PokeGridItem from './PokeGridItem.vue';
 import axios from 'axios';
 import db from '@/database.js';
 import _ from 'lodash';

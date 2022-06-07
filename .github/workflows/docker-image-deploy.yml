@@ -1,7 +1,7 @@
-name: Docker Image CI Build
+name: Docker Image CI Deploy
 
 on:
-  pull_request:
+  push:
     branches: [ "master" ]
 
 jobs:
@@ -22,4 +22,5 @@ jobs:
       with:
         context: .
         file: ./Dockerfile
-        push: false
+        push: true
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/pokedex_project:latest

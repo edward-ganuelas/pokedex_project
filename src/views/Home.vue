@@ -7,7 +7,7 @@
 <script>
 import axios from 'axios';
 import { POKEDEX, POKEMON } from '@/const/pokeapi.js';
-import PokemonGrid from '@/components/PokeGrid';
+import PokemonGrid from '@/components/PokeGrid.vue';
 export default {
     name: 'app',
     components: {

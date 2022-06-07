@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import Chart from '@/components/Chart';
-import TypeBadge from '@/components/TypeBadge';
-import AbilitiesBadge from '@/components/AbilitiesBadge';
+import Chart from '@/components/Chart.vue';
+import TypeBadge from '@/components/TypeBadge.vue';
+import AbilitiesBadge from '@/components/AbilitiesBadge.vue';
 export default {
     name: 'PokemonDetails',
     props: {

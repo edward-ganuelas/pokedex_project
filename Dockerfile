@@ -1,5 +1,5 @@
 # build stage
-FROM node:12.22 as build-stage
+FROM node:14.17.6 as build-stage
 WORKDIR /
 COPY . .
 

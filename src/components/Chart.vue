@@ -1,5 +1,6 @@
 <script>
-import { Bar } from 'vue-chartjs';
+import 'chart.js/auto';
+import { Bar } from 'vue-chartjs/legacy';
 export default{
     name: 'Chart',
     extends: Bar,

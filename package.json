@@ -1,6 +1,6 @@
 {
   "name": "pokedex_project",
-  "version": "0.1.0",
+  "version": "3.0.9",
   "private": true,
   "scripts": {
     "serve": "vite serve",

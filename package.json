@@ -16,7 +16,7 @@
     "dot-prop": "7.2.0",
     "lodash": "4.17.21",
     "sass": "^1.49.7",
-    "vue": "^2.6.14",
+    "vue": "^3.2.37",
     "vue-chartjs": "^4.0.0",
     "vue-loading-spinner": "^1.0.11",
     "vue-router": "^3.0.1",

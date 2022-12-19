@@ -1,9 +1,15 @@
+<template>
+    <Bar :chart-data="chartData" :options="options" id="bar-chart" />
+</template>
+
 <script>
-import 'chart.js/auto';
-import { Bar } from 'vue-chartjs/legacy';
+import { Bar } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale );
+
 export default{
     name: 'Chart',
-    extends: Bar,
+    components: { Bar },
     props: ['stats', 'labels'],
     data(){
         return{
@@ -16,7 +22,7 @@ export default{
                     }]
                 }
             },
-            data:{
+            chartData: {
                 labels: this.labels,
                 datasets: [{
                     label: 'Base Stats',
@@ -25,9 +31,6 @@ export default{
                 }]
             }
         }
-    },
-    mounted(){
-        this.renderChart(this.data, this.options);
     }
 }
 </script>

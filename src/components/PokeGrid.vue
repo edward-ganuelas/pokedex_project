@@ -8,9 +8,9 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4" v-for="pokemon in slicedPokemonEntries" :key="pokemon.entry_number">
-            <transition name="fadeLeftBig">
+            <Transition name="fadeLeftBig">
                 <poke-grid-item :pokeData="pokemon" />
-            </transition>
+            </Transition>
         </div>
     </div>
     <div class="row">

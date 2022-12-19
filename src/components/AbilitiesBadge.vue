@@ -1,4 +1,4 @@
-<template functional>
+<template>
     <button class="btn" :class="[props.ability]" @click="listeners['click']">{{props.ability}}</button>
 </template>
 

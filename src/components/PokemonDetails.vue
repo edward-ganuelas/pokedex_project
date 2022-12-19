@@ -15,12 +15,12 @@
         <h4>Flavour Text</h4>
         <p class="flavourText">{{flavourText.flavor_text}}</p>  
         <p class="typeText">Height: {{pokemonDetails.height}}. Weight: {{pokemonDetails.weight}}</p>
-        <!--<chart :stats="pokemonStats" :labels="pokemonStatsLabel" />-->
+        <chart :stats="pokemonStats" :labels="pokemonStatsLabel" />
     </div>
 </template>
 
 <script setup>
-// import Chart from '@/components/Chart.vue';
+import Chart from '@/components/Chart.vue';
 import TypeBadge from '@/components/TypeBadge.vue';
 import AbilitiesBadge from '@/components/AbilitiesBadge.vue';
 defineProps({

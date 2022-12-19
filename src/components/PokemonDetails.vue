@@ -19,35 +19,26 @@
     </div>
 </template>
 
-<script>
+<script setup>
 // import Chart from '@/components/Chart.vue';
 import TypeBadge from '@/components/TypeBadge.vue';
 import AbilitiesBadge from '@/components/AbilitiesBadge.vue';
-export default {
-    name: 'PokemonDetails',
-    props: {
-        pokemonDetails: Object,
-        genera: Object,
-        type: String,
-        ability: String,
-        flavourText: Object,
-        pokemonStats: Array,
-        pokemonStatsLabel: Array
-    },
-    components: {
-        // Chart,
-        TypeBadge,
-        AbilitiesBadge
-    },
-    methods: {
-        clickTypeBadge(url) {
-            this.$emit('get-type',url)
-        },
-        clickAbilitiesBadge(url) {
-            this.$emit('get-ability', url);
-        }
-    }
-    
+defineProps({
+    pokemonDetails: Object,
+    genera: Object,
+    type: String,
+    ability: String,
+    flavourText: Object,
+    pokemonStats: Array,
+    pokemonStatsLabel: Array
+});
+const emit = defineEmits(['get-type', 'get-ability']);
+
+function clickTypeBadge(url) {
+    emit('get-type',url)
+}
+function clickAbilitiesBadge(url) {
+    emit('get-ability', url);
 }
 </script>
 

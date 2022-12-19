@@ -1,13 +1,14 @@
-<template functional>
-    <button class="btn" :class="[props.ability]" @click="listeners['click']">{{props.ability}}</button>
+<template>
+    <button class="btn" :class="[ability.name]" @click="onClick">{{ability.name}}</button>
 </template>
 
-<script>
-export default{
-    name: 'AbilitiesBadge',
-    props: {
-        ability: String
-    }
+<script setup>
+const props = defineProps({
+    ability: Object,
+    clickMethod: Function
+})
+function onClick() {
+    props.clickMethod(props.ability.url)
 }
 </script>
 

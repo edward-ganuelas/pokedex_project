@@ -12,8 +12,8 @@
                             :flavourText=flavourText
                             :pokemonStats=pokemonStats
                             :pokemonStatsLabel=pokemonStatsLabel
-                            v-on:get-type=getType
-                            v-on:get-ability=getAbility
+                            @get-type=getType
+                            @get-ability=getAbility
                         />
                     </div>
                 </div>

@@ -41,9 +41,11 @@
     </div>
     <div class="container">
       <div class="row">
-        <transition name="fadeDown" leave-active-class="dissapear">
-          <router-view/>
-        </transition>
+        <router-view v-slot="{ Component }">
+          <transition name="fadeDown" leave-active-class="dissapear">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </div>
     </div>
   </div>
@@ -52,8 +54,10 @@
 <style lang="scss">
 @import "./node_modules/bootstrap/scss/bootstrap-reboot.scss";
 @import "./node_modules/bootstrap/scss/bootstrap-grid.scss";
+@import "./node_modules/bootstrap/scss/bootstrap-utilities.scss";
 @import "./node_modules/bootstrap/scss/_buttons.scss";
 @import "./node_modules/bootstrap/scss/_utilities.scss";
+@import "./node_modules/bootstrap/scss/_spinners.scss";
 @import "/node_modules/vue2-animate/dist/vue2-animate.min.css";
 
 #app {

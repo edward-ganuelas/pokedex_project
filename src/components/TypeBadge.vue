@@ -1,13 +1,16 @@
 <template>
-    <button class="btn" :class="[props.type]" @click="listeners['click']">{{props.type}}</button>
+    <button class="btn" :class="[type.name]" @click="onClick">{{type.name}}</button>
 </template>
 
-<script>
-export default{
-    name: 'TypeBadge',
-    props: {
-        type: String
-    }
+<script setup>
+const props = defineProps({
+    type: Object,
+    typeUrl: String,
+    clickMethod: Function
+});
+
+function onClick() {
+    props.clickMethod(props.type.url);
 }
 </script>
 

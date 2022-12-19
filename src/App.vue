@@ -41,9 +41,11 @@
     </div>
     <div class="container">
       <div class="row">
-        <transition name="fadeDown" leave-active-class="dissapear">
-          <router-view/>
-        </transition>
+        <router-view v-slot="{ Component }">
+          <transition name="fadeDown" leave-active-class="dissapear">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </div>
     </div>
   </div>

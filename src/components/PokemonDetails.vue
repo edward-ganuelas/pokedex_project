@@ -3,15 +3,15 @@
         <img :alt="pokemonDetails.name" :src="pokemonDetails.sprites.front_default" />
         <h2 class="name">{{pokemonDetails.id}}. {{pokemonDetails.name}}</h2>
         <h3>The {{genera.genus}}</h3>
-        <type-badge v-for="type in pokemonDetails.types" :key="type.type.name" :type="type.type.name" @click="$emit('get-type',type.type.url)" />
-        <transition name="slideDown" leave-active-class="dissapear">
+        <type-badge v-for="type in pokemonDetails.types" :key="type.type.name" :type="type.type" :clickMethod="clickTypeBadge" />
+        <Transition name="slideDown" leave-active-class="dissapear">
             <div class="typeText" v-if="type.length > 0" v-html="type"></div>
-        </transition>
+        </Transition>
         <h4>Abilities</h4>
-        <abilities-badge v-for="ability in pokemonDetails.abilities" :key="ability.ability.name" :ability="ability.ability.name" @click="$emit('get-ability', ability.ability.url)" />
-        <transition name="slideDown" leave-active-class="dissapear">
+        <abilities-badge v-for="ability in pokemonDetails.abilities" :key="ability.ability.name" :ability="ability.ability" :clickMethod="clickAbilitiesBadge" />
+        <Transition name="slideDown" leave-active-class="dissapear">
             <div class="typeText" v-if="ability" v-html="ability"></div>
-        </transition>
+        </Transition>
         <h4>Flavour Text</h4>
         <p class="flavourText">{{flavourText.flavor_text}}</p>  
         <p class="typeText">Height: {{pokemonDetails.height}}. Weight: {{pokemonDetails.weight}}</p>
@@ -19,27 +19,26 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import Chart from '@/components/Chart.vue';
 import TypeBadge from '@/components/TypeBadge.vue';
 import AbilitiesBadge from '@/components/AbilitiesBadge.vue';
-export default {
-    name: 'PokemonDetails',
-    props: {
-        pokemonDetails: Object,
-        genera: Object,
-        type: String,
-        ability: String,
-        flavourText: Object,
-        pokemonStats: Array,
-        pokemonStatsLabel: Array
-    },
-    components: {
-        Chart,
-        TypeBadge,
-        AbilitiesBadge
-    }
-    
+defineProps({
+    pokemonDetails: Object,
+    genera: Object,
+    type: String,
+    ability: String,
+    flavourText: Object,
+    pokemonStats: Array,
+    pokemonStatsLabel: Array
+});
+const emit = defineEmits(['get-type', 'get-ability']);
+
+function clickTypeBadge(url) {
+    emit('get-type',url)
+}
+function clickAbilitiesBadge(url) {
+    emit('get-ability', url);
 }
 </script>
 

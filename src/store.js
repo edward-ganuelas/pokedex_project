@@ -1,10 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore as _createStore } from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+export default new _createStore({
     state: {
         PokemonSpecies: '',
         PokemonDetails: '',

@@ -2717,14 +2717,7 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-rollup@^2.59.0:
-  version "2.75.6"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.75.6.tgz#ac4dc8600f95942a0180f61c7c9d6200e374b439"
-  integrity sha512-OEf0TgpC9vU6WGROJIk1JA3LR5vk/yvqlzxqdrE2CzzXnqKXNzbAwlWUXis8RS3ZPe7LAq+YUxsRa0l3r27MLA==
-  optionalDependencies:
-    fsevents "~2.3.2"
-
-rollup@^2.70.2:
+rollup@^2.59.0, rollup@^2.70.2:
   version "2.79.1"
   resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.79.1.tgz#bedee8faef7c9f93a2647ac0108748f497f081c7"
   integrity sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==
@@ -3160,10 +3153,10 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite-plugin-vue2@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/vite-plugin-vue2/-/vite-plugin-vue2-2.0.1.tgz#1d25e274bd64aa38ff57db5dff5936c305b80275"
-  integrity sha512-8ixcIDZwk3PSbdaqKrPFYDot044lPLIqpjjuRXUDHdRhml87Kbc6JqLq6uwHERlPovwfI3DpluWRMVgn/Llmag==
+vite-plugin-vue2@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/vite-plugin-vue2/-/vite-plugin-vue2-2.0.3.tgz#19aab2720e13a969b9d9272f85e899c671930ef2"
+  integrity sha512-t3Tu93GWsMHbpeIv66MTO5e/rRAo8/+/eWoUtFYuAdKDMyEnn1dqsrXh+CfG+SJAlxJvcTP8U0eXkzhLjKNyMg==
   dependencies:
     "@babel/core" "^7.17.9"
     "@babel/parser" "^7.17.9"

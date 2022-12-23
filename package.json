@@ -21,7 +21,7 @@
     "vue-chartjs": "^4.0.0",
     "vue-loading-spinner": "^1.0.11",
     "vue-router": "^4.0.0",
-    "vue-select": "^3.18.3",
+    "vue-select": "^3.20.2",
     "vue2-animate": "^2.1.0",
     "vuex": "^4.0.0",
     "vuex-persistedstate": "^4.1.0"

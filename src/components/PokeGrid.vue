@@ -26,7 +26,7 @@ import { NATIONALDEX } from '@/const/pokeapi.js';
 import PokeGridItem from './PokeGridItem.vue';
 import axios from 'axios';
 import db from '@/database.js';
-import _ from 'lodash';
+import { cloneDeep } from 'lodash-es';
 
 export default {
     name: 'PokeGrid',
@@ -64,7 +64,7 @@ export default {
             if(this.search === ''){
                 return this.pokemonEntries;
             }
-            const pokemonEntries = _.cloneDeep(this.pokemonEntries);
+            const pokemonEntries = cloneDeep(this.pokemonEntries);
             return pokemonEntries.filter((entry) => {
                 return entry.pokemon_species.name.toUpperCase().indexOf(this.search.toUpperCase()) !== -1;
             })

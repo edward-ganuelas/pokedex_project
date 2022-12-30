@@ -27,7 +27,7 @@
     "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.6.1",
+    "@vitejs/plugin-vue": "^2.3.4",
     "eslint": "8",
     "eslint-plugin-vue": "9",
     "vite": "^2.9.13",

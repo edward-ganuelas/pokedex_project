@@ -649,10 +649,10 @@
   optionalDependencies:
     prettier "^1.18.2 || ^2.0.0"
 
-"@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.4.5":
-  version "6.4.5"
-  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.4.5.tgz#d54e844c1adbb1e677c81c665ecef1a2b4bb8380"
-  integrity sha512-JD5fcdIuFxU4fQyXUu3w2KpAJHzTVdN+p4iOX2lMWSHMOoQdMAcpFLZzm9Z/2nmsoZ1a96QEhZ26e50xLBsgOQ==
+"@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.6.4":
+  version "6.6.4"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.6.4.tgz#cbe97fe0162b365edc1dba80e173f90492535343"
+  integrity sha512-sGhTPMuXqZ1rVOk32RylztWkfXTRhuS7vgAKv0zjqk8gbsHkJ7xfFf+jbySxt7tWObEJwyKaHMikV/WGDiQm8g==
 
 "@vue/reactivity-transform@3.2.45":
   version "3.2.45"
@@ -3237,12 +3237,12 @@ vue-loading-spinner@^1.0.11:
     sass-loader "^6.0.6"
     vue "^2.3.3"
 
-vue-router@^4.0.0:
-  version "4.1.6"
-  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.1.6.tgz#b70303737e12b4814578d21d68d21618469375a1"
-  integrity sha512-DYWYwsG6xNPmLq/FmZn8Ip+qrhFEzA14EI12MsMgVxvHFDYvlr4NXpVF5hrRH1wVcDP8fGi5F4rxuJSl8/r+EQ==
+vue-router@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.5.0.tgz#58fc5fe374e10b6018f910328f756c3dae081f14"
+  integrity sha512-HDuk+PuH5monfNuY+ct49mNmkCRK4xJAV9Ts4z9UFc4rzdDnxQLyCMGGc8pKhZhHTVzfanpNwB/lwqevcBwI4w==
   dependencies:
-    "@vue/devtools-api" "^6.4.5"
+    "@vue/devtools-api" "^6.6.4"
 
 vue-select@^3.20.2:
   version "3.20.2"
